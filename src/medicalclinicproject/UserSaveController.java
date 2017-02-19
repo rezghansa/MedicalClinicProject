@@ -11,6 +11,7 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -47,6 +48,8 @@ public class UserSaveController implements Initializable {
     private ToggleGroup radio;
     @FXML
     private DatePicker bDate;
+    @FXML
+    private Label lblmsgSave;
 
     /**
      * Initializes the controller class.
@@ -72,6 +75,16 @@ public class UserSaveController implements Initializable {
         LocalDate datebo = this.bDate.getValue();
         
         System.out.println(datebo+"----"+gender);
+        
+         String sqlInsertNew = "insert into patient(firstName,lastName,telephone,secondName,secondNameMidle,gender,dateofBirth,allergy,majourSicknes,tretments)\n" +
+        "values('"+firstName+"','"+lastName+"','"+telphone+"','"+seconNO+"','"+seconNT+"',"
+                + "'"+gender+"','"+datebo+"','"+Aler+"','"+MajSic+"','"+Tretm+"')";
+        DbUtilClass dbUtil = new DbUtilClass();
+        System.out.println("sql query :="+sqlInsertNew);
+        if(DbUtilClass.insertion(sqlInsertNew))
+            lblmsgSave.setText("User Sucesfully Saved");
+        else
+            lblmsgSave.setText("User Error Not Saved");
         
     }
     

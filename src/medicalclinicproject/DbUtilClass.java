@@ -58,11 +58,13 @@ public class DbUtilClass {
         return null;
    }
    
-   public static void insertion(String sql){
+   public static boolean insertion(String sql){
        try {
         stmt.executeUpdate(sql);
+        return true;
         } catch (Exception ex) {
            ex.printStackTrace();
+           return false;
        }
 
    }
