@@ -11,6 +11,7 @@ import java.time.format.DateTimeFormatter;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 /**
@@ -19,19 +20,24 @@ import javafx.beans.property.StringProperty;
  */
 public class PatientDBO {
     
-    private final StringProperty firstName;
-    private final StringProperty lastName;
-    private final StringProperty secondName;
-    private final StringProperty secondOName;
-    private final IntegerProperty age;
-    private final IntegerProperty telephone;
-    private final StringProperty gender;
-    private final ObjectProperty<LocalDate> birthday;
-
-    public PatientDBO(StringProperty firstName, StringProperty lastName, 
+    private IntegerProperty userId;
+    private StringProperty firstName;
+    private StringProperty lastName;
+    private StringProperty secondName;
+    private StringProperty secondOName;
+    private IntegerProperty age;
+    private StringProperty telephone;
+    private StringProperty gender;
+    private ObjectProperty<LocalDate> birthday;
+    private StringProperty allegy;
+    private StringProperty sick;
+    private StringProperty tretmnet;
+    
+      public PatientDBO(IntegerProperty userId,StringProperty firstName, StringProperty lastName, 
             StringProperty secondName, StringProperty secondOName, 
-            IntegerProperty age, IntegerProperty telephone, 
-            StringProperty gender, ObjectProperty<LocalDate> birthday) {
+            IntegerProperty age, StringProperty telephone, 
+            StringProperty gender, ObjectProperty<LocalDate> birthday,StringProperty allergy,
+            StringProperty sick,StringProperty treatmen) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.secondName = secondName;
@@ -40,6 +46,26 @@ public class PatientDBO {
         this.telephone = telephone;
         this.gender = gender;
         this.birthday = birthday;
+        this.userId = userId;
+        this.allegy = allergy;
+        this.sick = sick;
+        this.tretmnet = treatmen;
+    }
+    
+    public IntegerProperty getUserId() {
+        return userId;
+    }
+
+    public StringProperty getAllegy() {
+        return allegy;
+    }
+
+    public StringProperty getSick() {
+        return sick;
+    }
+
+    public StringProperty getTretmnet() {
+        return tretmnet;
     }
 
     public StringProperty getFirstName() {
@@ -62,7 +88,7 @@ public class PatientDBO {
         return age;
     }
 
-    public IntegerProperty getTelephone() {
+    public StringProperty getTelephone() {
         return telephone;
     }
 
@@ -74,29 +100,18 @@ public class PatientDBO {
         return birthday;
     }
     
-     public PatientDBO(String firstName, String lastName, 
-            String secondName, String secondOName, 
-            Integer age, Integer telephone, 
-            String gender, String birthday) {
-        this.firstName = null;
-        this.lastName = null;
-        this.secondName = null;
-        this.secondOName = null;
-        this.age = null;
-        this.telephone = null;
-        this.gender = null;
-        this.birthday = null;
-        setFirstName(firstName);
-        setLastName(lastName);
-        setSecondName(secondName);
-        setSecondOName(secondName);
-        setAge(age);
-        setGender(gender);
-        setTelephone(telephone);
-        LocalDate myDate = LocalDate.parse(birthday);
-        setDateOfBirth(myDate);
-    }
-     
+    public void setUserId(Integer ind){
+         this.userId.set(ind);
+     }
+     public void setAllergy(String alergy){
+         this.allegy.set(alergy);
+     }
+     public void setTretment(String tret){
+         this.tretmnet.set(tret);
+     }
+     public void setSickness(String sick){
+         this.sick.set(sick);
+     }
      public void setFirstName(String firstName){
          this.firstName.set(firstName);
      }
@@ -112,7 +127,7 @@ public class PatientDBO {
      public void setAge(Integer age){
          this.age.set(age);
      }
-     public void setTelephone(Integer telephone){
+     public void setTelephone(String telephone){
          this.telephone.set(telephone);
      }
      public void setDateOfBirth(LocalDate dateOfBirth){

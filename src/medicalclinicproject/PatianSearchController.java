@@ -10,11 +10,16 @@ import java.sql.ResultSet;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Callback;
 import org.controlsfx.glyphfont.FontAwesome;
 
@@ -47,6 +52,10 @@ public class PatianSearchController implements Initializable {
     private TableColumn<PatientDBO, LocalDate> cloumnDbo;
     @FXML
     private TableColumn<PatientDBO, String> cloumnGender;
+    @FXML
+    private TableView<PatientDBO> tableSearch;
+    
+    private ObservableList<PatientDBO> data ;
 
     /**
      * Initializes the controller class.
@@ -57,15 +66,17 @@ public class PatianSearchController implements Initializable {
     }    
     
     
+    @FXML
     public void searchPation(){
-        String searchFactor = "select * from patient where ";
+        String searchFactor = "select * from patient where  ";
         if(!txtFname.getText().isEmpty()){
-            searchFactor = "FirstName like (%"+txtFname.getText()+"%) or ";
-        }else if(!txtLastName.getText().isEmpty()){
-            searchFactor += "LastName like (%"+txtLastName.getText()+"%) or ";
-        }else if(!txtTelphone.getText().isEmpty()){
-            searchFactor += "Telephone = '"+txtTelphone.getText()+"' ";
+            searchFactor += "firstName like ('%"+txtFname.getText()+"%') ";
+        }if(!txtLastName.getText().isEmpty()){
+            searchFactor += "or lastName like ('%"+txtLastName.getText()+"%')";
+        }if(!txtTelphone.getText().isEmpty()){
+            searchFactor += "or telephone = '"+txtTelphone.getText()+"' ";
         }
+        System.out.println("Search Query :="+searchFactor);
         ArrayList<PatientDBO> listOfPatients = 
                 DbUtilClass.convertoPatientList(DbUtilClass.readData(searchFactor));
         initializeTable(listOfPatients);
@@ -73,16 +84,23 @@ public class PatianSearchController implements Initializable {
     }
     
     public void initializeTable(ArrayList<PatientDBO> listOfPatients){
-        //for (PatientDBO Patient : listOfPatients) {
-            cloumnFName.setCellValueFactory(cellData -> cellData.getValue().getFirstName());
-            cloumnLName.setCellValueFactory(cellData -> cellData.getValue().getLastName());
-            cloumnSName.setCellValueFactory(cellData -> cellData.getValue().getSecondName());
-            cloumnSSName.setCellValueFactory(cellData -> cellData.getValue().getSecondOName());
-            cloumnGender.setCellValueFactory(cellData -> cellData.getValue().getGender());
-            cloumnDbo.setCellValueFactory(cellData -> cellData.getValue().getBirthday());
+        tableSearch = new TableView<PatientDBO>();
+        data = FXCollections.observableArrayList(listOfPatients);
+        tableSearch.setEditable(true);
+        
+        for (PatientDBO Patient : listOfPatients) {
+            tableSearch.getColumns().clear();
+            cloumnFName.setCellValueFactory(new PropertyValueFactory<PatientDBO, String>("firstName"));
+            //cloumnLName.setCellValueFactory(cellData -> cellData.getValue().getLastName());
+            //cloumnSName.setCellValueFactory(cellData -> cellData.getValue().getSecondName());
+            //cloumnSSName.setCellValueFactory(cellData -> cellData.getValue().getSecondOName());
+            //cloumnGender.setCellValueFactory(cellData -> cellData.getValue().getGender());
+            //cloumnDbo.setCellValueFactory(cellData -> cellData.getValue().getBirthday());
             //cloumnTel.setCellValueFactory(cellData -> cellData.getValue().getTelephone());
-            //cloumnAge.setCellValueFactory(cellData -> cellData.getValue().getAge());
-            
-        //}
+            //cloumnAge.setCellValueFactory(cellData -> cellData.getValue().getAge());  
+           
+           tableSearch.getColumns().addAll(cloumnFName);
+        }
+        tableSearch.setItems(data);
     }
 }

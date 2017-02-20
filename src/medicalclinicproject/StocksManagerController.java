@@ -9,7 +9,9 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Tab;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
 /**
@@ -35,6 +37,18 @@ public class StocksManagerController implements Initializable {
     private AnchorPane invoiceAnch;
     @FXML
     private AnchorPane stockAnchor;
+    @FXML
+    private TextField txrPurchaseOrderID;
+    @FXML
+    private TextField txtmedinceName;
+    @FXML
+    private TextField txtQnty;
+    @FXML
+    private TextField txteachPrice;
+    @FXML
+    private Button btnAdd;
+    @FXML
+    private Button btnsave;
 
     /**
      * Initializes the controller class.
