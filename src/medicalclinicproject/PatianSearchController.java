@@ -14,8 +14,12 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -45,7 +49,7 @@ public class PatianSearchController implements Initializable {
     @FXML
     private TableColumn<PatientDBO, String> cloumnSSName;
     @FXML
-    private TableColumn<PatientDBO, Integer> cloumnTel;
+    private TableColumn<PatientDBO, String> cloumnTel;
     @FXML
     private TableColumn<PatientDBO, Integer> cloumnAge;
     @FXML
@@ -55,7 +59,9 @@ public class PatianSearchController implements Initializable {
     @FXML
     private TableView<PatientDBO> tableSearch;
     
-    private ObservableList<PatientDBO> data ;
+    private ObservableList<PatientDBO> personData = FXCollections.observableArrayList();
+    @FXML
+    private Button btnSelect;
 
     /**
      * Initializes the controller class.
@@ -68,39 +74,46 @@ public class PatianSearchController implements Initializable {
     
     @FXML
     public void searchPation(){
+        String conditions = "";
         String searchFactor = "select * from patient where  ";
         if(!txtFname.getText().isEmpty()){
-            searchFactor += "firstName like ('%"+txtFname.getText()+"%') ";
+            conditions += "firstName like ('%"+txtFname.getText()+"%') ";
         }if(!txtLastName.getText().isEmpty()){
-            searchFactor += "or lastName like ('%"+txtLastName.getText()+"%')";
+            if(!conditions.isEmpty())
+                conditions +="or ";
+            conditions += "lastName like ('%"+txtLastName.getText()+"%')";
         }if(!txtTelphone.getText().isEmpty()){
-            searchFactor += "or telephone = '"+txtTelphone.getText()+"' ";
+               if(!conditions.isEmpty())
+                conditions +="or ";
+            conditions += "telephone like '%"+txtTelphone.getText()+"%' ";
         }
+        searchFactor+=conditions;
         System.out.println("Search Query :="+searchFactor);
-        ArrayList<PatientDBO> listOfPatients = 
+        ObservableList<PatientDBO> listOfPatients = 
                 DbUtilClass.convertoPatientList(DbUtilClass.readData(searchFactor));
-        initializeTable(listOfPatients);
-        
-    }
-    
-    public void initializeTable(ArrayList<PatientDBO> listOfPatients){
-        tableSearch = new TableView<PatientDBO>();
-        data = FXCollections.observableArrayList(listOfPatients);
-        tableSearch.setEditable(true);
-        
-        for (PatientDBO Patient : listOfPatients) {
-            tableSearch.getColumns().clear();
-            cloumnFName.setCellValueFactory(new PropertyValueFactory<PatientDBO, String>("firstName"));
-            //cloumnLName.setCellValueFactory(cellData -> cellData.getValue().getLastName());
-            //cloumnSName.setCellValueFactory(cellData -> cellData.getValue().getSecondName());
-            //cloumnSSName.setCellValueFactory(cellData -> cellData.getValue().getSecondOName());
-            //cloumnGender.setCellValueFactory(cellData -> cellData.getValue().getGender());
-            //cloumnDbo.setCellValueFactory(cellData -> cellData.getValue().getBirthday());
-            //cloumnTel.setCellValueFactory(cellData -> cellData.getValue().getTelephone());
-            //cloumnAge.setCellValueFactory(cellData -> cellData.getValue().getAge());  
+        cloumnFName.setCellValueFactory(celldata->celldata.getValue().getFirstName());
+        cloumnLName.setCellValueFactory(celldata->celldata.getValue().getLastName());
+        cloumnSName.setCellValueFactory(celldata->celldata.getValue().getSecondName());
+        cloumnSSName.setCellValueFactory(celldata->celldata.getValue().getSecondOName());
+        cloumnGender.setCellValueFactory(celldata->celldata.getValue().getGender());
+        cloumnAge.setCellValueFactory(celldata->celldata.getValue().getAge().asObject());
+        cloumnTel.setCellValueFactory(celldata->celldata.getValue().getTelephone());
+        cloumnDbo.setCellValueFactory(celldata->celldata.getValue().getBirthday());
+        tableSearch.setItems(listOfPatients);
            
-           tableSearch.getColumns().addAll(cloumnFName);
-        }
-        tableSearch.setItems(data);
     }
-}
+
+    @FXML
+    private void onSelectPatien(ActionEvent event) {
+        PatientDBO selectedPation = tableSearch.getSelectionModel().getSelectedItem();
+        if(selectedPation !=null){
+            
+        }else{
+            Alert alert = new Alert(AlertType.WARNING);
+            alert.setTitle("No Selection");
+            alert.setHeaderText("No Person Selected");
+            alert.setContentText("Please select a person in the table.");
+            alert.showAndWait();
+        }
+    }
+ }

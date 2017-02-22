@@ -10,12 +10,15 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.time.LocalDate;
+import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -75,10 +78,11 @@ public class DbUtilClass {
    }
    
    
-   public static ArrayList<PatientDBO> convertoPatientList(ResultSet rs){
-       ArrayList<PatientDBO> listOfPatients = null;
+   public static ObservableList<PatientDBO> convertoPatientList(ResultSet rs){
+      
+       ObservableList<PatientDBO> listOfPatients = null;
        try{
-          listOfPatients = new ArrayList<PatientDBO>(rs.getFetchSize());
+          listOfPatients = FXCollections.observableArrayList();
         while(rs.next()){
               Integer userId =      rs.getInt("userId");
               String firstName =      rs.getString("firstName");
@@ -92,32 +96,24 @@ public class DbUtilClass {
               String alle =      rs.getString("allergy");
               String sick =      rs.getString("majourSicknes");
               String ter =      rs.getString("tretments");
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-            LocalDate dbDate = LocalDate.parse(dbo, formatter);
-            PatientDBO tempPatient = new PatientDBO(
-            new SimpleIntegerProperty(userId),
-            new SimpleStringProperty(firstName),
-            new SimpleStringProperty(lastName),
-            new SimpleStringProperty(secondName),
-            new SimpleStringProperty(secondMidName),
-            new SimpleIntegerProperty(age),
-            new SimpleStringProperty(tele),
-            new SimpleStringProperty(gender),
-            new SimpleObjectProperty<LocalDate>(dbDate),
-            new SimpleStringProperty(alle),
-            new SimpleStringProperty(sick),
-            new SimpleStringProperty(ter));
+            PatientDBO tempPatient = new PatientDBO
+            (userId,firstName,lastName,secondName,secondMidName,age,tele,gender,dbo,alle,sick,ter);
             listOfPatients.add(tempPatient);     
         }
        }catch(Exception e){
            e.printStackTrace();
        }
+       
        return listOfPatients;
    }
    
    private static int calculateAge(String bdo){
    
-       return 0;
+       LocalDate today = LocalDate.now();
+       DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+       LocalDate dbDate = LocalDate.parse(bdo, formatter);
+       Period p = Period.between(dbDate, today);
+       return p.getYears();
    }
     
 }

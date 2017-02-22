@@ -24,7 +24,7 @@
               <children>
                 <Label layoutX="339.0" layoutY="22.0" text="GRN Check In" />
                 <Label layoutX="38.0" layoutY="94.0" text="Select purchase Order ID" />
-                <TextField layoutX="184.0" layoutY="91.0" prefWidth="200.0" />
+                <TextField fx:id="txrPurchaseOrderID" layoutX="184.0" layoutY="91.0" prefWidth="200.0" />
                 <TableView layoutX="28.0" layoutY="155.0" prefHeight="384.0" prefWidth="732.0">
                   <columns>
                     <TableColumn prefWidth="75.0" text="Date" />
@@ -62,12 +62,12 @@
                <content>
                   <AnchorPane fx:id="stockAnchor" minHeight="0.0" minWidth="0.0" prefHeight="663.0" prefWidth="889.0">
                       <children>
-                        <TextField layoutX="121.0" layoutY="78.0" prefWidth="200.0" />
+                        <TextField fx:id="txtmedinceName" layoutX="121.0" layoutY="78.0" prefWidth="200.0" />
                         <Label layoutX="27.0" layoutY="81.0" text="Medicine Name" />
-                        <TextField layoutX="471.0" layoutY="78.0" prefWidth="200.0" />
+                        <TextField fx:id="txtQnty" layoutX="471.0" layoutY="78.0" prefWidth="200.0" />
                         <Label layoutX="347.0" layoutY="84.0" text="Available Qnty" />
                         <Label layoutX="27.0" layoutY="132.0" text="Price per Each" />
-                        <TextField layoutX="121.0" layoutY="129.0" prefWidth="200.0" />
+                        <TextField fx:id="txteachPrice" layoutX="121.0" layoutY="129.0" prefWidth="200.0" />
                         <TableView layoutX="27.0" layoutY="213.0" prefHeight="281.0" prefWidth="759.0000999999975">
                           <columns>
                             <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="98.0" text="Date" />
@@ -77,8 +77,8 @@
                             <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="184.0" text="Total" />
                           </columns>
                         </TableView>
-                        <Button layoutX="27.0" layoutY="177.0" mnemonicParsing="false" text="Add" />
-                        <Button layoutX="671.0" layoutY="536.0" mnemonicParsing="false" text="Save" />
+                        <Button fx:id="btnAdd" layoutX="27.0" layoutY="177.0" mnemonicParsing="false" text="Add" />
+                        <Button fx:id="btnsave" layoutX="671.0" layoutY="536.0" mnemonicParsing="false" text="Save" />
                         <Label layoutX="347.0" layoutY="20.0" text="Stock In" />
                       </children>
                   </AnchorPane>
