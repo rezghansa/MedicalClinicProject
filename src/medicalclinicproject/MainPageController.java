@@ -102,6 +102,14 @@ public class MainPageController implements Initializable {
         loadLetters();
     }
     
+    public void startPresceiption(PatientDBO selectedPatien){
+        loadPrescrtion();
+    }
+    
+    public void editPatient(PatientDBO selectedPatien){
+        loadUsers();
+    }
+    
     private void loadStocksSection(){
         loadCenterFXML("StocksManager.fxml");
     }
@@ -115,6 +123,8 @@ public class MainPageController implements Initializable {
     }    
     private void pationSearch(){
         loadCenterFXML("PatianSearch.fxml");
+        PatianSearchController p = loader.getController();
+        p.setMainPageController(this);
     }
     
     private void loadPrescrtion(){

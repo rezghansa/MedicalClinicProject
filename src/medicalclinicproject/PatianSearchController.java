@@ -63,6 +63,15 @@ public class PatianSearchController implements Initializable {
     @FXML
     private Button btnSelect;
 
+    private MainPageController mainPageController;
+    @FXML
+    private Button btnEdit;
+
+    public void setMainPageController(MainPageController mainPageController) {
+        this.mainPageController = mainPageController;
+    }
+    
+    
     /**
      * Initializes the controller class.
      */
@@ -107,7 +116,21 @@ public class PatianSearchController implements Initializable {
     private void onSelectPatien(ActionEvent event) {
         PatientDBO selectedPation = tableSearch.getSelectionModel().getSelectedItem();
         if(selectedPation !=null){
-            
+           mainPageController.startPresceiption(selectedPation);
+        }else{
+            Alert alert = new Alert(AlertType.WARNING);
+            alert.setTitle("No Selection");
+            alert.setHeaderText("No Person Selected");
+            alert.setContentText("Please select a person in the table.");
+            alert.showAndWait();
+        }
+    }
+
+    @FXML
+    private void editPatient(ActionEvent event) {
+        PatientDBO selectedPation = tableSearch.getSelectionModel().getSelectedItem();
+        if(selectedPation !=null){
+           mainPageController.editPatient(selectedPation);
         }else{
             Alert alert = new Alert(AlertType.WARNING);
             alert.setTitle("No Selection");

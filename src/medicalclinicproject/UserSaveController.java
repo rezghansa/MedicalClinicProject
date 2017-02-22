@@ -56,10 +56,14 @@ public class UserSaveController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO        
+        // TODO     
     } 
+
+    public UserSaveController(PatientDBO patinDbo) {
+        showPersonDetails(patinDbo);
+    }
     
-    
+        
     @FXML
     public void saveUser(){
         
@@ -86,6 +90,16 @@ public class UserSaveController implements Initializable {
         else
             lblmsgSave.setText("User Error Not Saved");
         
+    }
+
+    private void showPersonDetails(PatientDBO person) {
+         if (person != null) {
+            // Fill the labels with info from the person object.
+            txtFristName.setText(person.getFirstName().getValue());
+            txtLastName.setText(person.getLastName().getValue());
+            txtSecondName.setText(person.getSecondName().getValue());
+            txtSecondNameTwo.setText(person.getSecondOName().getValue());
+        }        
     }
     
 }
