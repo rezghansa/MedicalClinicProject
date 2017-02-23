@@ -193,4 +193,10 @@ public class MainPageController implements Initializable {
     }
 }
     
+    
+    public boolean showPersonPrescriptionDialog() {
+    
+        return false;
+    }
+    
 }

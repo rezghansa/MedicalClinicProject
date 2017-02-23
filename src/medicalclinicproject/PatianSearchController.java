@@ -116,7 +116,10 @@ public class PatianSearchController implements Initializable {
     private void onSelectPatien(ActionEvent event) {
         PatientDBO selectedPation = tableSearch.getSelectionModel().getSelectedItem();
         if(selectedPation !=null){
-           mainPageController.startPresceiption(selectedPation);
+           mainPageController.setSelectedPatent(selectedPation);
+           boolean okClicked = mainPageController.showPersonPrescriptionDialog();
+            if (okClicked) {
+            }
         }else{
             Alert alert = new Alert(AlertType.WARNING);
             alert.setTitle("No Selection");
