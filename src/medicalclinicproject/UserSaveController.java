@@ -8,6 +8,7 @@ package medicalclinicproject;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.DatePicker;
@@ -50,21 +51,38 @@ public class UserSaveController implements Initializable {
     private DatePicker bDate;
     @FXML
     private Label lblmsgSave;
+    
+    private MainPageController mainPageController;
+    
+    private PatientDBO selcedtPatien = null;
+    
+    private boolean okClicked = false;
+    
+    public void setSelectedPatient(PatientDBO obj){
+        this.selcedtPatien = obj;
+    }
+            
+    public void setMainPageController(MainPageController mainPageController) {
+        this.mainPageController = mainPageController;
+    }
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO     
+        // TODO  
     } 
 
-    public UserSaveController(PatientDBO patinDbo) {
-        showPersonDetails(patinDbo);
-    }
     
+            
+    public UserSaveController() {
+        if(this.selcedtPatien!=null){
+            showPersonDetails(selcedtPatien);
+        }
+    }
+
         
-    @FXML
     public void saveUser(){
         
         String firstName = this.txtFristName.getText();
@@ -92,14 +110,53 @@ public class UserSaveController implements Initializable {
         
     }
 
-    private void showPersonDetails(PatientDBO person) {
-         if (person != null) {
+    public void showPersonDetails(PatientDBO person) {
             // Fill the labels with info from the person object.
             txtFristName.setText(person.getFirstName().getValue());
             txtLastName.setText(person.getLastName().getValue());
             txtSecondName.setText(person.getSecondName().getValue());
             txtSecondNameTwo.setText(person.getSecondOName().getValue());
-        }        
+            txtTel.setText(person.getTelephone().getValue());
+            txBAllergy.setText(person.getAllegy().getValue());
+            txbTreatment.setText(person.getTretmnet().getValue());
+            txBMajorSick.setText(person.getSick().getValue());
+            bDate.setValue(person.getBirthday().getValue());
+            if(person.getGender().getValue().equalsIgnoreCase("M")){
+                rdFemale.setSelected(false);
+                rdMale.setSelected(true);
+            }else{
+                rdFemale.setSelected(true);
+                rdMale.setSelected(false);
+            }
     }
-    
+ 
+    public boolean isOkClicked() {
+        return okClicked;
+    }
+
+    @FXML
+    private void EditUser(ActionEvent event) {
+        
+        String firstName = this.txtFristName.getText();
+        String lastName  = this.txtLastName.getText();
+        String seconNO   = this.txtSecondName.getText();
+        String seconNT   = this.txtSecondNameTwo.getText();
+        String telphone  = this.txtTel.getText(); 
+        String gender    = this.rdMale.isSelected()?"M":"F";
+        String MajSic    = this.txBMajorSick.getText();
+        String Tretm     = this.txbTreatment.getText();
+        String Aler      = this.txBAllergy.getText();
+        LocalDate datebo = this.bDate.getValue();
+        
+        System.out.println(datebo+"----"+gender);
+        
+         String sqlInsertNew = "";
+         
+        DbUtilClass dbUtil = new DbUtilClass();
+        System.out.println("sql query :="+sqlInsertNew);
+        if(DbUtilClass.insertion(sqlInsertNew))
+            lblmsgSave.setText("User Sucesfully Updated");
+        else
+            lblmsgSave.setText("User Error Not Saved");
+    }
 }

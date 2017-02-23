@@ -8,15 +8,20 @@ package medicalclinicproject;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.fxml.JavaFXBuilderFactory;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Modality;
 import javafx.stage.Screen;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -43,6 +48,18 @@ public class MainPageController implements Initializable {
     // Reference to the main application.
     private MainApp mainApp;
     
+    private PatientDBO selectedPatient;
+    
+    public void setSelectedPatent(PatientDBO select){
+        this.selectedPatient = select;
+    }
+    
+    public PatientDBO getSelectedPatent(){
+        if(selectedPatient != null)
+            return selectedPatient;
+        else
+            return null;
+    }
     
     public void setRootLayout(BorderPane rootLayout){
         this.rootLayout = rootLayout;
@@ -107,7 +124,8 @@ public class MainPageController implements Initializable {
     }
     
     public void editPatient(PatientDBO selectedPatien){
-        loadUsers();
+            this.selectedPatient = selectedPatien;
+            loadCenterFXML("UserSave.fxml");
     }
     
     private void loadStocksSection(){
@@ -144,5 +162,35 @@ public class MainPageController implements Initializable {
             rootLayout.setCenter(middleAnch);
         }catch(IOException e){
         }  
+    } 
+    
+    public boolean showPersonEditDialog() {
+    try {
+        // Load the fxml file and create a new stage for the popup dialog.
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(MainApp.class.getResource("editPatent.fxml"));
+        AnchorPane page = (AnchorPane) loader.load();
+
+        // Create the dialog Stage.
+        Stage dialogStage = new Stage();
+        dialogStage.setTitle("Edit Person");
+        dialogStage.initModality(Modality.WINDOW_MODAL);
+        dialogStage.initOwner(this.mainApp.getPrimaryStage());
+        Scene scene = new Scene(page);
+        dialogStage.setScene(scene);
+
+        // Set the person into the controller.
+        UserSaveController controller = loader.getController();
+        controller.setSelectedPatient(this.selectedPatient);
+        controller.showPersonDetails(selectedPatient);
+        // Show the dialog and wait until the user closes it
+        dialogStage.showAndWait();
+
+        return controller.isOkClicked();
+    } catch (IOException e) {
+        e.printStackTrace();
+        return false;
     }
+}
+    
 }

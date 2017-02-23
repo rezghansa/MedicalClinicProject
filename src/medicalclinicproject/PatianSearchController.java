@@ -130,7 +130,12 @@ public class PatianSearchController implements Initializable {
     private void editPatient(ActionEvent event) {
         PatientDBO selectedPation = tableSearch.getSelectionModel().getSelectedItem();
         if(selectedPation !=null){
-           mainPageController.editPatient(selectedPation);
+           mainPageController.setSelectedPatent(selectedPation);
+           boolean okClicked = mainPageController.showPersonEditDialog();
+            if (okClicked) {
+                
+            }
+           
         }else{
             Alert alert = new Alert(AlertType.WARNING);
             alert.setTitle("No Selection");
