@@ -150,7 +150,18 @@ public class UserSaveController implements Initializable {
         
         System.out.println(datebo+"----"+gender);
         
-         String sqlInsertNew = "";
+         String sqlInsertNew = "update patient "+
+         "set firstName = '"+firstName+"' , "+
+         "lastName = '"+lastName+"' , "+
+         "telephone = '"+telphone+"' , "+
+         "secondName= '"+seconNO+"' , "+
+         "secondNameMidle= '"+seconNT+"' , "+
+         "gender= '"+gender+"' , "+
+         "dateofBirth= '"+datebo+"' , "+
+         "allergy= '"+Aler+"' , "+
+         "majourSicknes= '"+MajSic+"' , "+
+         "tretments= '"+Tretm+"' "+
+         "where userId = "+selcedtPatien.getUserId().getValue();
          
         DbUtilClass dbUtil = new DbUtilClass();
         System.out.println("sql query :="+sqlInsertNew);
