@@ -195,7 +195,7 @@ public class MainPageController implements Initializable {
     
     
     public boolean showPersonPrescriptionDialog() {
-    
+        loadPrescrtion();
         return false;
     }
     

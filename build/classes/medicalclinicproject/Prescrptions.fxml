@@ -1,49 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.net.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" fx:controller="medicalclinicproject.PrescrptionsController">
+<AnchorPane id="AnchorPane" prefHeight="619.0" prefWidth="1249.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="medicalclinicproject.PrescrptionsController">
     <stylesheets>
-        <URL value="@prescrptions.css"/>
+        <URL value="@prescrptions.css" />
     </stylesheets>
     <children>
-    <TextField layoutX="102.0" layoutY="227.0" prefWidth="200.0" />
-    <Label layoutX="31.0" layoutY="230.0" text="Drug Name" />
-    <Label layoutX="32.0" layoutY="261.0" text="Amount" />
-    <TextField layoutX="103.0" layoutY="258.0" prefWidth="200.0" />
-    <Label layoutX="30.0" layoutY="301.0" text="Numer of Days/ Hrs" />
-    <TextField layoutX="145.0" layoutY="296.0" prefWidth="156.0" />
-    <Pane disable="true" layoutX="400.0" layoutY="19.0" prefHeight="200.0" prefWidth="386.0">
-      <children>
-        <Label layoutX="164.0" layoutY="11.0" text="Last Visit Prescription" />
-      </children>
-    </Pane>
-    <ListView layoutX="27.0" layoutY="379.0" prefHeight="184.0" prefWidth="745.0" />
-    <Label layoutX="27.0" layoutY="22.0" text="Root Cause" />
-    <Label layoutX="22.0" layoutY="118.0" prefHeight="22.0" text="Syndroms" />
+    <TextField layoutX="99.0" layoutY="277.0" prefWidth="200.0" />
+    <Label layoutX="25.0" layoutY="289.0" text="Drug Name" />
+    <Label layoutX="25.0" layoutY="322.0" text="Dosage" />
+    <TextField layoutX="93.0" layoutY="318.0" prefWidth="200.0" />
+    <Label layoutX="26.0" layoutY="358.0" text="Number Days" />
+    <TextField layoutX="103.0" layoutY="354.0" prefWidth="156.0" />
+    <ListView layoutX="27.0" layoutY="430.0" prefHeight="133.0" prefWidth="544.0" />
+    <Label layoutX="27.0" layoutY="22.0" text="Symptoms" />
+    <Label layoutX="22.0" layoutY="118.0" prefHeight="22.0" text="Differential Diagnosis" />
     <TextArea layoutX="117.0" layoutY="14.0" prefHeight="92.0" prefWidth="251.0" wrapText="true" />
-    <TextArea layoutX="117.0" layoutY="116.0" prefHeight="77.0" prefWidth="251.0" wrapText="true" />
-    <Label layoutX="330.0" layoutY="236.0" text="Select Prescrption from Template" />
-    <ComboBox layoutX="516.0" layoutY="231.0" prefHeight="21.0" prefWidth="178.0">
-      <items>
-        
-      </items>
-    </ComboBox>
-    <Button layoutX="243.0" layoutY="345.0" mnemonicParsing="false" text="Add" />
-    <Label layoutX="386.0" layoutY="280.0" text="Tests to Perform" />
-    <Button layoutX="717.0" layoutY="231.0" mnemonicParsing="false" text="Load" />
-    <TextArea layoutX="516.0" layoutY="272.0" prefHeight="37.0" prefWidth="178.0" wrapText="true" />
-    <Button layoutX="718.0" layoutY="277.0" mnemonicParsing="false" text="Print" />
-    <Label layoutX="386.0" layoutY="329.0" text="Take from Pharmacy" />
-    <TextArea layoutX="516.0" layoutY="318.0" prefHeight="48.0" prefWidth="178.0" wrapText="true" />
-    <Button layoutX="717.0" layoutY="332.0" mnemonicParsing="false" text="Print" />
-    <Button layoutX="723.0" layoutY="576.0" mnemonicParsing="false" text="Done" />
-    <Label layoutX="316.0" layoutY="580.0" text="Add on Effect for Precreption" />
-    <TextField layoutX="493.0" layoutY="576.0" prefWidth="200.0" />
+    <TextArea layoutX="145.0" layoutY="118.0" prefHeight="77.0" prefWidth="251.0" wrapText="true" />
+    <Button layoutX="274.0" layoutY="397.0" mnemonicParsing="false" text="Add" />
+    <Label layoutX="301.0" layoutY="322.0" text="Laboratory Test(s)" />
+    <TextArea layoutX="421.0" layoutY="312.0" prefHeight="37.0" prefWidth="178.0" wrapText="true" />
+    <Label layoutX="293.0" layoutY="358.0" text="Outside Purchase(Pharmacy)" />
+    <TextArea layoutX="466.0" layoutY="367.0" prefHeight="48.0" prefWidth="178.0" wrapText="true" />
+    <Button layoutX="435.0" layoutY="575.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="149.0" text="Save / Print" />
+      <Label layoutX="31.0" layoutY="409.0" text="Total" />
+      <TextField layoutX="93.0" layoutY="397.0" />
+      <Label layoutX="453.0" layoutY="22.0" text="Examination" />
+      <ComboBox layoutX="530.0" layoutY="18.0" prefWidth="150.0" />
+      <Button layoutX="715.0" layoutY="18.0" mnemonicParsing="false" text="Add" />
+      <TextArea layoutX="963.0" layoutY="57.0" prefHeight="530.0" prefWidth="251.0" wrapText="true" />
+      <ComboBox layoutX="980.0" layoutY="18.0" prefWidth="150.0" promptText="Selce nu prececrption" />
+      <Label layoutX="34.0" layoutY="579.0" text="Amount" />
+      <TextField layoutX="93.0" layoutY="575.0" />
   </children>
 </AnchorPane>
