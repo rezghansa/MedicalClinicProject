@@ -7,6 +7,7 @@ package medicalclinicproject;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Collection;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -15,6 +16,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.fxml.JavaFXBuilderFactory;
 import javafx.geometry.Rectangle2D;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
@@ -195,8 +197,16 @@ public class MainPageController implements Initializable {
     
     
     public boolean showPersonPrescriptionDialog() {
-        loadPrescrtion();
+        try{ 
+            loader = new FXMLLoader();
+            loader.setLocation(MainPageController.class.getResource("Prescrptions.fxml"));
+            middleAnch = (AnchorPane) loader.load();  
+            rootLayout.setCenter(middleAnch);
+            PrescrptionsController controller = loader.getController();
+            controller.setSelcedtPatien(selectedPatient);
+            controller.showPersonDetails(selectedPatient);
+        }catch(IOException e){
+        }         
         return false;
-    }
-    
+    }   
 }

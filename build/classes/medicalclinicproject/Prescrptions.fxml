@@ -23,7 +23,7 @@
     <ListView layoutX="27.0" layoutY="430.0" prefHeight="133.0" prefWidth="544.0" />
     <Label layoutX="27.0" layoutY="22.0" text="Symptoms" />
     <Label layoutX="22.0" layoutY="118.0" prefHeight="22.0" text="Differential Diagnosis" />
-    <TextArea layoutX="117.0" layoutY="14.0" prefHeight="92.0" prefWidth="251.0" wrapText="true" />
+    <TextArea fx:id="txtSymp" layoutX="117.0" layoutY="14.0" prefHeight="92.0" prefWidth="251.0" wrapText="true" />
     <TextArea layoutX="145.0" layoutY="118.0" prefHeight="77.0" prefWidth="251.0" wrapText="true" />
     <Button layoutX="274.0" layoutY="397.0" mnemonicParsing="false" text="Add" />
     <Label layoutX="301.0" layoutY="322.0" text="Laboratory Test(s)" />
