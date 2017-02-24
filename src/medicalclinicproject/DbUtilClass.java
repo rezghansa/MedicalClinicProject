@@ -96,8 +96,9 @@ public class DbUtilClass {
               String alle =      rs.getString("allergy");
               String sick =      rs.getString("majourSicknes");
               String ter =      rs.getString("tretments");
+              String bloodGroup = rs.getString("bloodGroupType");
             PatientDBO tempPatient = new PatientDBO
-            (userId,firstName,lastName,secondName,secondMidName,age,tele,gender,dbo,alle,sick,ter);
+            (userId,firstName,lastName,secondName,secondMidName,age,tele,gender,dbo,alle,sick,ter,bloodGroup);
             listOfPatients.add(tempPatient);     
         }
        }catch(Exception e){

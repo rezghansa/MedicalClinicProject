@@ -34,12 +34,13 @@ public class PatientDBO {
     private final StringProperty allegy;
     private final StringProperty sick;
     private final StringProperty tretmnet;
+    private final StringProperty bloodGroupType;
     
       public PatientDBO(Integer userId,String firstName, String lastName, 
             String secondName, String secondOName, 
             Integer age, String telephone, 
             String gender, String birthday,String allergy,
-            String sick,String treatmen) {
+            String sick,String treatmen,String blooodGroup) {
         this.firstName = new SimpleStringProperty(firstName);
         this.lastName = new SimpleStringProperty(lastName);
         this.secondName = new SimpleStringProperty(secondName);
@@ -54,6 +55,7 @@ public class PatientDBO {
         this.allegy = new SimpleStringProperty(allergy);
         this.sick = new SimpleStringProperty(sick);
         this.tretmnet = new SimpleStringProperty(treatmen);
+        this.bloodGroupType = new SimpleStringProperty(blooodGroup);
     }
 
     public IntegerProperty getUserId() {
@@ -103,5 +105,10 @@ public class PatientDBO {
     public StringProperty getTretmnet() {
         return tretmnet;
     }
+
+    public StringProperty getBloodGroupType() {
+        return bloodGroupType;
+    }
+    
     
 }

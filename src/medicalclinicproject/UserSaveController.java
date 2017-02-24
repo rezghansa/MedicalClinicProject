@@ -8,9 +8,12 @@ package medicalclinicproject;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
@@ -57,6 +60,8 @@ public class UserSaveController implements Initializable {
     private PatientDBO selcedtPatien = null;
     
     private boolean okClicked = false;
+    @FXML
+    private ComboBox<String> cmBG;
     
     public void setSelectedPatient(PatientDBO obj){
         this.selcedtPatien = obj;
@@ -72,6 +77,8 @@ public class UserSaveController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO  
+        ObservableList<String> data = FXCollections.observableArrayList("A+", "A-", "B+","B-", "AB+", "AB-","O+","O-");
+        cmBG.setItems(data);
     } 
 
     
@@ -83,6 +90,7 @@ public class UserSaveController implements Initializable {
     }
 
         
+    @FXML
     public void saveUser(){
         
         String firstName = this.txtFristName.getText();
@@ -95,12 +103,13 @@ public class UserSaveController implements Initializable {
         String Tretm     = this.txbTreatment.getText();
         String Aler      = this.txBAllergy.getText();
         LocalDate datebo = this.bDate.getValue();
+        String blodGroup = this.cmBG.getSelectionModel().getSelectedItem();
         
         System.out.println(datebo+"----"+gender);
         
-         String sqlInsertNew = "insert into patient(firstName,lastName,telephone,secondName,secondNameMidle,gender,dateofBirth,allergy,majourSicknes,tretments)\n" +
+         String sqlInsertNew = "insert into patient(firstName,lastName,telephone,secondName,secondNameMidle,gender,dateofBirth,allergy,majourSicknes,tretments,bloodGroupType)\n" +
         "values('"+firstName+"','"+lastName+"','"+telphone+"','"+seconNO+"','"+seconNT+"',"
-                + "'"+gender+"','"+datebo+"','"+Aler+"','"+MajSic+"','"+Tretm+"')";
+                + "'"+gender+"','"+datebo+"','"+Aler+"','"+MajSic+"','"+Tretm+"','"+blodGroup+"')";
         DbUtilClass dbUtil = new DbUtilClass();
         System.out.println("sql query :="+sqlInsertNew);
         if(DbUtilClass.insertion(sqlInsertNew))
@@ -124,10 +133,16 @@ public class UserSaveController implements Initializable {
             if(person.getGender().getValue().equalsIgnoreCase("M")){
                 rdFemale.setSelected(false);
                 rdMale.setSelected(true);
+                rdFemale.setDisable(true);
             }else{
                 rdFemale.setSelected(true);
                 rdMale.setSelected(false);
+                rdMale.setDisable(true);
             }
+            cmBG.getItems().clear();
+            cmBG.setValue(person.getBloodGroupType().getValue());
+            bDate.setDisable(true);
+            
     }
  
     public boolean isOkClicked() {
@@ -151,13 +166,7 @@ public class UserSaveController implements Initializable {
         System.out.println(datebo+"----"+gender);
         
          String sqlInsertNew = "update patient "+
-         "set firstName = '"+firstName+"' , "+
-         "lastName = '"+lastName+"' , "+
-         "telephone = '"+telphone+"' , "+
-         "secondName= '"+seconNO+"' , "+
-         "secondNameMidle= '"+seconNT+"' , "+
-         "gender= '"+gender+"' , "+
-         "dateofBirth= '"+datebo+"' , "+
+         "set telephone = '"+telphone+"' , "+
          "allergy= '"+Aler+"' , "+
          "majourSicknes= '"+MajSic+"' , "+
          "tretments= '"+Tretm+"' "+
