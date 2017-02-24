@@ -11,6 +11,7 @@ import java.util.Collection;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -51,6 +52,8 @@ public class MainPageController implements Initializable {
     private MainApp mainApp;
     
     private PatientDBO selectedPatient;
+    @FXML
+    private Button btnFinanceData;
     
     public void setSelectedPatent(PatientDBO select){
         this.selectedPatient = select;
@@ -209,4 +212,8 @@ public class MainPageController implements Initializable {
         }         
         return false;
     }   
+
+    @FXML
+    private void loadFinanceData(ActionEvent event) {
+    }
 }

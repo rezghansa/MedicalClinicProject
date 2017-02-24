@@ -9,7 +9,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="619.0" prefWidth="1249.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="medicalclinicproject.PrescrptionsController">
+<AnchorPane id="AnchorPane" prefHeight="619.0" prefWidth="1249.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="medicalclinicproject.PrescrptionsController">
     <stylesheets>
         <URL value="@prescrptions.css" />
     </stylesheets>
@@ -37,7 +37,7 @@
       <ComboBox layoutX="530.0" layoutY="18.0" prefWidth="150.0" />
       <Button layoutX="715.0" layoutY="18.0" mnemonicParsing="false" text="Add" />
       <TextArea layoutX="963.0" layoutY="57.0" prefHeight="530.0" prefWidth="251.0" wrapText="true" />
-      <ComboBox layoutX="980.0" layoutY="18.0" prefWidth="150.0" promptText="Selce nu prececrption" />
+      <ComboBox layoutX="980.0" layoutY="18.0" prefWidth="150.0" />
       <Label layoutX="34.0" layoutY="579.0" text="Amount" />
       <TextField layoutX="93.0" layoutY="575.0" />
   </children>
