@@ -7,9 +7,15 @@ package medicalclinicproject;
 
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.BarChart;
@@ -21,6 +27,7 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import org.controlsfx.control.textfield.TextFields;
 
@@ -119,8 +126,27 @@ public class StocksManagerController implements Initializable {
         TextFields.bindAutoCompletion(txtItemName, possibleSuggestions);
         ObservableList<String> data = FXCollections.observableArrayList("A+", "A-", "B+","B-", "AB+", "AB-","O+","O-");
         cmbQtryType.setItems(data);
+        initSummaryTable();
     }    
+
+    public StocksManagerController() {
+        loadDataForSummary();
+    }
  
+    
+    public void initSummaryTable(){
+        name.setCellValueFactory(new PropertyValueFactory<Invoice, String>("medicineName"));
+        availbleQty.setCellValueFactory(new PropertyValueFactory<Invoice, Double>("stockQty"));
+        sumaryTable.setItems(filteredData);
+        threhodLevel.valueProperty().addListener(new ChangeListener<String>() {
+        @Override 
+            public void changed(ObservableValue ov, String t, String t1) {
+                updateFilteredData();
+            }    
+        });
+    }
+    
+    
     //kernal of adding Item Stock  Tab
     @FXML
     public void saveStock(){
@@ -202,10 +228,59 @@ public class StocksManagerController implements Initializable {
         }catch(Exception e){e.printStackTrace();}
     }
     
+    private ObservableList<Invoice> masterData = FXCollections.observableArrayList();
+    private ObservableList<Invoice> filteredData = FXCollections.observableArrayList();
+    
     private void loadDataForSummary(){
         try{
-            
+            // Initially add all data to filtered data
+            filteredData.addAll(masterData);
+            // Listen for changes in master data.
+        // Whenever the master data changes we must also update the filtered data.
+        masterData.addListener(new ListChangeListener<Invoice>() {
+            @Override
+            public void onChanged(ListChangeListener.Change<? extends Invoice> change) {
+                updateFilteredData();
+            }
+        });
         }catch(Exception e){e.printStackTrace();}
     }
     
+      /**
+     * Updates the filteredData to contain all data from the masterData that
+     * matches the current filter.
+     */
+    private void updateFilteredData() {
+        filteredData.clear();
+
+        for (Invoice p : masterData) {
+            if (matchesFilter(p)) {
+                filteredData.add(p);
+            }
+        }
+
+        // Must re-sort table after items changed
+        reapplyTableSortOrder();
+    }
+    
+     private boolean matchesFilter(Invoice invoice) {
+        String filterString = threhodLevel.getSelectionModel().getSelectedItem();
+        if (filterString == null || filterString.isEmpty()) {
+            // No filter --> Add all.
+            return true;
+        }
+
+        String lowerCaseFilterString = filterString.toLowerCase();
+        
+        if (invoice.getMediceName().toString().toLowerCase().indexOf(lowerCaseFilterString) != -1) {
+           return true;
+        }
+        return false; // Does not match
+    }
+
+    private void reapplyTableSortOrder() {
+        ArrayList<TableColumn<Invoice, ?>> sortOrder = new ArrayList<>(sumaryTable.getSortOrder());
+        sumaryTable.getSortOrder().clear();
+        sumaryTable.getSortOrder().addAll(sortOrder);
+    }
 }
