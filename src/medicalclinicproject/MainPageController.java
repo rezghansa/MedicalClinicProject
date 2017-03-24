@@ -215,5 +215,11 @@ public class MainPageController implements Initializable {
 
     @FXML
     private void loadFinanceData(ActionEvent event) {
+        loadFinance();
     }
+    
+    private void loadFinance(){
+       loadCenterFXML("financeData.fxml");           
+    }    
+    
 }
