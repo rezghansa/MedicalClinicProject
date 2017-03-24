@@ -12,6 +12,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -95,6 +97,18 @@ public class StocksManagerController implements Initializable {
     private TextField txtItemName;
     @FXML
     private Button btnSearch;
+    @FXML
+    private PieChart pieChat;
+    @FXML
+    private BarChart<Invoice, Double> mediBar;
+    @FXML
+    private TableView<Invoice> sumaryTable;
+    @FXML
+    private TableColumn<Invoice, String> name;
+    @FXML
+    private TableColumn<Invoice, Double> availbleQty;
+    @FXML
+    private ComboBox<String> threhodLevel;
     /**
      * Initializes the controller class.
      */
@@ -103,6 +117,8 @@ public class StocksManagerController implements Initializable {
         initializeMedicines();
         TextFields.bindAutoCompletion(txtmedinceName, possibleSuggestions);
         TextFields.bindAutoCompletion(txtItemName, possibleSuggestions);
+        ObservableList<String> data = FXCollections.observableArrayList("A+", "A-", "B+","B-", "AB+", "AB-","O+","O-");
+        cmbQtryType.setItems(data);
     }    
  
     //kernal of adding Item Stock  Tab
@@ -113,7 +129,7 @@ public class StocksManagerController implements Initializable {
         double eachPrice = Double.parseDouble(txteachPrice.getText());
         double pricePaid = Double.parseDouble(txtPaid.getText());
         String eachType  = (String)cmbQtryType.getSelectionModel().getSelectedItem();
-        Invoice invoietemp =  new Invoice(mediceName, getQuty, eachPrice, pricePaid, eachPrice);
+        Invoice invoietemp =  new Invoice(mediceName, getQuty, eachPrice, pricePaid, eachType);
         loadToTable(invoietemp);
         resetComponent();
         totalValue +=pricePaid;
@@ -169,6 +185,7 @@ public class StocksManagerController implements Initializable {
     }
     
     //kernal of Invoice Item Search Tabl
+    @FXML
     public void searchMedinceInvoice(){
         loadMedicensToTable(txtItemName.getText());
     }
@@ -185,5 +202,10 @@ public class StocksManagerController implements Initializable {
         }catch(Exception e){e.printStackTrace();}
     }
     
+    private void loadDataForSummary(){
+        try{
+            
+        }catch(Exception e){e.printStackTrace();}
+    }
     
 }

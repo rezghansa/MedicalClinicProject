@@ -24,7 +24,7 @@ public class Invoice {
      private final DoubleProperty getQuty;
      private final DoubleProperty eachPrice;
      private final DoubleProperty pricePaid;
-     private final DoubleProperty eachType;
+     private final StringProperty eachType;
      private final DoubleProperty discountedPrice;
      private final DoubleProperty disountedTotal;
      private final DoubleProperty stkQty;
@@ -32,14 +32,14 @@ public class Invoice {
 
     public Invoice(String mediceName, 
             Double getQuty, Double eachPrice, 
-            Double pricePaid, Double eachType) {
+            Double pricePaid, String eachType) {
         LocalDate dbDate = LocalDate.now();
         this.invoiceDate = new SimpleObjectProperty<LocalDate>(dbDate);
         this.mediceName = new SimpleStringProperty(mediceName);
         this.getQuty = new SimpleDoubleProperty(getQuty);
         this.eachPrice = new SimpleDoubleProperty(eachPrice);
         this.pricePaid = new SimpleDoubleProperty(pricePaid);
-        this.eachType = new SimpleDoubleProperty(eachType);
+        this.eachType = new SimpleStringProperty(eachType);
         this.discountedPrice = new SimpleDoubleProperty((pricePaid / getQuty));
         this.disountedTotal = new SimpleDoubleProperty(((getQuty*eachPrice)-pricePaid));
         this.stkQty = new SimpleDoubleProperty(100);
@@ -66,7 +66,7 @@ public class Invoice {
         return pricePaid;
     }
 
-    public DoubleProperty getEachType() {
+    public StringProperty getEachType() {
         return eachType;
     }
 
