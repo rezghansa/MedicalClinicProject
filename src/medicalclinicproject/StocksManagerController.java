@@ -83,6 +83,18 @@ public class StocksManagerController implements Initializable {
     private Label lblBillTotalAmount;
 
     private double totalValue = 0.0;
+    @FXML
+    private TableView<Invoice> tblViewMedicnesLoad;
+    @FXML
+    private TableColumn<Invoice, LocalDate> tblInvoiceDates;
+    @FXML
+    private TableColumn<Invoice, String> tblNameMedicine;
+    @FXML
+    private TableColumn<Invoice, Double> tblQtyofInvoice;
+    @FXML
+    private TextField txtItemName;
+    @FXML
+    private Button btnSearch;
     /**
      * Initializes the controller class.
      */
@@ -90,6 +102,7 @@ public class StocksManagerController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         initializeMedicines();
         TextFields.bindAutoCompletion(txtmedinceName, possibleSuggestions);
+        TextFields.bindAutoCompletion(txtItemName, possibleSuggestions);
     }    
  
     //kernal of adding Item Stock  Tab
@@ -154,5 +167,23 @@ public class StocksManagerController implements Initializable {
         String []p = {"paracetamol","panadol","alfa"};
         possibleSuggestions = p;
     }
+    
+    //kernal of Invoice Item Search Tabl
+    public void searchMedinceInvoice(){
+        loadMedicensToTable(txtItemName.getText());
+    }
+    
+    private void loadMedicensToTable(String nameOfSearch){
+        try{
+            String nameSql = "";
+            ObservableList<Invoice> listOfinvoices = 
+                DbUtilClass.convertoInvoiceList(DbUtilClass.readData(nameSql));
+            tblInvoiceDates.setCellValueFactory(celldata->celldata.getValue().getInvoiceDate());
+            tblNameMedicine.setCellValueFactory(celldata->celldata.getValue().getMediceName());
+            tblQtyofInvoice.setCellValueFactory(celldata->celldata.getValue().getStkQty().asObject());
+            tblViewMedicnesLoad.setItems(listOfinvoices);
+        }catch(Exception e){e.printStackTrace();}
+    }
+    
     
 }

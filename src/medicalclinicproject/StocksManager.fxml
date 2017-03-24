@@ -10,7 +10,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="649.0" prefWidth="927.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="medicalclinicproject.StocksManagerController">
+<AnchorPane prefHeight="649.0" prefWidth="927.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="medicalclinicproject.StocksManagerController">
    <children>
       <TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="635.0" prefWidth="921.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="-76.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-171.0" AnchorPane.topAnchor="0.0">
         <tabs>
@@ -23,16 +23,17 @@
                <content>
                   <AnchorPane fx:id="invoiceAnch" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                     <children>
-                        <TableView layoutX="32.0" layoutY="100.0" prefHeight="433.0" prefWidth="731.0">
+                        <TableView fx:id="tblViewMedicnesLoad" layoutX="32.0" layoutY="100.0" prefHeight="433.0" prefWidth="731.0">
                           <columns>
-                            <TableColumn prefWidth="75.0" text="Date" />
-                            <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="540.0" text="Name" />
-                            <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="112.0" text="Qty " />
+                            <TableColumn fx:id="tblInvoiceDates" prefWidth="75.0" text="Date" />
+                            <TableColumn fx:id="tblNameMedicine" maxWidth="5000.0" minWidth="10.0" prefWidth="540.0" text="Name" />
+                            <TableColumn fx:id="tblQtyofInvoice" maxWidth="5000.0" minWidth="10.0" prefWidth="112.0" text="Qty " />
                           </columns>
                         </TableView>
                         <Button layoutX="668.0" layoutY="552.0" mnemonicParsing="false" text="Agree" />
-                        <TextField layoutX="189.0" layoutY="47.0" />
+                        <TextField fx:id="txtItemName" layoutX="189.0" layoutY="47.0" />
                         <Label layoutX="65.0" layoutY="51.0" text="Item" />
+                        <Button fx:id="btnSearch" layoutX="384.0" layoutY="36.0" mnemonicParsing="false" onAction="#searchMedinceInvoice" prefHeight="36.0" prefWidth="107.0" text="Search" />
                       </children>          
                   </AnchorPane>
                </content>

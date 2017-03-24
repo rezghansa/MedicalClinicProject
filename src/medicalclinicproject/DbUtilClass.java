@@ -116,5 +116,36 @@ public class DbUtilClass {
        Period p = Period.between(dbDate, today);
        return p.getYears();
    }
-    
+ 
+   public static ObservableList<Invoice> convertoInvoiceList(ResultSet rs){
+      
+       ObservableList<Invoice> listOfPatients = null;
+       try{
+          listOfPatients = FXCollections.observableArrayList();
+        while(rs.next()){
+              Integer userId =      rs.getInt("userId");
+              String firstName =      rs.getString("firstName");
+              String lastName =      rs.getString("lastName");
+              String secondName =      rs.getString("secondName");
+              String secondMidName =      rs.getString("secondNameMidle");
+              Integer age =       calculateAge(rs.getString("dateofBirth"));
+              String tele =      rs.getString("telephone"); 
+              String gender =      rs.getString("gender");
+              String dbo =      rs.getString("dateofBirth");
+              String alle =      rs.getString("allergy");
+              String sick =      rs.getString("majourSicknes");
+              String ter =      rs.getString("tretments");
+              String bloodGroup = rs.getString("bloodGroupType");
+            PatientDBO tempPatient = new PatientDBO
+            (userId,firstName,lastName,secondName,secondMidName,age,tele,gender,dbo,alle,sick,ter,bloodGroup);
+           // listOfPatients.add(tempPatient);     
+        }
+       }catch(Exception e){
+           e.printStackTrace();
+       }
+       
+       return listOfPatients;
+   }
+   
+   
 }
