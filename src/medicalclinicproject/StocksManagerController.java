@@ -7,7 +7,6 @@ package medicalclinicproject;
 
 import java.net.URL;
 import java.time.LocalDate;
-import java.util.Collection;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -21,8 +20,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import javafx.util.Callback;
-import org.controlsfx.control.textfield.AutoCompletionBinding;
 import org.controlsfx.control.textfield.TextFields;
 
 /**
@@ -113,7 +110,16 @@ public class StocksManagerController implements Initializable {
     
     @FXML
     public void saveInvoice(){
-        
+        for(Invoice invoice:listOfItems){
+            String sql = "";
+            DbUtilClass.insertion(sql);
+        }
+    }
+    
+    public void removeRow(){
+        Invoice invoice = tblStock.getSelectionModel().getSelectedItem();
+        listOfItems.remove(invoice);
+        tblStock.getItems().remove(invoice);
     }
     
     private void resetComponent(){
@@ -122,6 +128,8 @@ public class StocksManagerController implements Initializable {
         txtQnty.clear();
         txteachPrice.clear();
     }
+    
+    
     
     public void loadToTable(Invoice invoice){
         try{
