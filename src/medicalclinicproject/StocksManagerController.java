@@ -107,8 +107,6 @@ public class StocksManagerController implements Initializable {
     @FXML
     private PieChart pieChat;
     @FXML
-    private BarChart<Invoice, Double> mediBar;
-    @FXML
     private TableView<Invoice> sumaryTable;
     @FXML
     private TableColumn<Invoice, String> name;
@@ -131,6 +129,8 @@ public class StocksManagerController implements Initializable {
         ObservableList<String> data2 = FXCollections.observableArrayList("All","High", "Medium", "Low");
         threhodLevel.setItems(data2);
         initSummaryTable();
+        loadPieChart();
+        loadBarChart();
     }    
 
     public StocksManagerController() {
@@ -289,5 +289,23 @@ public class StocksManagerController implements Initializable {
         ArrayList<TableColumn<Invoice, ?>> sortOrder = new ArrayList<>(sumaryTable.getSortOrder());
         sumaryTable.getSortOrder().clear();
         sumaryTable.getSortOrder().addAll(sortOrder);
+    }
+    
+    private void loadPieChart(){
+        ObservableList<PieChart.Data> pieChartData =
+                FXCollections.observableArrayList(
+                new PieChart.Data("Liqud", 13),
+                new PieChart.Data("Injections", 25),
+                new PieChart.Data("Capsul", 10),
+                new PieChart.Data("Bla", 22),
+                new PieChart.Data("Bla", 30));
+        pieChat.setData(pieChartData);
+        pieChat.setTitle("Imported Medicines");
+    }
+    
+    private void loadBarChart(){
+    
+        
+        
     }
 }
