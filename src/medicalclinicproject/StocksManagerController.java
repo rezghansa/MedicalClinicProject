@@ -126,7 +126,7 @@ public class StocksManagerController implements Initializable {
         TextFields.bindAutoCompletion(txtItemName, possibleSuggestions);
         ObservableList<String> data = FXCollections.observableArrayList("A+", "A-", "B+","B-", "AB+", "AB-","O+","O-");
         cmbQtryType.setItems(data);
-        ObservableList<String> data2 = FXCollections.observableArrayList("All","High", "Medium", "Low");
+        ObservableList<String> data2 = FXCollections.observableArrayList("All","Urgent", "Early", "Leasuly");
         threhodLevel.setItems(data2);
         initSummaryTable();
         loadPieChart();
@@ -294,11 +294,9 @@ public class StocksManagerController implements Initializable {
     private void loadPieChart(){
         ObservableList<PieChart.Data> pieChartData =
                 FXCollections.observableArrayList(
-                new PieChart.Data("Liqud", 13),
-                new PieChart.Data("Injections", 25),
-                new PieChart.Data("Capsul", 10),
-                new PieChart.Data("Bla", 22),
-                new PieChart.Data("Bla", 30));
+                new PieChart.Data("Ugent", 13),
+                new PieChart.Data("Early", 25),
+                new PieChart.Data("Leauly", 10));
         pieChat.setData(pieChartData);
         pieChat.setTitle("Imported Medicines");
     }
