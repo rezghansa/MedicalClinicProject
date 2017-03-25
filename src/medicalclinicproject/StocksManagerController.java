@@ -116,6 +116,8 @@ public class StocksManagerController implements Initializable {
     private TableColumn<Invoice, Double> availbleQty;
     @FXML
     private ComboBox<String> threhodLevel;
+    @FXML
+    private Button btnRemove;
     /**
      * Initializes the controller class.
      */
@@ -126,6 +128,8 @@ public class StocksManagerController implements Initializable {
         TextFields.bindAutoCompletion(txtItemName, possibleSuggestions);
         ObservableList<String> data = FXCollections.observableArrayList("A+", "A-", "B+","B-", "AB+", "AB-","O+","O-");
         cmbQtryType.setItems(data);
+        ObservableList<String> data2 = FXCollections.observableArrayList("All","High", "Medium", "Low");
+        threhodLevel.setItems(data2);
         initSummaryTable();
     }    
 
@@ -171,9 +175,12 @@ public class StocksManagerController implements Initializable {
         }
     }
     
+    @FXML
     public void removeRow(){
         Invoice invoice = tblStock.getSelectionModel().getSelectedItem();
         listOfItems.remove(invoice);
+        totalValue = (totalValue-invoice.getPricePaid().doubleValue());
+        lblBillTotalAmount.setText("LKR "+ totalValue);
         tblStock.getItems().remove(invoice);
     }
     
@@ -236,8 +243,8 @@ public class StocksManagerController implements Initializable {
             // Initially add all data to filtered data
             filteredData.addAll(masterData);
             // Listen for changes in master data.
-        // Whenever the master data changes we must also update the filtered data.
-        masterData.addListener(new ListChangeListener<Invoice>() {
+            // Whenever the master data changes we must also update the filtered data.
+            masterData.addListener(new ListChangeListener<Invoice>() {
             @Override
             public void onChanged(ListChangeListener.Change<? extends Invoice> change) {
                 updateFilteredData();
