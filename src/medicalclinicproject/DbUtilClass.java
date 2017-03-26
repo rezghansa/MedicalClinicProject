@@ -169,4 +169,18 @@ public class DbUtilClass {
        return listOfPatients;
    }
    
+   public static ObservableList<String> loadTypesofMedicines(){
+         ObservableList<String> listOfPatients = null;
+       try{
+          listOfPatients = FXCollections.observableArrayList();
+          ResultSet rs = DbUtilClass.readData("select typeName from typeOfMedines");
+        while(rs.next()){
+              String typeName     = rs.getString("typeName");
+              listOfPatients.add(typeName);     
+        }
+       }catch(Exception e){
+           e.printStackTrace();
+       }
+       return listOfPatients;
+   }
 }

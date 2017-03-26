@@ -124,7 +124,7 @@ public class StocksManagerController implements Initializable {
         initializeMedicines();
         TextFields.bindAutoCompletion(txtmedinceName, possibleSuggestions);
         TextFields.bindAutoCompletion(txtItemName, possibleSuggestions);
-        ObservableList<String> data = FXCollections.observableArrayList("A+", "A-", "B+","B-", "AB+", "AB-","O+","O-");
+        ObservableList<String> data = DbUtilClass.loadTypesofMedicines();
         cmbQtryType.setItems(data);
         ObservableList<String> data2 = FXCollections.observableArrayList("All","Urgent", "Early", "Leasuly");
         threhodLevel.setItems(data2);
