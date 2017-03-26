@@ -123,21 +123,42 @@ public class DbUtilClass {
        try{
           listOfPatients = FXCollections.observableArrayList();
         while(rs.next()){
-              Integer userId =      rs.getInt("userId");
-              String firstName =      rs.getString("firstName");
-              String lastName =      rs.getString("lastName");
-              String secondName =      rs.getString("secondName");
-              String secondMidName =      rs.getString("secondNameMidle");
-              Integer age =       calculateAge(rs.getString("dateofBirth"));
-              String tele =      rs.getString("telephone"); 
-              String gender =      rs.getString("gender");
-              String dbo =      rs.getString("dateofBirth");
-              String alle =      rs.getString("allergy");
-              String sick =      rs.getString("majourSicknes");
-              String ter =      rs.getString("tretments");
-              String bloodGroup = rs.getString("bloodGroupType");
-            PatientDBO tempPatient = new PatientDBO
-            (userId,firstName,lastName,secondName,secondMidName,age,tele,gender,dbo,alle,sick,ter,bloodGroup);
+              Integer idInvoice      = rs.getInt("idInvoice");
+              String invoiceDate     = rs.getString("invoiceDate");
+              Integer medicineId     = rs.getInt("medicineId");
+              Double Qty             = rs.getDouble("Qty");
+              Double eachPrice       = rs.getDouble("eachPrice");
+              Double pricePaid       = rs.getDouble("pricePaid");
+              Double discountedPrice = rs.getDouble("discountedPrice"); 
+              Double discountedTotal = rs.getDouble("discountedTotal");
+              Invoice invoiceTemp = new Invoice(invoiceDate,medicineId, Qty, 
+                      eachPrice, pricePaid, discountedPrice,discountedTotal);
+            listOfPatients.add(invoiceTemp);     
+        }
+       }catch(Exception e){
+           e.printStackTrace();
+       }
+       return listOfPatients;
+   }
+   
+   public static ObservableList<Invoice> loadMedicinesList(ResultSet rs){
+      
+       ObservableList<Invoice> listOfPatients = null;
+       try{
+          listOfPatients = FXCollections.observableArrayList();
+        while(rs.next()){
+              Integer id                      = rs.getInt("id");
+              String medicineName             = rs.getString("medicineName");
+              String medicinesGenericName     = rs.getString("medicinesGenericName");
+              String medicinesCategory        = rs.getString("medicinesCategory");
+              String medicinesStrengthperUnit = rs.getString("medicinesStrengthperUnit");
+              Integer UgentCount              = rs.getInt("UgentCount");
+              Integer LeasulyCount            = rs.getInt("LeasulyCount"); 
+              Integer EarlyCount              = rs.getInt("EarlyCount");
+              String inStockCount             = rs.getString("inStockCount");
+              String eachTypeId               = rs.getString("eachTypeId");
+           // PatientDBO tempPatient = new PatientDBO
+           // (userId,firstName,lastName,secondName,secondMidName,age,tele,gender,dbo,alle,sick,ter,bloodGroup);
            // listOfPatients.add(tempPatient);     
         }
        }catch(Exception e){
@@ -146,6 +167,5 @@ public class DbUtilClass {
        
        return listOfPatients;
    }
-   
    
 }

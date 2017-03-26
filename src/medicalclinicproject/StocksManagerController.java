@@ -129,8 +129,8 @@ public class StocksManagerController implements Initializable {
         ObservableList<String> data2 = FXCollections.observableArrayList("All","Urgent", "Early", "Leasuly");
         threhodLevel.setItems(data2);
         initSummaryTable();
-        loadPieChart();
-        loadBarChart();
+        //loadPieChart();
+        //loadBarChart();
     }    
 
     public StocksManagerController() {
@@ -170,7 +170,26 @@ public class StocksManagerController implements Initializable {
     @FXML
     public void saveInvoice(){
         for(Invoice invoice:listOfItems){
-            String sql = "";
+            LocalDate datebo = invoice.getInvoiceDate().getValue();
+            String sql ="INSERT INTO `medicalclinc`.`invoices`\n" +
+                        "(`invoiceDate`,\n" +
+                        "`medicineId`,\n" +
+                        "`Qty`,\n" +
+                        "`eachPrice`,\n" +
+                        "`pricePaid`,\n" +
+                        "`discountedPrice`,\n" +
+                        "`discountedTotal`)\n" +
+                        "VALUES\n" +
+                        "(\n" +
+                        "'"+datebo+"',\n" +
+                        ""+invoice.getMedicineId().getValue()+",\n" +
+                        ""+invoice.getGetQuty().getValue()+",\n" +
+                        ""+invoice.getEachPrice().getValue()+",\n" +
+                        ""+invoice.getPricePaid().getValue()+",\n" +
+                        ""+invoice.getDiscountedPrice().getValue()+",\n" +
+                        ""+invoice.getDisountedTotal().getValue()+"\n" +
+                        ");";
+            System.out.println("Sql Insert Qeury:-"+sql);
             DbUtilClass.insertion(sql);
         }
     }
@@ -225,7 +244,9 @@ public class StocksManagerController implements Initializable {
     
     private void loadMedicensToTable(String nameOfSearch){
         try{
-            String nameSql = "";
+            String nameSql = "SELECT * FROM medicalclinc.invoices\n" +
+                             "where medicineId = (select id from medicines where " +
+                             "medicineName like ('%"+nameOfSearch+"%'))";
             ObservableList<Invoice> listOfinvoices = 
                 DbUtilClass.convertoInvoiceList(DbUtilClass.readData(nameSql));
             tblInvoiceDates.setCellValueFactory(celldata->celldata.getValue().getInvoiceDate());
@@ -289,21 +310,5 @@ public class StocksManagerController implements Initializable {
         ArrayList<TableColumn<Invoice, ?>> sortOrder = new ArrayList<>(sumaryTable.getSortOrder());
         sumaryTable.getSortOrder().clear();
         sumaryTable.getSortOrder().addAll(sortOrder);
-    }
-    
-    private void loadPieChart(){
-        ObservableList<PieChart.Data> pieChartData =
-                FXCollections.observableArrayList(
-                new PieChart.Data("Ugent", 13),
-                new PieChart.Data("Early", 25),
-                new PieChart.Data("Leauly", 10));
-        pieChat.setData(pieChartData);
-        pieChat.setTitle("Imported Medicines");
-    }
-    
-    private void loadBarChart(){
-    
-        
-        
     }
 }
