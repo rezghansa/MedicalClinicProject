@@ -232,8 +232,13 @@ public class StocksManagerController implements Initializable {
     }
     
     public void initializeMedicines(){
-        String []p = {"paracetamol","panadol","alfa"};
-        possibleSuggestions = p;
+        ObservableList<Medicines> datatemp =  DbUtilClass.loadMedicinesList(DbUtilClass.readData("select * from medicines"));
+        possibleSuggestions = new String[datatemp.size()];
+        int i = 0;
+        for(Medicines medi: datatemp){
+            possibleSuggestions[i] = medi.getMedicineName().getValue();
+            i++;
+        }
     }
     
     //kernal of Invoice Item Search Tabl

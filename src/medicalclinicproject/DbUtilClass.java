@@ -141,9 +141,9 @@ public class DbUtilClass {
        return listOfPatients;
    }
    
-   public static ObservableList<Invoice> loadMedicinesList(ResultSet rs){
+   public static ObservableList<Medicines> loadMedicinesList(ResultSet rs){
       
-       ObservableList<Invoice> listOfPatients = null;
+       ObservableList<Medicines> listOfPatients = null;
        try{
           listOfPatients = FXCollections.observableArrayList();
         while(rs.next()){
@@ -155,11 +155,12 @@ public class DbUtilClass {
               Integer UgentCount              = rs.getInt("UgentCount");
               Integer LeasulyCount            = rs.getInt("LeasulyCount"); 
               Integer EarlyCount              = rs.getInt("EarlyCount");
-              String inStockCount             = rs.getString("inStockCount");
-              String eachTypeId               = rs.getString("eachTypeId");
-           // PatientDBO tempPatient = new PatientDBO
-           // (userId,firstName,lastName,secondName,secondMidName,age,tele,gender,dbo,alle,sick,ter,bloodGroup);
-           // listOfPatients.add(tempPatient);     
+              Integer inStockCount            = rs.getInt("inStockCount");
+              Integer eachTypeId              = rs.getInt("eachTypeId");
+              Medicines tempMedicine = new Medicines(id, medicineName, medicinesGenericName,
+                      medicinesCategory, medicinesStrengthperUnit, UgentCount, LeasulyCount, 
+                      EarlyCount, inStockCount, eachTypeId);
+            listOfPatients.add(tempMedicine);     
         }
        }catch(Exception e){
            e.printStackTrace();
