@@ -66,6 +66,8 @@ public class PrescrptionsController implements Initializable {
     private Label lblAlrt;
     @FXML
     private Button btnAdd;
+    @FXML
+    private Label lblPatientName;
 
     public TextArea getTxtSymp() {
         return txtSymp;
@@ -118,7 +120,7 @@ public class PrescrptionsController implements Initializable {
             // Fill the labels with info from the person object.
             medicineNameinitializer();
             TextFields.bindAutoCompletion(medicineNameTxt, possibleSuggestions);
-            txtSymp.setText(person.getFirstName().getValue());
+            lblPatientName.setText("Name:-"+person.getFirstName().getValue() +" Age :- "+person.getAge().getValue() +" Gender:-"+person.getGender().getValue());
             medicineNameTxt.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
                 focusState(newValue);
             });
@@ -172,13 +174,26 @@ public class PrescrptionsController implements Initializable {
         printPrescription();
     }
     
+    String prescriptionValues ="Medicine Name\t| Dosage \t| NumberofDays \t| Total Duration \t| \n"
+                             + "___________________________________________________________________________\n";
     @FXML
     public void insertPrecriptionItems(){
-        medicineNameTxt.getText();
-        dosageTxt.getText();
-        numberOfDayTxt.getText();
-        totalTxt.getText();
+        prescriptionValues += 
+        medicineNameTxt.getText() +" "+
+        dosageTxt.getText()+" "+
+        numberOfDayTxt.getText() +" "+
+        totalTxt.getText()+" \n";
+        txfPreciption.setText(prescriptionValues);
+        clearFields();
     }
+    
+    private void clearFields(){
+        medicineNameTxt.clear();
+        dosageTxt.clear();
+        numberOfDayTxt.clear();
+        totalTxt.clear();
+    }
+    
     //this will print as per the requirements to be printed
     public void printPrescription(){
         if(!tfLabTest.getText().isEmpty()){
