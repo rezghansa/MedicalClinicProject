@@ -4,7 +4,6 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -14,31 +13,32 @@
         <URL value="@prescrptions.css" />
     </stylesheets>
     <children>
-    <TextField layoutX="99.0" layoutY="277.0" prefWidth="200.0" />
+    <TextField fx:id="medicineNameTxt" layoutX="99.0" layoutY="277.0" prefWidth="200.0" />
     <Label layoutX="25.0" layoutY="289.0" text="Drug Name" />
     <Label layoutX="25.0" layoutY="322.0" text="Dosage" />
-    <TextField layoutX="93.0" layoutY="318.0" prefWidth="200.0" />
+    <TextField fx:id="dosageTxt" layoutX="93.0" layoutY="318.0" prefWidth="200.0" />
     <Label layoutX="26.0" layoutY="358.0" text="Number Days" />
-    <TextField layoutX="103.0" layoutY="354.0" prefWidth="156.0" />
-    <ListView layoutX="27.0" layoutY="430.0" prefHeight="133.0" prefWidth="544.0" />
+    <TextField fx:id="numberOfDayTxt" layoutX="103.0" layoutY="354.0" prefWidth="156.0" />
     <Label layoutX="27.0" layoutY="22.0" text="Symptoms" />
     <Label layoutX="22.0" layoutY="118.0" prefHeight="22.0" text="Differential Diagnosis" />
     <TextArea fx:id="txtSymp" layoutX="117.0" layoutY="14.0" prefHeight="92.0" prefWidth="251.0" wrapText="true" />
-    <TextArea layoutX="145.0" layoutY="118.0" prefHeight="77.0" prefWidth="251.0" wrapText="true" />
-    <Button layoutX="274.0" layoutY="397.0" mnemonicParsing="false" text="Add" />
+    <TextArea fx:id="tfDeffD" layoutX="145.0" layoutY="118.0" prefHeight="77.0" prefWidth="251.0" wrapText="true" />
+    <Button fx:id="btnAdd" layoutX="274.0" layoutY="397.0" mnemonicParsing="false" onAction="#insertPrecriptionItems" text="Add" />
     <Label layoutX="301.0" layoutY="322.0" text="Laboratory Test(s)" />
-    <TextArea layoutX="421.0" layoutY="312.0" prefHeight="37.0" prefWidth="178.0" wrapText="true" />
+    <TextArea fx:id="tfLabTest" layoutX="421.0" layoutY="312.0" prefHeight="37.0" prefWidth="178.0" wrapText="true" />
     <Label layoutX="293.0" layoutY="358.0" text="Outside Purchase(Pharmacy)" />
-    <TextArea layoutX="466.0" layoutY="367.0" prefHeight="48.0" prefWidth="178.0" wrapText="true" />
-    <Button layoutX="435.0" layoutY="575.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="149.0" text="Save / Print" />
+    <TextArea fx:id="txtParmacy" layoutX="466.0" layoutY="367.0" prefHeight="48.0" prefWidth="178.0" wrapText="true" />
+    <Button fx:id="btnSave" layoutX="435.0" layoutY="575.0" mnemonicParsing="false" onAction="#savePrescriptionDetails" prefHeight="25.0" prefWidth="149.0" text="Save / Print" />
       <Label layoutX="31.0" layoutY="409.0" text="Total" />
-      <TextField layoutX="93.0" layoutY="397.0" />
+      <TextField fx:id="totalTxt" layoutX="93.0" layoutY="397.0" />
       <Label layoutX="453.0" layoutY="22.0" text="Examination" />
       <ComboBox layoutX="530.0" layoutY="18.0" prefWidth="150.0" />
       <Button layoutX="715.0" layoutY="18.0" mnemonicParsing="false" text="Add" />
       <TextArea layoutX="963.0" layoutY="57.0" prefHeight="530.0" prefWidth="251.0" wrapText="true" />
       <ComboBox layoutX="980.0" layoutY="18.0" prefWidth="150.0" />
       <Label layoutX="34.0" layoutY="579.0" text="Amount" />
-      <TextField layoutX="93.0" layoutY="575.0" />
+      <TextField fx:id="txtAmount" layoutX="93.0" layoutY="575.0" />
+      <TextArea fx:id="txfPreciption" layoutX="93.0" layoutY="426.0" prefHeight="144.0" prefWidth="570.0" />
+      <Label fx:id="lblAlrt" layoutX="312.0" layoutY="281.0" />
   </children>
 </AnchorPane>
