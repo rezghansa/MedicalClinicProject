@@ -60,7 +60,6 @@ public class PrescrptionsController implements Initializable {
     private String[]  possibleSuggestions;
     
     private HashMap<String,Medicines> medicineList;
-    private ArrayList<PrecriptionDBO> pricsrption;
     
     @FXML
     private Label lblAlrt;
@@ -170,7 +169,13 @@ public class PrescrptionsController implements Initializable {
     
     @FXML
     public void savePrescriptionDetails(){
-        
+        txtSymp.getText();
+        tfDeffD.getText();
+        txfPreciption.getText();
+        tfLabTest.getText();
+        txtParmacy.getText();
+        txtAmount.getText();
+        System.out.println(" -->"+txtSymp.getText()+tfDeffD.getText()+txfPreciption.getText()+tfLabTest.getText()+txtParmacy.getText()+"<<-----");
         printPrescription();
     }
     
@@ -198,12 +203,15 @@ public class PrescrptionsController implements Initializable {
     public void printPrescription(){
         if(!tfLabTest.getText().isEmpty()){
             //print labtest
+            System.out.println(""+tfLabTest.getText());
         }
         if(!txtParmacy.getText().isEmpty()){
             //print pharmacy
+            System.out.println(""+txtParmacy.getText());
         }
         if(!txfPreciption.getText().isEmpty()){
             //print prescription
+            System.out.println(""+txfPreciption.getText());
         }
     }
 }
