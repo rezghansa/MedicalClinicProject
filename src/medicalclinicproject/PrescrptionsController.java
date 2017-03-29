@@ -20,9 +20,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -271,34 +273,139 @@ public class PrescrptionsController implements Initializable {
     }
     
     private void General(){
-        Label newLabel = new Label("Ge");
-        panelExamination.add(newLabel, 1, 2);
-    
+        Label Height = new Label("Height(KG)");  TextField txtHeig = new TextField();
+        Label Weight = new Label("Weight (M)");  TextField txtWeig = new TextField();
+        Label Pallor = new Label("Pallor");      ToggleGroup group = new ToggleGroup(); RadioButton rb1 = new RadioButton("Yes"); RadioButton rb2 = new RadioButton("No"); rb1.setToggleGroup(group); rb2.setToggleGroup(group);
+        Label Jaundice = new Label("Jaundice");  ToggleGroup group1 = new ToggleGroup(); RadioButton rb11 = new RadioButton("Yes"); RadioButton rb21 = new RadioButton("No"); rb11.setToggleGroup(group1); rb21.setToggleGroup(group1); 
+        Label Thin = new Label("Thin");          ToggleGroup group2 = new ToggleGroup(); RadioButton rb12 = new RadioButton("Yes"); RadioButton rb22 = new RadioButton("No"); rb12.setToggleGroup(group2); rb22.setToggleGroup(group2);
+        Label Obese = new Label("Obese");        ToggleGroup group3 = new ToggleGroup(); RadioButton rb13 = new RadioButton("Yes"); RadioButton rb23 = new RadioButton("No"); rb13.setToggleGroup(group3); rb23.setToggleGroup(group3);
+        Label oedema = new Label("oedema-ankle");ToggleGroup group4 = new ToggleGroup(); RadioButton rb14 = new RadioButton("Yes"); RadioButton rb24 = new RadioButton("No"); rb14.setToggleGroup(group4); rb24.setToggleGroup(group4); 
+        Label peri = new Label("peri-orbital");  ToggleGroup group5 = new ToggleGroup(); RadioButton rb15 = new RadioButton("Yes"); RadioButton rb25 = new RadioButton("No"); rb15.setToggleGroup(group5); rb25.setToggleGroup(group5);
+        Label dehydration = new Label("dehydration"); ToggleGroup group6 = new ToggleGroup(); RadioButton rb16 = new RadioButton("Yes"); RadioButton rb26 = new RadioButton("No"); rb16.setToggleGroup(group6); rb26.setToggleGroup(group6);
+        Label sob = new Label("sob");                ToggleGroup group7 = new ToggleGroup(); RadioButton rb17 = new RadioButton("Yes"); RadioButton rb27 = new RadioButton("No"); rb17.setToggleGroup(group7); rb27.setToggleGroup(group7);
+        panelExamination.add(Height, 0, 1);     panelExamination.add(txtHeig, 1, 1);
+        panelExamination.add(Weight, 0, 2);     panelExamination.add(txtWeig, 1, 2);
+        panelExamination.add(Pallor, 0, 3);     panelExamination.add(rb1, 1, 3); panelExamination.add(rb2, 2, 3);
+        panelExamination.add(Jaundice, 0,4);    panelExamination.add(rb11, 1, 4); panelExamination.add(rb21, 2, 4);
+        panelExamination.add(Thin, 0, 5);       panelExamination.add(rb12, 1, 5); panelExamination.add(rb22, 2, 5);
+        panelExamination.add(Obese, 0, 6);      panelExamination.add(rb13, 1, 6); panelExamination.add(rb23, 2, 6);
+        panelExamination.add(oedema, 0, 7);     panelExamination.add(rb14, 1, 7); panelExamination.add(rb24, 2, 7);
+        panelExamination.add(peri, 0, 8);       panelExamination.add(rb15, 1, 8); panelExamination.add(rb25, 2, 8);
+        panelExamination.add(dehydration, 0, 9);panelExamination.add(rb16, 1, 9); panelExamination.add(rb26, 2, 9);
+        panelExamination.add(sob, 0, 10);       panelExamination.add(rb17, 1, 10); panelExamination.add(rb27, 2, 10);
         btnAdd.setOnAction(new EventHandler() {
             @Override
             public void handle(Event event) {
-                panelExamination.getChildren().remove(newLabel);
+               
             }
         });
     }
     private void CVS(){
-        Label newLabeSl = new Label("CV");
-        panelExamination.add(newLabeSl, 1, 2);
+        Label pulse = new Label("pulse(Bpm)");                  TextField txtpulse = new TextField();
+        Label regular = new Label("regular");      		ToggleGroup group = new ToggleGroup(); RadioButton rb1 = new RadioButton("Yes"); RadioButton rb2 = new RadioButton("No"); rb1.setToggleGroup(group); rb2.setToggleGroup(group);
+        Label irregular = new Label("irregular");  		ToggleGroup group1 = new ToggleGroup(); RadioButton rb11 = new RadioButton("Yes"); RadioButton rb21 = new RadioButton("No"); rb11.setToggleGroup(group1); rb21.setToggleGroup(group1); 
+        Label bp = new Label("Bp");                             TextField txtbp = new TextField();
+        Label hert = new Label("Heart-   dual rhythm");         ToggleGroup group2 = new ToggleGroup(); RadioButton rb12 = new RadioButton("Yes"); RadioButton rb22 = new RadioButton("No"); rb12.setToggleGroup(group2); rb22.setToggleGroup(group2);
+        Label trpl = new Label("triple rhythm");        	ToggleGroup group3 = new ToggleGroup(); RadioButton rb13 = new RadioButton("Yes"); RadioButton rb23 = new RadioButton("No"); rb13.setToggleGroup(group3); rb23.setToggleGroup(group3);
+        Label murmurs = new Label("murmurs");                   ToggleGroup group4 = new ToggleGroup(); RadioButton rb14 = new RadioButton("Yes"); RadioButton rb24 = new RadioButton("No"); rb14.setToggleGroup(group4); rb24.setToggleGroup(group4); 
+        Label systolic = new Label("systolic");  		ToggleGroup group5 = new ToggleGroup(); RadioButton rb15 = new RadioButton("Yes"); RadioButton rb25 = new RadioButton("No"); rb15.setToggleGroup(group5); rb25.setToggleGroup(group5);
+        Label diastolic = new Label("diastolic");               ToggleGroup group6 = new ToggleGroup(); RadioButton rb16 = new RadioButton("Yes"); RadioButton rb26 = new RadioButton("No"); rb16.setToggleGroup(group6); rb26.setToggleGroup(group6);
+        panelExamination.add(pulse, 0, 1);     			panelExamination.add(txtpulse, 1, 1);
+        panelExamination.add(regular, 0, 2);     		panelExamination.add(rb1, 1, 2); panelExamination.add(rb2, 2, 2);
+        panelExamination.add(irregular, 0,3);    		panelExamination.add(rb11, 1, 3); panelExamination.add(rb21, 2, 3);
+        panelExamination.add(bp, 0, 4);                         panelExamination.add(txtbp, 1, 4);
+        panelExamination.add(hert, 0, 5);       		panelExamination.add(rb12, 1, 5); panelExamination.add(rb22, 2, 5);
+        panelExamination.add(trpl, 0, 6);                       panelExamination.add(rb13, 1, 6); panelExamination.add(rb23, 2, 6);
+        panelExamination.add(murmurs, 0, 7);     		panelExamination.add(rb14, 1, 7); panelExamination.add(rb24, 2, 7);
+        panelExamination.add(systolic, 0, 8);       		panelExamination.add(rb15, 1, 8); panelExamination.add(rb25, 2, 8);
+        panelExamination.add(diastolic, 0, 9);		panelExamination.add(rb16, 1, 9); panelExamination.add(rb26, 2, 9);
+        
         btnAdd.setOnAction(new EventHandler() {
             @Override
             public void handle(Event event) {
-                panelExamination.getChildren().remove(newLabeSl);
+               
             }
         });
     }
     private void RS(){
-        
+        Label Pallor = new Label("equal air entry");        ToggleGroup group = new ToggleGroup(); RadioButton rb1 = new RadioButton("Yes"); RadioButton rb2 = new RadioButton("No"); rb1.setToggleGroup(group); rb2.setToggleGroup(group);
+        Label Jaundice = new Label("reduced air entry ");   ToggleGroup group1 = new ToggleGroup(); RadioButton rb11 = new RadioButton("Yes"); RadioButton rb21 = new RadioButton("No"); rb11.setToggleGroup(group1); rb21.setToggleGroup(group1); 
+        Label Thin = new Label("vbs");                      ToggleGroup group2 = new ToggleGroup(); RadioButton rb12 = new RadioButton("Yes"); RadioButton rb22 = new RadioButton("No"); rb12.setToggleGroup(group2); rb22.setToggleGroup(group2);
+        Label Obese = new Label("bbs");                     ToggleGroup group3 = new ToggleGroup(); RadioButton rb13 = new RadioButton("Yes"); RadioButton rb23 = new RadioButton("No"); rb13.setToggleGroup(group3); rb23.setToggleGroup(group3);
+        Label oedema = new Label("creps");                  ToggleGroup group4 = new ToggleGroup(); RadioButton rb14 = new RadioButton("Yes"); RadioButton rb24 = new RadioButton("No"); rb14.setToggleGroup(group4); rb24.setToggleGroup(group4); 
+        Label peri = new Label("rhonchi");                  ToggleGroup group5 = new ToggleGroup(); RadioButton rb15 = new RadioButton("Yes"); RadioButton rb25 = new RadioButton("No"); rb15.setToggleGroup(group5); rb25.setToggleGroup(group5);
+        panelExamination.add(Pallor, 0, 1);     panelExamination.add(rb1, 1, 1); panelExamination.add(rb2, 2, 1);
+        panelExamination.add(Jaundice, 0,2);    panelExamination.add(rb11, 1, 2); panelExamination.add(rb21, 2, 2);
+        panelExamination.add(Thin, 0, 3);       panelExamination.add(rb12, 1, 3); panelExamination.add(rb22, 2, 3);
+        panelExamination.add(Obese, 0, 4);      panelExamination.add(rb13, 1, 4); panelExamination.add(rb23, 2, 4);
+        panelExamination.add(oedema, 0, 5);     panelExamination.add(rb14, 1, 5); panelExamination.add(rb24, 2,5);
+        panelExamination.add(peri, 0, 6);       panelExamination.add(rb15, 1, 6); panelExamination.add(rb25, 2, 6);
+        btnAdd.setOnAction(new EventHandler() {
+            @Override
+            public void handle(Event event) {
+               
+            }
+        });
     }
     private void Ear(){
-        
+        Label l1 = new Label("Normal");                 ToggleGroup group = new ToggleGroup(); RadioButton rb1 = new RadioButton("Yes"); RadioButton rb2 = new RadioButton("No"); rb1.setToggleGroup(group); rb2.setToggleGroup(group);
+        Label l2 = new Label("Normal hearing");         ToggleGroup group1 = new ToggleGroup(); RadioButton rb11 = new RadioButton("Yes"); RadioButton rb21 = new RadioButton("No"); rb11.setToggleGroup(group1); rb21.setToggleGroup(group1); 
+        Label l3 = new Label("Wax");                    ToggleGroup group2 = new ToggleGroup(); RadioButton rb12 = new RadioButton("Yes"); RadioButton rb22 = new RadioButton("No"); rb12.setToggleGroup(group2); rb22.setToggleGroup(group2);
+        Label l4 = new Label("OE");                     ToggleGroup group3 = new ToggleGroup(); RadioButton rb13 = new RadioButton("Yes"); RadioButton rb23 = new RadioButton("No"); rb13.setToggleGroup(group3); rb23.setToggleGroup(group3);
+        Label l5 = new Label("traumatic perforation");  ToggleGroup group4 = new ToggleGroup(); RadioButton rb14 = new RadioButton("Yes"); RadioButton rb24 = new RadioButton("No"); rb14.setToggleGroup(group4); rb24.setToggleGroup(group4); 
+        Label l6 = new Label("AOM");                    ToggleGroup group5 = new ToggleGroup(); RadioButton rb15 = new RadioButton("Yes"); RadioButton rb25 = new RadioButton("No"); rb15.setToggleGroup(group5); rb25.setToggleGroup(group5);
+        Label l7 = new Label("OME");                    ToggleGroup group6 = new ToggleGroup(); RadioButton rb16 = new RadioButton("Yes"); RadioButton rb26 = new RadioButton("No"); rb16.setToggleGroup(group6); rb26.setToggleGroup(group6);
+        Label l8 = new Label("CSOM");                   ToggleGroup group7 = new ToggleGroup(); RadioButton rb17 = new RadioButton("Yes"); RadioButton rb27 = new RadioButton("No"); rb17.setToggleGroup(group7); rb27.setToggleGroup(group7); 
+        Label l9 = new Label("CP");                     ToggleGroup group8 = new ToggleGroup(); RadioButton rb18 = new RadioButton("Yes"); RadioButton rb28 = new RadioButton("No"); rb18.setToggleGroup(group8); rb28.setToggleGroup(group8);
+        Label ll10 = new Label("bleeding");             ToggleGroup group9 = new ToggleGroup(); RadioButton rb19 = new RadioButton("Yes"); RadioButton rb29 = new RadioButton("No"); rb19.setToggleGroup(group9); rb29.setToggleGroup(group9);
+        Label ll11 = new Label("Ear discharge");        ToggleGroup group10 = new ToggleGroup(); RadioButton rb100 = new RadioButton("Yes"); RadioButton rb201 = new RadioButton("No"); rb100.setToggleGroup(group10); rb201.setToggleGroup(group10); 
+        Label ll12 = new Label("Granulation tissue");   ToggleGroup group11 = new ToggleGroup(); RadioButton rb101 = new RadioButton("Yes"); RadioButton rb202 = new RadioButton("No"); rb101.setToggleGroup(group11); rb202.setToggleGroup(group11);
+        Label ll13 = new Label("Polyp");                ToggleGroup group12 = new ToggleGroup(); RadioButton rb102 = new RadioButton("Yes"); RadioButton rb203 = new RadioButton("No"); rb102.setToggleGroup(group12); rb203.setToggleGroup(group12);
+        panelExamination.add(l1, 0, 1);     panelExamination.add(rb1, 1, 1); panelExamination.add(rb2, 2, 1);
+        panelExamination.add(l2, 0, 2);    panelExamination.add(rb11, 1, 2); panelExamination.add(rb21, 2, 2);
+        panelExamination.add(l3, 0, 3);       panelExamination.add(rb12, 1, 3); panelExamination.add(rb22, 2, 3);
+        panelExamination.add(l4, 0, 4);      panelExamination.add(rb13, 1, 4); panelExamination.add(rb23, 2, 4);
+        panelExamination.add(l5, 0, 5);     panelExamination.add(rb14, 1, 5); panelExamination.add(rb24, 2,5);
+        panelExamination.add(l6, 0, 6);       panelExamination.add(rb15, 1, 6); panelExamination.add(rb25, 2, 6);
+        panelExamination.add(l7, 0, 7);     panelExamination.add(rb16, 1, 7); panelExamination.add(rb26, 2, 7);
+        panelExamination.add(l8, 0, 8);    panelExamination.add(rb17, 1, 8); panelExamination.add(rb27, 2, 8);
+        panelExamination.add(l9, 0, 9);       panelExamination.add(rb18, 1, 9); panelExamination.add(rb28, 2, 9);
+        panelExamination.add(ll10, 0, 10);      panelExamination.add(rb19, 1, 10); panelExamination.add(rb29, 2, 10);
+        panelExamination.add(ll11, 0, 11);     panelExamination.add(rb100, 1, 11); panelExamination.add(rb201, 2,11);
+        panelExamination.add(ll12, 0, 12);       panelExamination.add(rb101, 1, 12); panelExamination.add(rb202, 2, 12);
+        panelExamination.add(ll13, 0, 13);       panelExamination.add(rb102, 1, 13); panelExamination.add(rb203, 2, 13);
+        btnAdd.setOnAction(new EventHandler() {
+            @Override
+            public void handle(Event event) {
+               
+            }
+        });
     }
     private void Nose(){
-        
+        Label l1 = new Label("Patent");                 ToggleGroup group = new ToggleGroup(); RadioButton rb1 = new RadioButton("Yes"); RadioButton rb2 = new RadioButton("No"); rb1.setToggleGroup(group); rb2.setToggleGroup(group);
+        Label l2 = new Label("blocked");                ToggleGroup group1 = new ToggleGroup(); RadioButton rb11 = new RadioButton("Yes"); RadioButton rb21 = new RadioButton("No"); rb11.setToggleGroup(group1); rb21.setToggleGroup(group1); 
+        Label l3 = new Label("Sense of smell");         ToggleGroup group2 = new ToggleGroup(); RadioButton rb12 = new RadioButton("Yes"); RadioButton rb22 = new RadioButton("No"); rb12.setToggleGroup(group2); rb22.setToggleGroup(group2);
+        Label l4 = new Label("Fb");                     ToggleGroup group3 = new ToggleGroup(); RadioButton rb13 = new RadioButton("Yes"); RadioButton rb23 = new RadioButton("No"); rb13.setToggleGroup(group3); rb23.setToggleGroup(group3);
+        Label l5 = new Label("Deviated Septum");        ToggleGroup group4 = new ToggleGroup(); RadioButton rb14 = new RadioButton("Yes"); RadioButton rb24 = new RadioButton("No"); rb14.setToggleGroup(group4); rb24.setToggleGroup(group4); 
+        Label l6 = new Label("Bleeding");               ToggleGroup group5 = new ToggleGroup(); RadioButton rb15 = new RadioButton("Yes"); RadioButton rb25 = new RadioButton("No"); rb15.setToggleGroup(group5); rb25.setToggleGroup(group5);
+        Label l7 = new Label("Secretions");             ToggleGroup group6 = new ToggleGroup(); RadioButton rb16 = new RadioButton("Yes"); RadioButton rb26 = new RadioButton("No"); rb16.setToggleGroup(group6); rb26.setToggleGroup(group6);
+        Label l8 = new Label("Polyp");                  ToggleGroup group7 = new ToggleGroup(); RadioButton rb17 = new RadioButton("Yes"); RadioButton rb27 = new RadioButton("No"); rb17.setToggleGroup(group7); rb27.setToggleGroup(group7); 
+        Label l9 = new Label("PND");                    ToggleGroup group8 = new ToggleGroup(); RadioButton rb18 = new RadioButton("Yes"); RadioButton rb28 = new RadioButton("No"); rb18.setToggleGroup(group8); rb28.setToggleGroup(group8);
+        panelExamination.add(l1, 0, 1);     panelExamination.add(rb1, 1, 1); panelExamination.add(rb2, 2, 1);
+        panelExamination.add(l2, 0, 2);    panelExamination.add(rb11, 1, 2); panelExamination.add(rb21, 2, 2);
+        panelExamination.add(l3, 0, 3);       panelExamination.add(rb12, 1, 3); panelExamination.add(rb22, 2, 3);
+        panelExamination.add(l4, 0, 4);      panelExamination.add(rb13, 1, 4); panelExamination.add(rb23, 2, 4);
+        panelExamination.add(l5, 0, 5);     panelExamination.add(rb14, 1, 5); panelExamination.add(rb24, 2,5);
+        panelExamination.add(l6, 0, 6);       panelExamination.add(rb15, 1, 6); panelExamination.add(rb25, 2, 6);
+        panelExamination.add(l7, 0, 7);     panelExamination.add(rb16, 1, 7); panelExamination.add(rb26, 2, 7);
+        panelExamination.add(l8, 0, 8);    panelExamination.add(rb17, 1, 8); panelExamination.add(rb27, 2, 8);
+        panelExamination.add(l9, 0, 9);       panelExamination.add(rb18, 1, 9); panelExamination.add(rb28, 2, 9);
+        btnAdd.setOnAction(new EventHandler() {
+            @Override
+            public void handle(Event event) {
+               
+            }
+        });
     }
     private void Throat(){
         

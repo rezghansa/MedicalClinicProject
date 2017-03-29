@@ -48,11 +48,11 @@
       <Label fx:id="lblPatientName" layoutX="23.0" layoutY="22.0" prefHeight="17.0" prefWidth="374.0" />
       <GridPane fx:id="panelExamination" layoutX="704.0" layoutY="65.0" prefHeight="370.0" prefWidth="533.0">
         <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="127.0" minWidth="10.0" prefWidth="88.0" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="212.0" minWidth="10.0" prefWidth="88.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="212.0" minWidth="10.0" prefWidth="95.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="262.0" minWidth="10.0" prefWidth="139.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="262.0" minWidth="10.0" prefWidth="253.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="179.0" minWidth="10.0" prefWidth="179.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="212.0" minWidth="0.0" prefWidth="94.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="212.0" minWidth="10.0" prefWidth="90.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="262.0" minWidth="10.0" prefWidth="82.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="262.0" minWidth="10.0" prefWidth="88.0" />
         </columnConstraints>
         <rowConstraints>
           <RowConstraints maxHeight="58.0" minHeight="0.0" prefHeight="17.0" vgrow="SOMETIMES" />
