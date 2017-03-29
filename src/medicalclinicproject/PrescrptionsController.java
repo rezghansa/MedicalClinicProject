@@ -10,13 +10,20 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import org.controlsfx.control.textfield.TextFields;
@@ -67,6 +74,10 @@ public class PrescrptionsController implements Initializable {
     private Button btnAdd;
     @FXML
     private Label lblPatientName;
+    @FXML
+    private ComboBox<String> cmbExaminations;
+    @FXML
+    private GridPane panelExamination;
 
     public TextArea getTxtSymp() {
         return txtSymp;
@@ -116,6 +127,7 @@ public class PrescrptionsController implements Initializable {
     }    
     
     public void showPersonDetails(PatientDBO person) {
+            loadExaminations();
             // Fill the labels with info from the person object.
             medicineNameinitializer();
             TextFields.bindAutoCompletion(medicineNameTxt, possibleSuggestions);
@@ -214,4 +226,97 @@ public class PrescrptionsController implements Initializable {
             System.out.println(""+txfPreciption.getText());
         }
     }
+    
+    private void loadExaminations(){
+       
+       ObservableList<String> dataList = FXCollections.observableArrayList("General","CVS","RS","Ear","Nose","Throat","ABDOMEN","Male genitalia","Female genitalia","CNS","Musculo-skeletal");
+       cmbExaminations.setItems(dataList);
+       cmbExaminations.setOnAction(new EventHandler<ActionEvent>() {
+           @Override
+           public void handle(ActionEvent event) {
+             displayExaminationUI(cmbExaminations.getSelectionModel().getSelectedItem());
+           }
+       });
+    }
+    
+    private void displayExaminationUI(Object selectedItem){
+        clearExaminatioPanel();
+        if(selectedItem.equals("General")){
+            General();
+        }else if(selectedItem.equals("CVS")){
+            CVS();
+        }else if(selectedItem.equals("RS")){
+            RS();
+        }else if(selectedItem.equals("Ear")){
+            Ear();
+        }else if(selectedItem.equals("Nose")){
+            Nose();
+        }else if(selectedItem.equals("Throat")){
+            Throat();
+        }else if(selectedItem.equals("ABDOMEN")){
+            ABDOMEN();
+        }else if(selectedItem.equals("Male genitalia")){
+            Malegenitalia();
+        }else if(selectedItem.equals("Female genitalia")){
+            FeMalegenitalia();
+        }else if(selectedItem.equals("CNS")){
+            CNS();
+        }else if(selectedItem.equals("Musculo-skeletal")){
+           MusculoSkeletal();
+        }
+    }
+    
+    private void clearExaminatioPanel(){
+        panelExamination.getChildren().clear();
+    }
+    
+    private void General(){
+        Label newLabel = new Label("Ge");
+        panelExamination.add(newLabel, 1, 2);
+    
+        btnAdd.setOnAction(new EventHandler() {
+            @Override
+            public void handle(Event event) {
+                panelExamination.getChildren().remove(newLabel);
+            }
+        });
+    }
+    private void CVS(){
+        Label newLabeSl = new Label("CV");
+        panelExamination.add(newLabeSl, 1, 2);
+        btnAdd.setOnAction(new EventHandler() {
+            @Override
+            public void handle(Event event) {
+                panelExamination.getChildren().remove(newLabeSl);
+            }
+        });
+    }
+    private void RS(){
+        
+    }
+    private void Ear(){
+        
+    }
+    private void Nose(){
+        
+    }
+    private void Throat(){
+        
+    }
+    private void ABDOMEN(){
+        
+    }
+    private void Malegenitalia(){
+        
+    }
+    private void FeMalegenitalia(){
+        
+    }
+    private void CNS(){
+        
+    }
+    private void MusculoSkeletal(){
+        
+    }
+    
 }

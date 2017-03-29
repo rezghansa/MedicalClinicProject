@@ -4,9 +4,14 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 
 <AnchorPane id="AnchorPane" prefHeight="619.0" prefWidth="1249.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="medicalclinicproject.PrescrptionsController">
     <stylesheets>
@@ -31,15 +36,47 @@
     <Button fx:id="btnSave" layoutX="435.0" layoutY="575.0" mnemonicParsing="false" onAction="#savePrescriptionDetails" prefHeight="25.0" prefWidth="149.0" text="Save / Print" />
       <Label layoutX="31.0" layoutY="409.0" text="Total" />
       <TextField fx:id="totalTxt" layoutX="93.0" layoutY="397.0" />
-      <Label layoutX="453.0" layoutY="22.0" text="Examination" />
-      <ComboBox layoutX="530.0" layoutY="18.0" prefWidth="150.0" />
-      <Button layoutX="715.0" layoutY="18.0" mnemonicParsing="false" text="Add" />
-      <TextArea layoutX="963.0" layoutY="57.0" prefHeight="530.0" prefWidth="251.0" wrapText="true" />
-      <ComboBox layoutX="980.0" layoutY="18.0" prefWidth="150.0" />
+      <Label layoutX="745.0" layoutY="31.0" text="Examination" />
+      <ComboBox fx:id="cmbExaminations" layoutX="844.0" layoutY="27.0" prefWidth="150.0" />
+      <Button fx:id="btnAdd" layoutX="1103.0" layoutY="445.0" mnemonicParsing="false" text="Add" />
+      <TextArea layoutX="430.0" layoutY="52.0" prefHeight="244.0" prefWidth="251.0" wrapText="true" />
+      <ComboBox layoutX="531.0" layoutY="15.0" prefWidth="150.0" />
       <Label layoutX="34.0" layoutY="579.0" text="Amount" />
       <TextField fx:id="txtAmount" layoutX="93.0" layoutY="575.0" />
       <TextArea fx:id="txfPreciption" layoutX="93.0" layoutY="426.0" prefHeight="144.0" prefWidth="570.0" />
       <Label fx:id="lblAlrt" layoutX="312.0" layoutY="281.0" />
       <Label fx:id="lblPatientName" layoutX="23.0" layoutY="22.0" prefHeight="17.0" prefWidth="374.0" />
+      <GridPane fx:id="panelExamination" layoutX="704.0" layoutY="65.0" prefHeight="370.0" prefWidth="533.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="127.0" minWidth="10.0" prefWidth="88.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="212.0" minWidth="10.0" prefWidth="88.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="212.0" minWidth="10.0" prefWidth="95.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="262.0" minWidth="10.0" prefWidth="139.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="262.0" minWidth="10.0" prefWidth="253.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="58.0" minHeight="0.0" prefHeight="17.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="140.0" minHeight="3.0" prefHeight="22.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="135.0" minHeight="16.0" prefHeight="19.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="135.0" minHeight="16.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="135.0" minHeight="16.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="135.0" minHeight="16.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="135.0" minHeight="16.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="135.0" minHeight="16.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="135.0" minHeight="16.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="135.0" minHeight="16.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="135.0" minHeight="16.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="135.0" minHeight="16.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="135.0" minHeight="16.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+      </GridPane>
+      <Button fx:id="btnRemove" layoutX="1157.0" layoutY="445.0" mnemonicParsing="false" text="Remove" />
+      <TableView layoutX="681.0" layoutY="477.0" prefHeight="123.0" prefWidth="554.0">
+        <columns>
+          <TableColumn prefWidth="75.0" text="Examination" />
+          <TableColumn prefWidth="475.0" text="Values" />
+        </columns>
+      </TableView>
+      <Label layoutX="435.0" layoutY="22.0" text="Visits" />
   </children>
 </AnchorPane>
