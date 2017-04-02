@@ -498,23 +498,27 @@ public class PrescrptionsController implements Initializable {
         
     }
     private void FeMalegenitalia(){
+        Label l6 = new Label("LMP");TextField tx5 = new TextField(); TextField tx6 = new TextField();TextField tx7 = new TextField();
         Label l1 = new Label("Breasts- L-"); CheckBox cb1 = new CheckBox("normal"); TextField tx1 = new TextField();
         Label l2 = new Label("Breasts- R-"); CheckBox cb2 = new CheckBox("normal"); TextField tx2 = new TextField();
         Label l3 = new Label("Nipples- L-"); CheckBox cb3 = new CheckBox("normal"); TextField tx3 = new TextField();
         Label l4 = new Label("Nipples- R-"); CheckBox cb4 = new CheckBox("normal"); TextField tx4 = new TextField();
         ObservableList items = FXCollections.observableArrayList("not palpable","palpable");
         Label l5 = new Label("Uterus"); ComboBox cb5 = new ComboBox(items);
-        Label l6 = new Label("LMP");TextField tx5 = new TextField(); TextField tx6 = new TextField();TextField tx7 = new TextField();
+        Label l9 = new Label("fungal rash"); ToggleGroup group5 = new ToggleGroup(); RadioButton rb15 = new RadioButton("Yes"); RadioButton rb25 = new RadioButton("No"); rb15.setToggleGroup(group5); rb25.setToggleGroup(group5);
+        Label l10 = new Label("Vaginal discharge"); ToggleGroup group6 = new ToggleGroup(); RadioButton rb16 = new RadioButton("Yes"); RadioButton rb26 = new RadioButton("No"); rb16.setToggleGroup(group6); rb26.setToggleGroup(group6);
         Label l7 = new Label("Perineum");TextField tx8 = new TextField();
         Label l8 = new Label("Other");TextField tx9 = new TextField();
-        panelExamination.add(l1, 0, 1); panelExamination.add(cb1, 1, 1); panelExamination.add(tx1, 2, 1);
-        panelExamination.add(l2, 0, 2); panelExamination.add(cb2, 1, 2); panelExamination.add(tx2, 2, 2);
-        panelExamination.add(l3, 0, 3); panelExamination.add(cb3, 1, 3); panelExamination.add(tx3, 2, 3);
-        panelExamination.add(l4, 0, 4); panelExamination.add(cb4, 1, 4); panelExamination.add(tx4, 2, 4);
-        panelExamination.add(l5, 0, 5); panelExamination.add(cb5, 1, 5);
-        panelExamination.add(l6, 0, 6); panelExamination.add(tx5, 1, 6); panelExamination.add(tx6, 2, 6);panelExamination.add(tx7, 3, 6);
+        panelExamination.add(l6, 0, 1); panelExamination.add(tx5, 1, 1); panelExamination.add(tx6, 2, 1);panelExamination.add(tx7, 3, 1);
+        panelExamination.add(l1, 0, 2); panelExamination.add(cb1, 1, 2); panelExamination.add(tx1, 2, 2);
+        panelExamination.add(l2, 0, 3); panelExamination.add(cb2, 1, 3); panelExamination.add(tx2, 2, 3);
+        panelExamination.add(l3, 0, 4); panelExamination.add(cb3, 1, 4); panelExamination.add(tx3, 2, 4);
+        panelExamination.add(l4, 0, 5); panelExamination.add(cb4, 1, 5); panelExamination.add(tx4, 2, 5);
+        panelExamination.add(l5, 0, 6); panelExamination.add(cb5, 1, 6);
         panelExamination.add(l7, 0, 7); panelExamination.add(tx8, 1, 7);
         panelExamination.add(l8, 0, 8); panelExamination.add(tx9, 1, 8);
+        panelExamination.add(l9, 0, 9); panelExamination.add(rb15, 1, 9); panelExamination.add(rb25, 2, 9);
+        panelExamination.add(l10, 0, 10);panelExamination.add(rb16, 1, 10); panelExamination.add(rb26, 2, 10);
         btnAdd.setOnAction(new EventHandler() {
             @Override
             public void handle(Event event) {
