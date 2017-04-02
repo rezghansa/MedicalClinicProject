@@ -26,7 +26,7 @@ public class PrecriptionDBO {
     private final StringProperty phamacyTxt;
     private final StringProperty prescriptionTxt;
     private final DoubleProperty amount;
-    private final ListProperty<Examinations> examination;
+    private final Examinations examination;
     
 
     public PrecriptionDBO() {

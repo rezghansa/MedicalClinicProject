@@ -13,6 +13,7 @@ public class Examinations {
     
     private     int patientId;
     private     String examinationDate;
+    private     int examinationID;
     private	String general_height;
     private	String general_weight;
     private	String general_Pallor;
@@ -128,6 +129,13 @@ public class Examinations {
     private	String muskoskel_Upperlimbtenderness;            
     private	String muskoskel_Lowerlimbtenderness;
 
+    public int getExaminationID() {
+        return examinationID;
+    }
+
+    public void setExaminationID(int examinationID) {
+        this.examinationID = examinationID;
+    }
     public int getPatientId() {
         return patientId;
     }
