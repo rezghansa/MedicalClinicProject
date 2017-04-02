@@ -434,24 +434,39 @@ public class PrescrptionsController implements Initializable {
         Label l4 = new Label("Spleen"); ComboBox cb2 = new ComboBox(items);
         Label l5 = new Label("Kidney"); ComboBox cb3 = new ComboBox(items);
         Label l6 = new Label("Other");        TextArea tx1 = new TextArea();
-        Label l7 = new Label("site - epigastric"); CheckBox cb4 = new CheckBox("L"); CheckBox cb5 = new CheckBox("R");
-        Label l8 = new Label("hypochondriac");     CheckBox cb6 = new CheckBox("L"); CheckBox cb7 = new CheckBox("R");
-        Label l9 = new Label("umbilical");     CheckBox cb8 = new CheckBox("L"); CheckBox cb9 = new CheckBox("R");
-        Label l10 = new Label("lumbar");     CheckBox cb10 = new CheckBox("L"); CheckBox cb11= new CheckBox("R");
-        Label l11 = new Label("hypogastric");     CheckBox cb12 = new CheckBox("L"); CheckBox cb13= new CheckBox("R");
-        Label l12 = new Label("inguinal");     CheckBox cb14 = new CheckBox("L"); CheckBox cb15= new CheckBox("R");
+        
+        CheckBox cb4 = new CheckBox("site-epigastric");
+        CheckBox cb8 = new CheckBox("umbilical");
+        CheckBox cb6 = new CheckBox("hypochondriac");
+        
+        CheckBox cb12 = new CheckBox("hypogastric L"); 
+        CheckBox cb10 = new CheckBox("lumbar L"); 
+        CheckBox cb14 = new CheckBox("inguinal L");
+        
+        CheckBox cb13= new CheckBox("hypogastric R");
+        CheckBox cb11= new CheckBox("lumbar R");
+        CheckBox cb15= new CheckBox("inguinal R");
+        
         panelExamination.add(l1, 0, 1);     panelExamination.add(rb1, 1, 1); panelExamination.add(rb2, 2, 1);
         panelExamination.add(l2, 0, 2);    panelExamination.add(rb11, 1, 2); panelExamination.add(rb21, 2, 2);
         panelExamination.add(l3, 0, 3); panelExamination.add(cb1, 1, 3);
         panelExamination.add(l4, 0, 4); panelExamination.add(cb2, 1, 4);
         panelExamination.add(l5, 0, 5); panelExamination.add(cb3, 1, 5);
         panelExamination.add(l6, 0, 6);     panelExamination.add(tx1, 1, 6);
-        panelExamination.add(l7, 0, 7);     panelExamination.add(cb4, 1, 7); panelExamination.add(cb5, 2, 7);
-        panelExamination.add(l8, 0, 8);     panelExamination.add(cb6, 1, 8); panelExamination.add(cb7, 2, 8);
-        panelExamination.add(l9, 0, 9);     panelExamination.add(cb8, 1, 9); panelExamination.add(cb9, 2, 9);
-        panelExamination.add(l10, 0, 10);     panelExamination.add(cb10, 1, 10); panelExamination.add(cb11, 2, 10);
-        panelExamination.add(l11, 0, 11);     panelExamination.add(cb12, 1, 11); panelExamination.add(cb13, 2, 11);
-        panelExamination.add(l12, 0, 12);     panelExamination.add(cb14, 1, 12); panelExamination.add(cb15, 2, 12);
+        
+        //right side
+        panelExamination.add(cb13, 0, 8,1,1);
+        panelExamination.add(cb11, 0, 9,1,1);
+        panelExamination.add(cb15, 0, 10,1,1);
+        //center parts
+        panelExamination.add(cb4, 1, 8,1,1);
+        panelExamination.add(cb8, 1, 9,1,1);
+        panelExamination.add(cb6, 1, 10,1,1); 
+        //leftSide
+        panelExamination.add(cb12, 3, 8,1,1);
+        panelExamination.add(cb10, 3, 9,1,1);
+        panelExamination.add(cb14, 3, 10,1,1);
+        
         btnAdd.setOnAction(new EventHandler() {
             @Override
             public void handle(Event event) {
