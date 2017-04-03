@@ -6,6 +6,8 @@
 package medicalclinicproject;
 
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.ResourceBundle;
@@ -44,6 +46,8 @@ public class PrescrptionsController implements Initializable {
     private MainPageController mainPageController;
     
     private PatientDBO selcedtPatien = null;
+    
+    private PrecriptionDBO prescription = null;
     
     private boolean okClicked = false;
     @FXML
@@ -138,6 +142,10 @@ public class PrescrptionsController implements Initializable {
             medicineNameTxt.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
                 focusState(newValue);
             });
+            prescription = new PrecriptionDBO();
+            prescription.setPaientId(person.getUserId().getValue());
+            LocalDate dbDate =  LocalDate.now();
+            prescription.setPrescribeDate(dbDate);
             
     }
     
@@ -184,26 +192,63 @@ public class PrescrptionsController implements Initializable {
     
     @FXML
     public void savePrescriptionDetails(){
-        txtSymp.getText();
-        tfDeffD.getText();
-        txfPreciption.getText();
-        tfLabTest.getText();
-        txtParmacy.getText();
-        txtAmount.getText();
-        System.out.println(" -->"+txtSymp.getText()+tfDeffD.getText()+txfPreciption.getText()+tfLabTest.getText()+txtParmacy.getText()+"<<-----");
+        prescription.setSymptoms(txtSymp.getText());
+        prescription.setDiffrentialD(tfDeffD.getText());
+        prescription.setPrescriptionTxt(txfPreciption.getText());
+        prescription.setLabsTxt(tfLabTest.getText());
+        prescription.setPhamacyTxt(txtParmacy.getText());
+        prescription.setAmount(txtAmount.getText());
+        System.out.println(prescription.toString());
+        saveExaminations();
+        savetoDataBase();
         printPrescription();
     }
+    
+    public void saveExaminations(){
+        
+    }
+    
+    public void savetoDataBase(){
+        String prescriptionValuesSql = "INSERT INTO  prescriptions\n" +
+                                        "(\n" +
+                                        "prescribeDate,\n" +
+                                        "paientId,\n" +
+                                        "symptoms,\n" +
+                                        "diffrentialD,\n" +
+                                        "labsTxt,\n" +
+                                        "phamacyTxt,\n" +
+                                        "prescriptionTxt,\n" +
+                                        "amount,\n" +
+                                        "examinationId)\n" +
+                                        "VALUES\n" +
+                                        "(\n" +
+                                        ""+prescription.getPrescribeDate()+",\n" +
+                                        ""+prescription.getPaientId()+",\n" +
+                                        "'"+prescription.getSymptoms()+"',\n" +
+                                        "'"+prescription.getDiffrentialD()+"',\n" +
+                                        "'"+prescription.getLabsTxt()+"',\n" +
+                                        "'"+prescription.getPhamacyTxt()+"',\n" +
+                                        "'"+prescription.getPrescriptionTxt()+"',\n" +
+                                        "'"+prescription.getAmount()+"',\n" +
+                                        ""+prescription.getExaminationId()+"); ";
+        DbUtilClass.insertion(prescriptionValuesSql);
+    }
+    
     
     String prescriptionValues ="Medicine Name\t| Dosage \t| NumberofDays \t| Total Duration \t| \n"
                              + "___________________________________________________________________________\n";
     @FXML
     public void insertPrecriptionItems(){
+        PrescriptionTableData temp = new PrescriptionTableData(medicineNameTxt.getText(), 
+                dosageTxt.getText(), Double.parseDouble(numberOfDayTxt.getText()),
+                Double.parseDouble(totalTxt.getText()));
         prescriptionValues += 
         medicineNameTxt.getText() +" "+
         dosageTxt.getText()+" "+
         numberOfDayTxt.getText() +" "+
         totalTxt.getText()+" \n";
         txfPreciption.setText(prescriptionValues);
+        prescription.addPrescrptionTableData(temp);
         clearFields();
     }
     
