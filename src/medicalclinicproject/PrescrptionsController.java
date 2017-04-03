@@ -49,6 +49,8 @@ public class PrescrptionsController implements Initializable {
     
     private PrecriptionDBO prescription = null;
     
+    private Examinations examinations = null;
+    
     private boolean okClicked = false;
     @FXML
     private TextField medicineNameTxt;
@@ -143,6 +145,7 @@ public class PrescrptionsController implements Initializable {
                 focusState(newValue);
             });
             prescription = new PrecriptionDBO();
+            examinations = new Examinations();
             prescription.setPaientId(person.getUserId().getValue());
             LocalDate dbDate =  LocalDate.now();
             prescription.setPrescribeDate(dbDate);
@@ -198,14 +201,14 @@ public class PrescrptionsController implements Initializable {
         prescription.setLabsTxt(tfLabTest.getText());
         prescription.setPhamacyTxt(txtParmacy.getText());
         prescription.setAmount(txtAmount.getText());
-        System.out.println(prescription.toString());
         saveExaminations();
         savetoDataBase();
         printPrescription();
     }
     
     public void saveExaminations(){
-        
+        prescription.setExamination(examinations);
+        prescription.setExaminationId(examinations.getExaminationID());
     }
     
     public void savetoDataBase(){
@@ -222,7 +225,7 @@ public class PrescrptionsController implements Initializable {
                                         "examinationId)\n" +
                                         "VALUES\n" +
                                         "(\n" +
-                                        ""+prescription.getPrescribeDate()+",\n" +
+                                        "'"+prescription.getPrescribeDate()+"',\n" +
                                         ""+prescription.getPaientId()+",\n" +
                                         "'"+prescription.getSymptoms()+"',\n" +
                                         "'"+prescription.getDiffrentialD()+"',\n" +
@@ -231,6 +234,7 @@ public class PrescrptionsController implements Initializable {
                                         "'"+prescription.getPrescriptionTxt()+"',\n" +
                                         "'"+prescription.getAmount()+"',\n" +
                                         ""+prescription.getExaminationId()+"); ";
+        System.out.println("Query Before Save"+prescriptionValuesSql);
         DbUtilClass.insertion(prescriptionValuesSql);
     }
     
@@ -263,15 +267,15 @@ public class PrescrptionsController implements Initializable {
     public void printPrescription(){
         if(!tfLabTest.getText().isEmpty()){
             //print labtest
-            System.out.println(""+tfLabTest.getText());
+            System.out.println("Labs Print:="+prescription.getLabsTxt());
         }
         if(!txtParmacy.getText().isEmpty()){
             //print pharmacy
-            System.out.println(""+txtParmacy.getText());
+            System.out.println("Pharmacy Print:="+prescription.getPhamacyTxt());
         }
         if(!txfPreciption.getText().isEmpty()){
             //print prescription
-            System.out.println(""+txfPreciption.getText());
+            System.out.println("Prescrption Print:="+prescription.getPrescriptionTxt());
         }
     }
     

@@ -39,6 +39,11 @@ public class PrecriptionDBO {
     public int getExaminationId() {
         return examinationId;
     }
+
+    public void setExaminationId(int examinationId) {
+        this.examinationId = examinationId;
+    }
+    
     
     
     public void addPrescrptionTableData(PrescriptionTableData temp){
