@@ -171,9 +171,14 @@ public class PrescrptionsController implements Initializable {
             String PreviousPrescriptions = null;
             rs = DbUtilClass.readData(prescriptionsLoadSql);
             while(rs.next()){
-                PreviousPrescriptions +=  rs.getString("total");
+                PreviousPrescriptions =  rs.getString("total");
             }
-            ObservableList<String> value = FXCollections.observableArrayList(PreviousPrescriptions);
+            ArrayList<String> list = new ArrayList<String>();
+            int count= Integer.parseInt(PreviousPrescriptions);
+            for(int i=0;i<=count;i++){
+                list.add(i+"");
+            }
+            ObservableList<String> value = FXCollections.observableArrayList(list);
             cmbLastVisistCount.setItems(value);
         } catch (SQLException ex) {
             Logger.getLogger(PrescrptionsController.class.getName()).log(Level.SEVERE, null, ex);
