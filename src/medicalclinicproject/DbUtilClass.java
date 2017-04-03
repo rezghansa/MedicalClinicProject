@@ -8,15 +8,12 @@ package medicalclinicproject;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+import java.util.logging.Level;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -103,7 +100,13 @@ public class DbUtilClass {
         }
        }catch(Exception e){
            e.printStackTrace();
-       }
+       }finally{
+             try {
+                rs.close();
+            } catch (SQLException ex) {
+                java.util.logging.Logger.getLogger(LogInController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
        
        return listOfPatients;
    }
@@ -137,7 +140,14 @@ public class DbUtilClass {
         }
        }catch(Exception e){
            e.printStackTrace();
-       }
+       }finally{
+             try {
+                rs.close();
+            } catch (SQLException ex) {
+                java.util.logging.Logger.getLogger(LogInController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+       
        return listOfPatients;
    }
    
@@ -164,7 +174,13 @@ public class DbUtilClass {
         }
        }catch(Exception e){
            e.printStackTrace();
-       }
+       }finally{
+             try {
+                rs.close();
+            } catch (SQLException ex) {
+                java.util.logging.Logger.getLogger(LogInController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
        
        return listOfPatients;
    }
