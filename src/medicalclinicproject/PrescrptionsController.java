@@ -6,11 +6,15 @@
 package medicalclinicproject;
 
 import java.net.URL;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -87,6 +91,12 @@ public class PrescrptionsController implements Initializable {
     private ComboBox<String> cmbExaminations;
     @FXML
     private GridPane panelExamination;
+    @FXML
+    private TextArea lblPrevPrescriptions;
+    @FXML
+    private ComboBox<String> cmbLastVisistCount;
+    @FXML
+    private Button btnRemove;
 
     public TextArea getTxtSymp() {
         return txtSymp;
@@ -149,8 +159,57 @@ public class PrescrptionsController implements Initializable {
             prescription.setPaientId(person.getUserId().getValue());
             LocalDate dbDate =  LocalDate.now();
             prescription.setPrescribeDate(dbDate);
-            
+            loadCountOfPrescription();
+            loadPreviousPrescriptions(3);
     }
+    
+    
+    public void loadCountOfPrescription(){
+         ResultSet rs = null;
+        try {
+            String prescriptionsLoadSql = "SELECT count(*)as total FROM prescriptions where paientId ="+prescription.getPaientId()+" ORDER BY prescribeDate DESC;";
+            String PreviousPrescriptions = null;
+            rs = DbUtilClass.readData(prescriptionsLoadSql);
+            while(rs.next()){
+                PreviousPrescriptions +=  rs.getString("total");
+            }
+            ObservableList<String> value = FXCollections.observableArrayList(PreviousPrescriptions);
+            cmbLastVisistCount.setItems(value);
+        } catch (SQLException ex) {
+            Logger.getLogger(PrescrptionsController.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+             try {
+                rs.close();
+            } catch (SQLException ex) {
+                java.util.logging.Logger.getLogger(LogInController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+    
+    
+    public void loadPreviousPrescriptions(int count){
+        ResultSet rs = null;
+        try {
+            String prescriptionsLoadSql = "SELECT prescribeDate,paientId,symptoms,"
+                    + "diffrentialD,prescriptionTxt FROM prescriptions where paientId ="+prescription.getPaientId()+" ORDER BY prescribeDate DESC limit "+count+";";
+            
+            String PreviousPrescriptions = null;
+            rs = DbUtilClass.readData(prescriptionsLoadSql);
+            while(rs.next()){
+                PreviousPrescriptions +=  rs.getString("prescriptionTxt");
+            }
+            lblPrevPrescriptions.setText(PreviousPrescriptions);
+        } catch (SQLException ex) {
+            Logger.getLogger(PrescrptionsController.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+             try {
+                rs.close();
+            } catch (SQLException ex) {
+                java.util.logging.Logger.getLogger(LogInController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+    
     
     public void medicineNameinitializer(){
         ObservableList<Medicines> datatemp =  DbUtilClass.loadMedicinesList(DbUtilClass.readData("select * from medicines"));

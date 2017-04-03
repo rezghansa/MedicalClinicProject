@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane id="AnchorPane" prefHeight="619.0" prefWidth="1249.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="medicalclinicproject.PrescrptionsController">
+<AnchorPane id="AnchorPane" prefHeight="619.0" prefWidth="1249.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="medicalclinicproject.PrescrptionsController">
     <stylesheets>
         <URL value="@prescrptions.css" />
     </stylesheets>
@@ -39,8 +39,8 @@
       <Label layoutX="745.0" layoutY="31.0" text="Examination" />
       <ComboBox fx:id="cmbExaminations" layoutX="844.0" layoutY="27.0" prefWidth="150.0" />
       <Button fx:id="btnAdd" layoutX="1103.0" layoutY="445.0" mnemonicParsing="false" text="Add" />
-      <TextArea layoutX="430.0" layoutY="52.0" prefHeight="244.0" prefWidth="251.0" wrapText="true" />
-      <ComboBox layoutX="531.0" layoutY="15.0" prefWidth="150.0" />
+      <TextArea fx:id="lblPrevPrescriptions" layoutX="430.0" layoutY="52.0" prefHeight="244.0" prefWidth="251.0" wrapText="true" />
+      <ComboBox fx:id="cmbLastVisistCount" layoutX="531.0" layoutY="15.0" prefWidth="150.0" />
       <Label layoutX="34.0" layoutY="579.0" text="Amount" />
       <TextField fx:id="txtAmount" layoutX="93.0" layoutY="575.0" />
       <TextArea fx:id="txfPreciption" layoutX="93.0" layoutY="426.0" prefHeight="144.0" prefWidth="570.0" />
