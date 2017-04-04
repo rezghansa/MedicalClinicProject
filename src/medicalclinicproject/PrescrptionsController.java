@@ -29,6 +29,8 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
@@ -97,7 +99,15 @@ public class PrescrptionsController implements Initializable {
     private ComboBox<String> cmbLastVisistCount;
     @FXML
     private Button btnRemove;
+    @FXML
+    private TableView<ExaminationTable> examninationTable;
+    @FXML
+    private TableColumn<ExaminationTable, String> examName;
+    @FXML
+    private TableColumn<ExaminationTable, String> examinationValue;
 
+    ObservableList<ExaminationTable> listOfExaminationItems = FXCollections.observableArrayList();
+    
     public TextArea getTxtSymp() {
         return txtSymp;
     }
@@ -420,6 +430,8 @@ public class PrescrptionsController implements Initializable {
                examinations.setGeneral_periorbital(((RadioButton)group5.getSelectedToggle()).getText());
                examinations.setGeneral_dehydration(((RadioButton)group6.getSelectedToggle()).getText());
                examinations.setGeneral_sob(((RadioButton)group7.getSelectedToggle()).getText());
+               ExaminationTable examitemp = new ExaminationTable("General", examinations.getGeneral_height());
+               loadToTable(examitemp);
             }
         });
     }
@@ -799,4 +811,22 @@ public class PrescrptionsController implements Initializable {
         });
     }
     
+    
+    public void loadToTable(ExaminationTable examitemp){
+        try{
+            listOfExaminationItems.add(examitemp);
+            examName.setCellValueFactory(celldata->celldata.getValue().getExamName());
+            examinationValue.setCellValueFactory(celldata->celldata.getValue().getExaminationValue());
+            examninationTable.setItems(listOfExaminationItems);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        
+    }
+    
+    public void removeRow(){
+        ExaminationTable examitemp = examninationTable.getSelectionModel().getSelectedItem();
+        listOfExaminationItems.remove(examitemp);
+        examninationTable.getItems().remove(examitemp);
+    }
 }

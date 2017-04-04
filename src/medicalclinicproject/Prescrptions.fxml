@@ -70,11 +70,11 @@
             <RowConstraints maxHeight="135.0" minHeight="16.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
       </GridPane>
-      <Button fx:id="btnRemove" layoutX="1157.0" layoutY="445.0" mnemonicParsing="false" text="Remove" />
-      <TableView layoutX="681.0" layoutY="477.0" prefHeight="123.0" prefWidth="554.0">
+      <Button fx:id="btnRemove" layoutX="1157.0" layoutY="445.0" mnemonicParsing="false" onAction="#removeRow" text="Remove" />
+      <TableView fx:id="examninationTable" layoutX="681.0" layoutY="477.0" prefHeight="123.0" prefWidth="554.0">
         <columns>
-          <TableColumn prefWidth="75.0" text="Examination" />
-          <TableColumn prefWidth="475.0" text="Values" />
+          <TableColumn fx:id="examName" prefWidth="75.0" text="Examination" />
+          <TableColumn fx:id="examinationValue" prefWidth="475.0" text="Values" />
         </columns>
       </TableView>
       <Label layoutX="435.0" layoutY="22.0" text="Visits" />
