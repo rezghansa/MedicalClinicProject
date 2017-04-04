@@ -11,9 +11,9 @@ package medicalclinicproject;
  */
 public class Examinations {
     
-    private     int patientId;
+    private     int    patientId;
     private     String examinationDate;
-    private     int examinationID;
+    private     int    examinationID;
     private	String general_height;
     private	String general_weight;
     private	String general_Pallor;
@@ -1060,6 +1060,27 @@ public class Examinations {
         this.muskoskel_Lowerlimbtenderness = muskoskel_Lowerlimbtenderness;
     }
     
+    public String insertQuery(){
+        String query = "INSERT INTO examinationdetail(patientId,examinationDate,general_height,general_weight,general_Pallor,general_Jaundice,general_Thin,general_Obese,general_oedemaankle,general_periorbital,general_dehydration,general_sob,cvs_pulseBpm,cvs_regular,cvs_irregular,cvs_Bp,cvs_Heartdualrhythm,cvs_triplerhythm,cvs_murmurs,cvs_systolic,cvs_diastolic,rs_equalairentry,rs_reducedairentry,rs_vbs,rs_bbs,rs_creps,rs_rhonchi,ear_EarNormal,ear_Normalhearing,ear_Wax,ear_OE,ear_traumaticperforation,ear_AOM,ear_OME,ear_CSOM,ear_CP,ear_bleedingEar,ear_Eardischarge,ear_Granulationtissue,ear_EarPolyp,nose_Patent,nose_blocked,nose_Senseofsmell,nose_Fb,nose_DeviatedSeptum,nose_BleedingS,nose_Secretions,nose_Polyp,nose_PND,thoat_Normal,thoat_Pharyngitis,thoat_Tonsillitis,thoat_NormalVC,thoat_Other,amodoment_Distension,amodoment_Tenderness,amodoment_Liver,amodoment_Spleen,amodoment_Kidney,amodoment_AbodometOther,amodoment_siteepigastricL,amodoment_hypochondriacL,amodoment_umbilicalL,amodoment_lumbarL,amodoment_lumbarR,amodoment_hypogastricL,amodoment_hypogastricR,amodoment_inguinalL,amodoment_inguinalR,male_Swelling,male_MaleTenderness,male_Hydrocele,male_Balanitis,male_Urethraldischarge,male_fungalrash,male_MaleOther,female_BreastsL,female_BreastsTL,female_BreastsR,female_BreastsTR,female_NipplesL,female_NipplesTL,female_NipplesR,female_NipplesTR,female_Uterus,female_LMP1,female_LMP2,female_LMP3,female_Perineum,female_FemaleOther,cns_Normalcranialnerves,cns_Normalcranialnervestxt,cns_Gaitnormal,cns_Gaitnormaltxt,cns_speechnormal,cns_speechnormaltxt,cns_Coordinationnormal,cns_Coordinationnormaltxt,cns_Powernormal,cns_Powernormaltxt,cns_Sensorynormal,cns_Sensorynormaltxt,muskoskel_cervicalspinetenderness,muskoskel_thoracicspinetenderness,muskoskel_lumbosacralspinetenderness,muskoskel_SIJtenderness,muskoskel_Swollenlargejoints,muskoskel_Tenderlargejoints,muskoskel_Swollensmalljoints,muskoskel_Tendersmalljoints,muskoskel_Chestwallribtenderness,muskoskel_Upperlimbtenderness,muskoskel_Lowerlimbtenderness,female_viginalDischagrg,female_fungalRash)"+
+                       "VALUES ("+
+                        ""+patientId+","+
+                        "'"+examinationDate+"',"+
+                        "'"+general_height+"','"+general_weight +"','"+general_Pallor +"','"+general_Jaundice +"','"+general_Thin +"','"+general_Obese +"','"+general_oedemaankle +"','"+general_periorbital +"','"+general_dehydration +"','"+general_sob +"',"+
+                        "'"+cvs_pulseBpm +"','"+cvs_regular +"','"+cvs_irregular +"','"+cvs_Bp +"','"+cvs_Heartdualrhythm +"','"+cvs_triplerhythm +"','"+cvs_murmurs +"','"+cvs_systolic +"','"+cvs_diastolic +"',"+
+                        "'"+rs_equalairentry +"','"+rs_reducedairentry +"','"+rs_vbs +"','"+rs_bbs +"','"+rs_creps +"','"+rs_rhonchi +"',"+
+                        "'"+ear_EarNormal +"','"+ear_Normalhearing +"','"+ear_Wax +"','"+ear_OE +"','"+ear_traumaticperforation +"','"+ear_AOM +"','"+ear_OME +"','"+ear_CSOM +"','"+ear_CP +"','"+ear_bleedingEar +"','"+ear_Eardischarge +"','"+ear_Granulationtissue +"','"+ear_EarPolyp +"',"+
+                        "'"+nose_Patent +"','"+nose_blocked +"','"+nose_Senseofsmell +"','"+nose_Fb +"','"+nose_DeviatedSeptum +"','"+nose_BleedingS +"','"+nose_Secretions +"','"+nose_Polyp +"','"+nose_PND +"',"+
+                        "'"+thoat_Normal +"','"+thoat_Pharyngitis +"','"+thoat_Tonsillitis +"','"+thoat_NormalVC +"','"+thoat_Other +"',"+
+                        "'"+amodoment_Distension +"','"+amodoment_Tenderness +"','"+amodoment_Liver +"','"+amodoment_Spleen +"','"+amodoment_Kidney +"','"+amodoment_AbodometOther +"','"+amodoment_siteepigastricC +"','"+amodoment_hypochondriacC +"','"+amodoment_umbilicalC +"','"+amodoment_lumbarL +"','"+amodoment_lumbarR +"','"+amodoment_hypogastricL +"','"+amodoment_hypogastricR +"','"+amodoment_inguinalL +"','"+amodoment_inguinalR +"',"+
+                        "'"+male_Swelling +"','"+male_MaleTenderness +"','"+male_Hydrocele +"','"+male_Balanitis +"','"+male_Urethraldischarge +"','"+male_fungalrash +"','"+male_MaleOther +"',"+
+                        "'"+female_BreastsL +"','"+female_BreastsTL +"','"+female_BreastsR +"','"+female_BreastsTR +"','"+female_NipplesL +"','"+female_NipplesTL +"','"+female_NipplesR +"','"+female_NipplesTR +"','"+female_Uterus +"','"+female_LMP1 +"','"+female_LMP2 +"','"+female_LMP3 +"','"+female_Perineum +"','"+female_FemaleOther +"',"+
+                        "'"+cns_Normalcranialnerves +"','"+cns_Normalcranialnervestxt +"','"+cns_Gaitnormal +"','"+cns_Gaitnormaltxt +"','"+cns_speechnormal +"','"+cns_speechnormaltxt +"','"+cns_Coordinationnormal +"','"+cns_Coordinationnormaltxt +"','"+cns_Powernormal +"','"+cns_Powernormaltxt +"','"+cns_Sensorynormal +"','"+cns_Sensorynormaltxt +"',"+
+                        "'"+muskoskel_cervicalspinetenderness +"','"+muskoskel_thoracicspinetenderness +"','"+muskoskel_lumbosacralspinetenderness +"','"+muskoskel_SIJtenderness +"','"+muskoskel_Swollenlargejoints +"','"+muskoskel_Tenderlargejoints +"','"+muskoskel_Swollensmalljoints +"','"+muskoskel_Tendersmalljoints +"','"+muskoskel_Chestwallribtenderness +"','"+muskoskel_Upperlimbtenderness +"','"+muskoskel_Lowerlimbtenderness +"',"+
+                        "'"+female_viginalDischagrg+"',"+
+                        "'"+female_fungalRash+"'"+
+                        ");";
+        return query;
+    }
     
     
 }
