@@ -399,14 +399,14 @@ public class PrescrptionsController implements Initializable {
     private void General(){
         Label Height = new Label("Height(KG)");  TextField txtHeig = new TextField();
         Label Weight = new Label("Weight (M)");  TextField txtWeig = new TextField();
-        Label Pallor = new Label("Pallor");      ToggleGroup group = new ToggleGroup(); RadioButton rb1 = new RadioButton("Yes"); RadioButton rb2 = new RadioButton("No"); rb1.setToggleGroup(group); rb2.setToggleGroup(group);
-        Label Jaundice = new Label("Jaundice");  ToggleGroup group1 = new ToggleGroup(); RadioButton rb11 = new RadioButton("Yes"); RadioButton rb21 = new RadioButton("No"); rb11.setToggleGroup(group1); rb21.setToggleGroup(group1); 
-        Label Thin = new Label("Thin");          ToggleGroup group2 = new ToggleGroup(); RadioButton rb12 = new RadioButton("Yes"); RadioButton rb22 = new RadioButton("No"); rb12.setToggleGroup(group2); rb22.setToggleGroup(group2);
-        Label Obese = new Label("Obese");        ToggleGroup group3 = new ToggleGroup(); RadioButton rb13 = new RadioButton("Yes"); RadioButton rb23 = new RadioButton("No"); rb13.setToggleGroup(group3); rb23.setToggleGroup(group3);
-        Label oedema = new Label("oedema-ankle");ToggleGroup group4 = new ToggleGroup(); RadioButton rb14 = new RadioButton("Yes"); RadioButton rb24 = new RadioButton("No"); rb14.setToggleGroup(group4); rb24.setToggleGroup(group4); 
-        Label peri = new Label("peri-orbital");  ToggleGroup group5 = new ToggleGroup(); RadioButton rb15 = new RadioButton("Yes"); RadioButton rb25 = new RadioButton("No"); rb15.setToggleGroup(group5); rb25.setToggleGroup(group5);
-        Label dehydration = new Label("dehydration"); ToggleGroup group6 = new ToggleGroup(); RadioButton rb16 = new RadioButton("Yes"); RadioButton rb26 = new RadioButton("No"); rb16.setToggleGroup(group6); rb26.setToggleGroup(group6);
-        Label sob = new Label("sob");                ToggleGroup group7 = new ToggleGroup(); RadioButton rb17 = new RadioButton("Yes"); RadioButton rb27 = new RadioButton("No"); rb17.setToggleGroup(group7); rb27.setToggleGroup(group7);
+        Label Pallor = new Label("Pallor");      ToggleGroup group = new ToggleGroup(); RadioButton rb1 = new RadioButton("Yes"); RadioButton rb2 = new RadioButton("No"); rb1.setToggleGroup(group); rb2.setToggleGroup(group);group.selectToggle(rb2);
+        Label Jaundice = new Label("Jaundice");  ToggleGroup group1 = new ToggleGroup(); RadioButton rb11 = new RadioButton("Yes"); RadioButton rb21 = new RadioButton("No"); rb11.setToggleGroup(group1); rb21.setToggleGroup(group1); group1.selectToggle(rb21);
+        Label Thin = new Label("Thin");          ToggleGroup group2 = new ToggleGroup(); RadioButton rb12 = new RadioButton("Yes"); RadioButton rb22 = new RadioButton("No"); rb12.setToggleGroup(group2); rb22.setToggleGroup(group2);group2.selectToggle(rb22);
+        Label Obese = new Label("Obese");        ToggleGroup group3 = new ToggleGroup(); RadioButton rb13 = new RadioButton("Yes"); RadioButton rb23 = new RadioButton("No"); rb13.setToggleGroup(group3); rb23.setToggleGroup(group3);group3.selectToggle(rb23);
+        Label oedema = new Label("oedema-ankle");ToggleGroup group4 = new ToggleGroup(); RadioButton rb14 = new RadioButton("Yes"); RadioButton rb24 = new RadioButton("No"); rb14.setToggleGroup(group4); rb24.setToggleGroup(group4); group4.selectToggle(rb24);
+        Label peri = new Label("peri-orbital");  ToggleGroup group5 = new ToggleGroup(); RadioButton rb15 = new RadioButton("Yes"); RadioButton rb25 = new RadioButton("No"); rb15.setToggleGroup(group5); rb25.setToggleGroup(group5);group5.selectToggle(rb25);
+        Label dehydration = new Label("dehydration"); ToggleGroup group6 = new ToggleGroup(); RadioButton rb16 = new RadioButton("Yes"); RadioButton rb26 = new RadioButton("No"); rb16.setToggleGroup(group6); rb26.setToggleGroup(group6);group6.selectToggle(rb26);
+        Label sob = new Label("sob");                ToggleGroup group7 = new ToggleGroup(); RadioButton rb17 = new RadioButton("Yes"); RadioButton rb27 = new RadioButton("No"); rb17.setToggleGroup(group7); rb27.setToggleGroup(group7);group7.selectToggle(rb27);
         panelExamination.add(Height, 0, 1);     panelExamination.add(txtHeig, 1, 1);
         panelExamination.add(Weight, 0, 2);     panelExamination.add(txtWeig, 1, 2);
         panelExamination.add(Pallor, 0, 3);     panelExamination.add(rb1, 1, 3); panelExamination.add(rb2, 2, 3);
@@ -824,6 +824,7 @@ public class PrescrptionsController implements Initializable {
         
     }
     
+    @FXML
     public void removeRow(){
         ExaminationTable examitemp = examninationTable.getSelectionModel().getSelectedItem();
         listOfExaminationItems.remove(examitemp);
