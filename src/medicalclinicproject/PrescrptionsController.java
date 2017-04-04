@@ -474,6 +474,12 @@ public class PrescrptionsController implements Initializable {
         btnAdd.setOnAction(new EventHandler() {
             @Override
             public void handle(Event event) {
+               examinations.setRs_equalairentry(((RadioButton)group.getSelectedToggle()).getText());
+               examinations.setRs_reducedairentry(((RadioButton)group1.getSelectedToggle()).getText());
+               examinations.setRs_vbs(((RadioButton)group2.getSelectedToggle()).getText());
+               examinations.setRs_bbs(((RadioButton)group3.getSelectedToggle()).getText());
+               examinations.setRs_creps(((RadioButton)group4.getSelectedToggle()).getText());
+               examinations.setRs_rhonchi(((RadioButton)group5.getSelectedToggle()).getText());
                
             }
         });
@@ -508,6 +514,19 @@ public class PrescrptionsController implements Initializable {
         btnAdd.setOnAction(new EventHandler() {
             @Override
             public void handle(Event event) {
+               examinations.setEar_EarNormal(((RadioButton)group.getSelectedToggle()).getText());
+               examinations.setEar_Normalhearing(((RadioButton)group1.getSelectedToggle()).getText());
+               examinations.setEar_Wax(((RadioButton)group2.getSelectedToggle()).getText());
+               examinations.setEar_OE(((RadioButton)group3.getSelectedToggle()).getText());
+               examinations.setEar_traumaticperforation(((RadioButton)group4.getSelectedToggle()).getText());
+               examinations.setEar_AOM(((RadioButton)group5.getSelectedToggle()).getText());
+               examinations.setEar_OME(((RadioButton)group6.getSelectedToggle()).getText());
+               examinations.setEar_CSOM(((RadioButton)group7.getSelectedToggle()).getText());
+               examinations.setEar_CP(((RadioButton)group8.getSelectedToggle()).getText());
+               examinations.setEar_bleedingEar(((RadioButton)group9.getSelectedToggle()).getText());
+               examinations.setEar_Eardischarge(((RadioButton)group10.getSelectedToggle()).getText());
+               examinations.setEar_Granulationtissue(((RadioButton)group11.getSelectedToggle()).getText());
+               examinations.setEar_EarPolyp(((RadioButton)group12.getSelectedToggle()).getText());
                
             }
         });
@@ -534,7 +553,15 @@ public class PrescrptionsController implements Initializable {
         btnAdd.setOnAction(new EventHandler() {
             @Override
             public void handle(Event event) {
-               
+               examinations.setNose_Patent(((RadioButton)group.getSelectedToggle()).getText());
+               examinations.setNose_blocked(((RadioButton)group1.getSelectedToggle()).getText());
+               examinations.setNose_Senseofsmell(((RadioButton)group2.getSelectedToggle()).getText());
+               examinations.setNose_Fb(((RadioButton)group3.getSelectedToggle()).getText());
+               examinations.setNose_DeviatedSeptum(((RadioButton)group4.getSelectedToggle()).getText());
+               examinations.setNose_BleedingS(((RadioButton)group5.getSelectedToggle()).getText());
+               examinations.setNose_Secretions(((RadioButton)group6.getSelectedToggle()).getText());
+               examinations.setNose_Polyp(((RadioButton)group7.getSelectedToggle()).getText());
+               examinations.setNose_PND(((RadioButton)group8.getSelectedToggle()).getText());
             }
         });
     }
@@ -552,7 +579,11 @@ public class PrescrptionsController implements Initializable {
         btnAdd.setOnAction(new EventHandler() {
             @Override
             public void handle(Event event) {
-               
+               examinations.setThoat_Normal(((RadioButton)group.getSelectedToggle()).getText());
+               examinations.setThoat_Pharyngitis(((RadioButton)group1.getSelectedToggle()).getText());
+               examinations.setThoat_Tonsillitis(((RadioButton)group2.getSelectedToggle()).getText());
+               examinations.setThoat_NormalVC(((RadioButton)group3.getSelectedToggle()).getText());
+               examinations.setThoat_Other(tx1.getText());
             }
         });
     }
@@ -672,6 +703,18 @@ public class PrescrptionsController implements Initializable {
         btnAdd.setOnAction(new EventHandler() {
             @Override
             public void handle(Event event) {
+               examinations.setCns_Normalcranialnerves(((RadioButton)group.getSelectedToggle()).getText());
+               examinations.setCns_Normalcranialnerves(t1.getText());
+               examinations.setCns_Gaitnormal(((RadioButton)group1.getSelectedToggle()).getText());
+               examinations.setCns_Gaitnormaltxt(t2.getText());
+               examinations.setCns_speechnormal(((RadioButton)group2.getSelectedToggle()).getText());
+               examinations.setCns_speechnormaltxt(t3.getText());
+               examinations.setCns_Coordinationnormal(((RadioButton)group3.getSelectedToggle()).getText());
+               examinations.setCns_Coordinationnormaltxt(t4.getText());
+               examinations.setCns_Powernormal(((RadioButton)group4.getSelectedToggle()).getText());
+               examinations.setCns_Powernormaltxt(t5.getText());
+               examinations.setCns_Sensorynormal(((RadioButton)group5.getSelectedToggle()).getText());
+               examinations.setCns_Sensorynormaltxt(t6.getText());
                
             }
         });
@@ -702,7 +745,17 @@ public class PrescrptionsController implements Initializable {
         btnAdd.setOnAction(new EventHandler() {
             @Override
             public void handle(Event event) {
-               
+               examinations.setMuskoskel_cervicalspinetenderness(((RadioButton)group.getSelectedToggle()).getText());
+               examinations.setMuskoskel_thoracicspinetenderness(((RadioButton)group1.getSelectedToggle()).getText());
+               examinations.setMuskoskel_lumbosacralspinetenderness(((RadioButton)group2.getSelectedToggle()).getText());
+               examinations.setMuskoskel_SIJtenderness(((RadioButton)group3.getSelectedToggle()).getText());
+               examinations.setMuskoskel_Swollenlargejoints(((RadioButton)group4.getSelectedToggle()).getText());
+               examinations.setMuskoskel_Tenderlargejoints(((RadioButton)group5.getSelectedToggle()).getText());
+               examinations.setMuskoskel_Swollensmalljoints(((RadioButton)group6.getSelectedToggle()).getText());
+               examinations.setMuskoskel_Tendersmalljoints(((RadioButton)group7.getSelectedToggle()).getText());
+               examinations.setMuskoskel_Chestwallribtenderness(((RadioButton)group8.getSelectedToggle()).getText());
+               examinations.setMuskoskel_Upperlimbtenderness(((RadioButton)group9.getSelectedToggle()).getText());
+               examinations.setMuskoskel_Lowerlimbtenderness(((RadioButton)group10.getSelectedToggle()).getText());
             }
         });
     }
