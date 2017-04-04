@@ -827,7 +827,89 @@ public class PrescrptionsController implements Initializable {
     @FXML
     public void removeRow(){
         ExaminationTable examitemp = examninationTable.getSelectionModel().getSelectedItem();
+        removeExaminationData(examitemp.getExamName().getValue());
         listOfExaminationItems.remove(examitemp);
         examninationTable.getItems().remove(examitemp);
+    }
+    
+    
+    private void removeExaminationData(String selectedItem){
+        clearExaminatioPanel();
+        if(selectedItem.equals("General")){
+            GeneralRemove();
+        }else if(selectedItem.equals("CVS")){
+            CVSRemove();
+        }else if(selectedItem.equals("RS")){
+            RSRemove();
+        }else if(selectedItem.equals("Ear")){
+            EarRemove();
+        }else if(selectedItem.equals("Nose")){
+            NoseRemove();
+        }else if(selectedItem.equals("Throat")){
+            ThroatRemove();
+        }else if(selectedItem.equals("ABDOMEN")){
+            ABDOMENRemove();
+        }else if(selectedItem.equals("Male genitalia")){
+            MalegenitaliaRemove();
+        }else if(selectedItem.equals("Female genitalia")){
+            FeMalegenitaliaRemove();
+        }else if(selectedItem.equals("CNS")){
+            CNSRemove();
+        }else if(selectedItem.equals("Musculo-skeletal")){
+           MusculoSkeletalRemove();
+        }
+    }
+
+    private void GeneralRemove() {
+        examinations.setGeneral_height("");
+        examinations.setGeneral_weight("");
+        examinations.setGeneral_Pallor("");
+        examinations.setGeneral_Jaundice("");
+        examinations.setGeneral_Thin("");
+        examinations.setGeneral_Obese("");
+        examinations.setGeneral_oedemaankle("");
+        examinations.setGeneral_periorbital("");
+        examinations.setGeneral_dehydration("");
+        examinations.setGeneral_sob("");
+    }
+
+    private void CVSRemove() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void RSRemove() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void EarRemove() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void NoseRemove() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void ThroatRemove() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void ABDOMENRemove() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void MalegenitaliaRemove() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void FeMalegenitaliaRemove() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void CNSRemove() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void MusculoSkeletalRemove() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
