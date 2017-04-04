@@ -588,8 +588,8 @@ public class PrescrptionsController implements Initializable {
         });
     }
     private void ABDOMEN(){
-        Label l1 = new Label("Distension");                 ToggleGroup group = new ToggleGroup(); RadioButton rb1 = new RadioButton("Yes"); RadioButton rb2 = new RadioButton("No"); rb1.setToggleGroup(group); rb2.setToggleGroup(group);
-        Label l2 = new Label("Tenderness");                ToggleGroup group1 = new ToggleGroup(); RadioButton rb11 = new RadioButton("Yes"); RadioButton rb21 = new RadioButton("No"); rb11.setToggleGroup(group1); rb21.setToggleGroup(group1); 
+        Label l1 = new Label("Distension");                 ToggleGroup group = new ToggleGroup(); RadioButton rb1 = new RadioButton("Yes"); RadioButton rb2 = new RadioButton("No"); rb1.setToggleGroup(group); rb2.setToggleGroup(group); group.selectToggle(rb2);
+        Label l2 = new Label("Tenderness");                ToggleGroup group1 = new ToggleGroup(); RadioButton rb11 = new RadioButton("Yes"); RadioButton rb21 = new RadioButton("No"); rb11.setToggleGroup(group1); rb21.setToggleGroup(group1); group1.selectToggle(rb21);
         ObservableList items = FXCollections.observableArrayList("not palpable","palpable");
         Label l3 = new Label("Liver"); ComboBox cb1 = new ComboBox(items);
         Label l4 = new Label("Spleen"); ComboBox cb2 = new ComboBox(items);
@@ -631,7 +631,24 @@ public class PrescrptionsController implements Initializable {
         btnAdd.setOnAction(new EventHandler() {
             @Override
             public void handle(Event event) {
-               
+               examinations.setAmodoment_Distension(((RadioButton)group.getSelectedToggle()).getText());
+               examinations.setAmodoment_Tenderness(((RadioButton)group1.getSelectedToggle()).getText());
+               examinations.setAmodoment_Liver(!cb1.getSelectionModel().isEmpty()?cb1.getSelectionModel().getSelectedItem().toString():"N/A");
+               examinations.setAmodoment_Spleen(!cb2.getSelectionModel().isEmpty()?cb2.getSelectionModel().getSelectedItem().toString():"N/A");
+               examinations.setAmodoment_Kidney(!cb3.getSelectionModel().isEmpty()?cb3.getSelectionModel().getSelectedItem().toString():"N/A");
+               examinations.setAmodoment_AbodometOther(tx1.getText());
+               //left side
+               examinations.setAmodoment_hypogastricL(cb12.isSelected()?"Yes":"N/A");
+               examinations.setAmodoment_lumbarL(cb10.isSelected()?"Yes":"N/A");
+               examinations.setAmodoment_inguinalL(cb14.isSelected()?"Yes":"N/A");
+               //right side
+               examinations.setAmodoment_hypogastricR(cb13.isSelected()?"Yes":"N/A");
+               examinations.setAmodoment_lumbarR(cb11.isSelected()?"Yes":"N/A");
+               examinations.setAmodoment_inguinalR(cb15.isSelected()?"Yes":"N/A");
+               //center part
+               examinations.setAmodoment_siteepigastricC(cb4.isSelected()?"Yes":"N/A");
+               examinations.setAmodoment_umbilicalC(cb8.isSelected()?"Yes":"N/A");
+               examinations.setAmodoment_hypochondriacC(cb6.isSelected()?"Yes":"N/A");
             }
         });
     }
@@ -653,7 +670,13 @@ public class PrescrptionsController implements Initializable {
         btnAdd.setOnAction(new EventHandler() {
             @Override
             public void handle(Event event) {
-               
+               examinations.setMale_Swelling(((RadioButton)group.getSelectedToggle()).getText());
+               examinations.setMale_MaleTenderness(((RadioButton)group1.getSelectedToggle()).getText());
+               examinations.setMale_Hydrocele(((RadioButton)group2.getSelectedToggle()).getText());
+               examinations.setMale_Balanitis(((RadioButton)group3.getSelectedToggle()).getText());
+               examinations.setMale_Urethraldischarge(((RadioButton)group4.getSelectedToggle()).getText());
+               examinations.setMale_fungalrash(((RadioButton)group5.getSelectedToggle()).getText());
+               examinations.setMale_MaleOther(tx1.getText());
             }
         });
         

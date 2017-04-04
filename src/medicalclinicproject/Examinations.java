@@ -72,12 +72,9 @@ public class Examinations {
     private	String amodoment_Spleen;
     private	String amodoment_Kidney;
     private	String amodoment_AbodometOther;
-    private	String amodoment_siteepigastricL;
-    private	String amodoment_siteepigastricR;
-    private	String amodoment_hypochondriacL;
-    private	String amodoment_hypochondriacR;
-    private	String amodoment_umbilicalL;
-    private	String amodoment_umbilicalR;
+    private	String amodoment_siteepigastricC;
+    private	String amodoment_hypochondriacC;
+    private	String amodoment_umbilicalC;
     private	String amodoment_lumbarL;
     private	String amodoment_lumbarR;		
     private	String amodoment_hypogastricL;
@@ -618,53 +615,31 @@ public class Examinations {
         this.amodoment_AbodometOther = amodoment_AbodometOther;
     }
 
-    public String getAmodoment_siteepigastricL() {
-        return amodoment_siteepigastricL;
+    public String getAmodoment_siteepigastricC() {
+        return amodoment_siteepigastricC;
     }
 
-    public void setAmodoment_siteepigastricL(String amodoment_siteepigastricL) {
-        this.amodoment_siteepigastricL = amodoment_siteepigastricL;
+    public void setAmodoment_siteepigastricC(String amodoment_siteepigastricC) {
+        this.amodoment_siteepigastricC = amodoment_siteepigastricC;
     }
 
-    public String getAmodoment_siteepigastricR() {
-        return amodoment_siteepigastricR;
+    public String getAmodoment_hypochondriacC() {
+        return amodoment_hypochondriacC;
     }
 
-    public void setAmodoment_siteepigastricR(String amodoment_siteepigastricR) {
-        this.amodoment_siteepigastricR = amodoment_siteepigastricR;
+    public void setAmodoment_hypochondriacC(String amodoment_hypochondriacC) {
+        this.amodoment_hypochondriacC = amodoment_hypochondriacC;
     }
 
-    public String getAmodoment_hypochondriacL() {
-        return amodoment_hypochondriacL;
+    public String getAmodoment_umbilicalC() {
+        return amodoment_umbilicalC;
     }
 
-    public void setAmodoment_hypochondriacL(String amodoment_hypochondriacL) {
-        this.amodoment_hypochondriacL = amodoment_hypochondriacL;
+    public void setAmodoment_umbilicalC(String amodoment_umbilicalC) {
+        this.amodoment_umbilicalC = amodoment_umbilicalC;
     }
 
-    public String getAmodoment_hypochondriacR() {
-        return amodoment_hypochondriacR;
-    }
-
-    public void setAmodoment_hypochondriacR(String amodoment_hypochondriacR) {
-        this.amodoment_hypochondriacR = amodoment_hypochondriacR;
-    }
-
-    public String getAmodoment_umbilicalL() {
-        return amodoment_umbilicalL;
-    }
-
-    public void setAmodoment_umbilicalL(String amodoment_umbilicalL) {
-        this.amodoment_umbilicalL = amodoment_umbilicalL;
-    }
-
-    public String getAmodoment_umbilicalR() {
-        return amodoment_umbilicalR;
-    }
-
-    public void setAmodoment_umbilicalR(String amodoment_umbilicalR) {
-        this.amodoment_umbilicalR = amodoment_umbilicalR;
-    }
+    
 
     public String getAmodoment_lumbarL() {
         return amodoment_lumbarL;
