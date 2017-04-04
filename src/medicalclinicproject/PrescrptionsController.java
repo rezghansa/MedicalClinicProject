@@ -281,6 +281,26 @@ public class PrescrptionsController implements Initializable {
     }
     
     public void saveExaminations(){
+        
+       //save examinations and get the last inserted id
+       DbUtilClass.insertion(examinations.insertQuery());
+       ResultSet rs = DbUtilClass.readData("select LAST_INSERT_ID() as examinationId from examinationdetail");
+       try{
+            while(rs.next()){
+             //Retrieve by column name
+             Integer lastInsertId = rs.getInt("examinationId");
+             examinations.setExaminationID(lastInsertId);
+            }
+         }catch(Exception e){
+             examinations.setExaminationID(0);
+             e.printStackTrace();}
+        finally{
+            try {
+                rs.close();
+            } catch (SQLException ex) {
+                java.util.logging.Logger.getLogger(LogInController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
         prescription.setExamination(examinations);
         prescription.setExaminationId(examinations.getExaminationID());
     }
