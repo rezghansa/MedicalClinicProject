@@ -410,7 +410,16 @@ public class PrescrptionsController implements Initializable {
         btnAdd.setOnAction(new EventHandler() {
             @Override
             public void handle(Event event) {
-               
+               examinations.setGeneral_height(txtHeig.getText());
+               examinations.setGeneral_weight(txtWeig.getText());
+               examinations.setGeneral_Pallor(((RadioButton)group.getSelectedToggle()).getText());
+               examinations.setGeneral_Jaundice(((RadioButton)group1.getSelectedToggle()).getText());
+               examinations.setGeneral_Thin(((RadioButton)group2.getSelectedToggle()).getText());
+               examinations.setGeneral_Obese(((RadioButton)group3.getSelectedToggle()).getText());
+               examinations.setGeneral_oedemaankle(((RadioButton)group4.getSelectedToggle()).getText());
+               examinations.setGeneral_periorbital(((RadioButton)group5.getSelectedToggle()).getText());
+               examinations.setGeneral_dehydration(((RadioButton)group6.getSelectedToggle()).getText());
+               examinations.setGeneral_sob(((RadioButton)group7.getSelectedToggle()).getText());
             }
         });
     }
@@ -437,7 +446,15 @@ public class PrescrptionsController implements Initializable {
         btnAdd.setOnAction(new EventHandler() {
             @Override
             public void handle(Event event) {
-               
+               examinations.setCvs_pulseBpm(txtpulse.getText());
+               examinations.setCvs_regular(((RadioButton)group.getSelectedToggle()).getText());
+               examinations.setCvs_irregular(((RadioButton)group1.getSelectedToggle()).getText());
+               examinations.setCvs_Bp(txtbp.getText());
+               examinations.setCvs_Heartdualrhythm(((RadioButton)group2.getSelectedToggle()).getText());
+               examinations.setCvs_triplerhythm(((RadioButton)group3.getSelectedToggle()).getText());
+               examinations.setCvs_murmurs(((RadioButton)group4.getSelectedToggle()).getText());
+               examinations.setCvs_systolic(((RadioButton)group5.getSelectedToggle()).getText());
+               examinations.setCvs_diastolic(((RadioButton)group6.getSelectedToggle()).getText());
             }
         });
     }
