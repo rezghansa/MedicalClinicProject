@@ -102,6 +102,8 @@ public class Examinations {
     private	String female_LMP3;
     private	String female_Perineum;
     private	String female_FemaleOther;
+    private     String female_viginalDischagrg;
+    private     String female_fungalRash;
     private	String cns_Normalcranialnerves;  
     private	String cns_Normalcranialnervestxt;
     private	String cns_Gaitnormal; 
@@ -130,6 +132,23 @@ public class Examinations {
         return examinationID;
     }
 
+    public String getFemale_viginalDischagrg() {
+        return female_viginalDischagrg;
+    }
+
+    public void setFemale_viginalDischagrg(String female_viginalDischagrg) {
+        this.female_viginalDischagrg = female_viginalDischagrg;
+    }
+
+    public String getFemale_fungalRash() {
+        return female_fungalRash;
+    }
+
+    public void setFemale_fungalRash(String female_fungalRash) {
+        this.female_fungalRash = female_fungalRash;
+    }
+
+    
     public void setExaminationID(int examinationID) {
         this.examinationID = examinationID;
     }

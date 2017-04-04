@@ -706,7 +706,23 @@ public class PrescrptionsController implements Initializable {
         btnAdd.setOnAction(new EventHandler() {
             @Override
             public void handle(Event event) {
-               
+                examinations.setFemale_LMP1(tx5.getText());
+                examinations.setFemale_LMP2(tx6.getText());
+                examinations.setFemale_LMP3(tx7.getText());
+                examinations.setFemale_BreastsL(cb1.isSelected()?"Yes":"N/A");
+                examinations.setFemale_BreastsTL(tx1.getText());
+                examinations.setFemale_BreastsR(cb2.isSelected()?"Yes":"N/A");
+                examinations.setFemale_BreastsTR(tx2.getText());
+                examinations.setFemale_NipplesL(cb3.isSelected()?"Yes":"N/A");
+                examinations.setFemale_NipplesTL(tx3.getText());
+                examinations.setFemale_NipplesR(cb4.isSelected()?"Yes":"N/A");
+                examinations.setFemale_NipplesTR(tx4.getText());
+                examinations.setFemale_Uterus(!cb5.getSelectionModel().isEmpty()?cb5.getSelectionModel().getSelectedItem().toString():"N/A");
+                examinations.setFemale_fungalRash(((RadioButton)group5.getSelectedToggle()).getText());
+                examinations.setFemale_viginalDischagrg(((RadioButton)group6.getSelectedToggle()).getText());
+                examinations.setFemale_Perineum(tx8.getText());
+                examinations.setFemale_FemaleOther(tx9.getText());
+                
             }
         });
     }
