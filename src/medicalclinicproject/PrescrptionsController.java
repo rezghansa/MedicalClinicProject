@@ -487,6 +487,8 @@ public class PrescrptionsController implements Initializable {
                examinations.setCvs_murmurs(((RadioButton)group4.getSelectedToggle()).getText());
                examinations.setCvs_systolic(((RadioButton)group5.getSelectedToggle()).getText());
                examinations.setCvs_diastolic(((RadioButton)group6.getSelectedToggle()).getText());
+               ExaminationTable examitemp = new ExaminationTable("CVS", examinations.getGeneral_height());
+               loadToTable(examitemp);
             }
         });
     }
@@ -512,7 +514,8 @@ public class PrescrptionsController implements Initializable {
                examinations.setRs_bbs(((RadioButton)group3.getSelectedToggle()).getText());
                examinations.setRs_creps(((RadioButton)group4.getSelectedToggle()).getText());
                examinations.setRs_rhonchi(((RadioButton)group5.getSelectedToggle()).getText());
-               
+               ExaminationTable examitemp = new ExaminationTable("RS", examinations.getGeneral_height());
+               loadToTable(examitemp);
             }
         });
     }
@@ -559,7 +562,8 @@ public class PrescrptionsController implements Initializable {
                examinations.setEar_Eardischarge(((RadioButton)group10.getSelectedToggle()).getText());
                examinations.setEar_Granulationtissue(((RadioButton)group11.getSelectedToggle()).getText());
                examinations.setEar_EarPolyp(((RadioButton)group12.getSelectedToggle()).getText());
-               
+               ExaminationTable examitemp = new ExaminationTable("Ear", examinations.getGeneral_height());
+               loadToTable(examitemp);
             }
         });
     }
@@ -594,6 +598,8 @@ public class PrescrptionsController implements Initializable {
                examinations.setNose_Secretions(((RadioButton)group6.getSelectedToggle()).getText());
                examinations.setNose_Polyp(((RadioButton)group7.getSelectedToggle()).getText());
                examinations.setNose_PND(((RadioButton)group8.getSelectedToggle()).getText());
+               ExaminationTable examitemp = new ExaminationTable("Nose", examinations.getGeneral_height());
+               loadToTable(examitemp);
             }
         });
     }
@@ -616,6 +622,8 @@ public class PrescrptionsController implements Initializable {
                examinations.setThoat_Tonsillitis(((RadioButton)group2.getSelectedToggle()).getText());
                examinations.setThoat_NormalVC(((RadioButton)group3.getSelectedToggle()).getText());
                examinations.setThoat_Other(tx1.getText());
+               ExaminationTable examitemp = new ExaminationTable("Throat", examinations.getGeneral_height());
+               loadToTable(examitemp);
             }
         });
     }
@@ -681,6 +689,8 @@ public class PrescrptionsController implements Initializable {
                examinations.setAmodoment_siteepigastricC(cb4.isSelected()?"Yes":"N/A");
                examinations.setAmodoment_umbilicalC(cb8.isSelected()?"Yes":"N/A");
                examinations.setAmodoment_hypochondriacC(cb6.isSelected()?"Yes":"N/A");
+               ExaminationTable examitemp = new ExaminationTable("ABDOMEN", examinations.getGeneral_height());
+               loadToTable(examitemp);
             }
         });
     }
@@ -709,6 +719,8 @@ public class PrescrptionsController implements Initializable {
                examinations.setMale_Urethraldischarge(((RadioButton)group4.getSelectedToggle()).getText());
                examinations.setMale_fungalrash(((RadioButton)group5.getSelectedToggle()).getText());
                examinations.setMale_MaleOther(tx1.getText());
+               ExaminationTable examitemp = new ExaminationTable("Male-genitalia", examinations.getGeneral_height());
+               loadToTable(examitemp);
             }
         });
         
@@ -754,6 +766,8 @@ public class PrescrptionsController implements Initializable {
                 examinations.setFemale_viginalDischagrg(((RadioButton)group6.getSelectedToggle()).getText());
                 examinations.setFemale_Perineum(tx8.getText());
                 examinations.setFemale_FemaleOther(tx9.getText());
+                ExaminationTable examitemp = new ExaminationTable("Female-genitalia", examinations.getGeneral_height());
+                loadToTable(examitemp);
                 
             }
         });
@@ -786,7 +800,8 @@ public class PrescrptionsController implements Initializable {
                examinations.setCns_Powernormaltxt(t5.getText());
                examinations.setCns_Sensorynormal(((RadioButton)group5.getSelectedToggle()).getText());
                examinations.setCns_Sensorynormaltxt(t6.getText());
-               
+               ExaminationTable examitemp = new ExaminationTable("CNS", examinations.getGeneral_height());
+               loadToTable(examitemp);
             }
         });
     }
@@ -827,6 +842,8 @@ public class PrescrptionsController implements Initializable {
                examinations.setMuskoskel_Chestwallribtenderness(((RadioButton)group8.getSelectedToggle()).getText());
                examinations.setMuskoskel_Upperlimbtenderness(((RadioButton)group9.getSelectedToggle()).getText());
                examinations.setMuskoskel_Lowerlimbtenderness(((RadioButton)group10.getSelectedToggle()).getText());
+               ExaminationTable examitemp = new ExaminationTable("Musculo-skeletal", examinations.getGeneral_height());
+               loadToTable(examitemp);
             }
         });
     }
@@ -869,9 +886,9 @@ public class PrescrptionsController implements Initializable {
             ThroatRemove();
         }else if(selectedItem.equals("ABDOMEN")){
             ABDOMENRemove();
-        }else if(selectedItem.equals("Male genitalia")){
+        }else if(selectedItem.equals("Male-genitalia")){
             MalegenitaliaRemove();
-        }else if(selectedItem.equals("Female genitalia")){
+        }else if(selectedItem.equals("Female-genitalia")){
             FeMalegenitaliaRemove();
         }else if(selectedItem.equals("CNS")){
             CNSRemove();
