@@ -894,42 +894,135 @@ public class PrescrptionsController implements Initializable {
     }
 
     private void CVSRemove() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        examinations.setCvs_pulseBpm("");
+        examinations.setCvs_regular("");
+        examinations.setCvs_irregular("");
+        examinations.setCvs_Bp("");
+        examinations.setCvs_Heartdualrhythm("");
+        examinations.setCvs_triplerhythm("");
+        examinations.setCvs_murmurs("");
+        examinations.setCvs_systolic("");
+        examinations.setCvs_diastolic("");
     }
 
     private void RSRemove() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        examinations.setRs_equalairentry("");
+        examinations.setRs_reducedairentry("");
+        examinations.setRs_vbs("");
+        examinations.setRs_bbs("");
+        examinations.setRs_creps("");
+        examinations.setRs_rhonchi("");
     }
 
     private void EarRemove() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        examinations.setEar_EarNormal("");
+        examinations.setEar_Normalhearing("");
+        examinations.setEar_Wax("");
+        examinations.setEar_OE("");
+        examinations.setEar_traumaticperforation("");
+        examinations.setEar_AOM("");
+        examinations.setEar_OME("");
+        examinations.setEar_CSOM("");
+        examinations.setEar_CP("");
+        examinations.setEar_bleedingEar("");
+        examinations.setEar_Eardischarge("");
+        examinations.setEar_Granulationtissue("");
+        examinations.setEar_EarPolyp("");
     }
 
     private void NoseRemove() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        examinations.setNose_Patent("");
+        examinations.setNose_blocked("");
+        examinations.setNose_Senseofsmell("");
+        examinations.setNose_Fb("");
+        examinations.setNose_DeviatedSeptum("");
+        examinations.setNose_BleedingS("");
+        examinations.setNose_Secretions("");
+        examinations.setNose_Polyp("");
+        examinations.setNose_PND("");
     }
 
     private void ThroatRemove() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        examinations.setThoat_Normal("");
+        examinations.setThoat_Pharyngitis("");
+        examinations.setThoat_Tonsillitis("");
+        examinations.setThoat_NormalVC("");
+        examinations.setThoat_Other("");
     }
 
     private void ABDOMENRemove() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        examinations.setAmodoment_Distension("");
+        examinations.setAmodoment_Tenderness("");
+        examinations.setAmodoment_Liver("");
+        examinations.setAmodoment_Spleen("");
+        examinations.setAmodoment_Kidney("");
+        examinations.setAmodoment_AbodometOther("");
+        examinations.setAmodoment_hypogastricL("");
+        examinations.setAmodoment_lumbarL("");
+        examinations.setAmodoment_inguinalL("");
+        examinations.setAmodoment_hypogastricR("");
+        examinations.setAmodoment_lumbarR("");
+        examinations.setAmodoment_inguinalR("");
+        examinations.setAmodoment_siteepigastricC("");
+        examinations.setAmodoment_umbilicalC("");
+        examinations.setAmodoment_hypochondriacC("");
     }
 
     private void MalegenitaliaRemove() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        examinations.setMale_Swelling("");
+        examinations.setMale_MaleTenderness("");
+        examinations.setMale_Hydrocele("");
+        examinations.setMale_Balanitis("");
+        examinations.setMale_Urethraldischarge("");
+        examinations.setMale_fungalrash("");
+        examinations.setMale_MaleOther("");
     }
 
     private void FeMalegenitaliaRemove() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        examinations.setFemale_LMP1("");
+        examinations.setFemale_LMP2("");
+        examinations.setFemale_LMP3("");
+        examinations.setFemale_BreastsL("");
+        examinations.setFemale_BreastsTL("");
+        examinations.setFemale_BreastsR("");
+        examinations.setFemale_BreastsTR("");
+        examinations.setFemale_NipplesL("");
+        examinations.setFemale_NipplesTL("");
+        examinations.setFemale_NipplesR("");
+        examinations.setFemale_NipplesTR("");
+        examinations.setFemale_Uterus("");
+        examinations.setFemale_fungalRash("");
+        examinations.setFemale_viginalDischagrg("");
+        examinations.setFemale_Perineum("");
+        examinations.setFemale_FemaleOther("");
     }
 
     private void CNSRemove() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        examinations.setCns_Normalcranialnerves("");
+        examinations.setCns_Normalcranialnerves("");
+        examinations.setCns_Gaitnormal("");
+        examinations.setCns_Gaitnormaltxt("");
+        examinations.setCns_speechnormal("");
+        examinations.setCns_speechnormaltxt("");
+        examinations.setCns_Coordinationnormal("");
+        examinations.setCns_Coordinationnormaltxt("");
+        examinations.setCns_Powernormal("");
+        examinations.setCns_Powernormaltxt("");
+        examinations.setCns_Sensorynormal("");
+        examinations.setCns_Sensorynormaltxt("");
     }
 
     private void MusculoSkeletalRemove() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        examinations.setMuskoskel_cervicalspinetenderness("");
+        examinations.setMuskoskel_thoracicspinetenderness("");
+        examinations.setMuskoskel_lumbosacralspinetenderness("");
+        examinations.setMuskoskel_SIJtenderness("");
+        examinations.setMuskoskel_Swollenlargejoints("");
+        examinations.setMuskoskel_Tenderlargejoints("");
+        examinations.setMuskoskel_Swollensmalljoints("");
+        examinations.setMuskoskel_Tendersmalljoints("");
+        examinations.setMuskoskel_Chestwallribtenderness("");
+        examinations.setMuskoskel_Upperlimbtenderness("");
+        examinations.setMuskoskel_Lowerlimbtenderness("");
     }
 }
