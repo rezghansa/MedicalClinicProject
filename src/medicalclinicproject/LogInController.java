@@ -86,6 +86,7 @@ public class LogInController implements Initializable {
                 dialogStage.initModality(Modality.WINDOW_MODAL);
                 dialogStage.initOwner(mainApp.getPrimaryStage());
                 Scene scene = new Scene(rootLayout);
+                dialogStage.setMaximized(true);
                 dialogStage.setScene(scene);
                 MainPageController contro = loader.getController();
                 contro.setMainApp(mainApp);
