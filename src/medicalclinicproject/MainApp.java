@@ -11,9 +11,11 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -32,6 +34,7 @@ public class MainApp extends Application {
             loader.setLocation(MainApp.class.getResource("LogIn.fxml"));
             rootLayout = (AnchorPane) loader.load();
             Scene scene = new Scene(rootLayout);
+            this.primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("dr_icon.png")));
             this.primaryStage.setMaximized(true);
             this.primaryStage.setTitle("Medical World");
             this.primaryStage.setScene(scene);

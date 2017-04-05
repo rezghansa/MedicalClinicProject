@@ -16,6 +16,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
@@ -83,6 +84,7 @@ public class LogInController implements Initializable {
                 // Create the dialog Stage.
                 Stage dialogStage = new Stage();
                 dialogStage.setTitle("Main Menu");
+                dialogStage.getIcons().add(new Image(getClass().getResourceAsStream("dr_icon.png")));
                 dialogStage.initModality(Modality.WINDOW_MODAL);
                 dialogStage.initOwner(mainApp.getPrimaryStage());
                 Scene scene = new Scene(rootLayout);

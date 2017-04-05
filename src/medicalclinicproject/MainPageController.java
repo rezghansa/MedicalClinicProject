@@ -20,6 +20,7 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
@@ -92,6 +93,7 @@ public class MainPageController implements Initializable {
         try{                 
                 // Show the scene containing the root layout.
                 Scene scene = new Scene(rootLayout);
+                this.mainApp.getPrimaryStage().getIcons().add(new Image(getClass().getResourceAsStream("dr_icon.png")));
                 this.mainApp.getPrimaryStage().setScene(scene);
                 this.mainApp.getPrimaryStage().setMaximized(true);
                 this.mainApp.getPrimaryStage().show();
