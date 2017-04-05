@@ -283,6 +283,8 @@ public class PrescrptionsController implements Initializable {
     public void saveExaminations(){
         
        //save examinations and get the last inserted id
+       LocalDate dbDate = LocalDate.now();
+       examinations.setExaminationDate(dbDate.toString());
        DbUtilClass.insertion(examinations.insertQuery());
        ResultSet rs = DbUtilClass.readData("select LAST_INSERT_ID() as examinationId from examinationdetail");
        try{
