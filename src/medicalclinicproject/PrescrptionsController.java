@@ -14,6 +14,7 @@ import java.util.HashMap;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -187,6 +188,12 @@ public class PrescrptionsController implements Initializable {
             }
             ObservableList<String> value = FXCollections.observableArrayList(list);
             cmbLastVisistCount.setItems(value);
+            cmbLastVisistCount.valueProperty().addListener(new ChangeListener<String>() {
+                @Override 
+                public void changed(ObservableValue ov, String t, String t1) {
+                    loadPreviousPrescriptions(Integer.parseInt(t1));
+                }    
+            });
         } catch (SQLException ex) {
             Logger.getLogger(PrescrptionsController.class.getName()).log(Level.SEVERE, null, ex);
         }finally{
