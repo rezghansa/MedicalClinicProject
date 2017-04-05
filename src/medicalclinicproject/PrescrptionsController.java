@@ -9,7 +9,6 @@ import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.ResourceBundle;
@@ -28,7 +27,6 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
@@ -36,7 +34,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
 import org.controlsfx.control.textfield.TextFields;
 
 /**
@@ -283,6 +280,9 @@ public class PrescrptionsController implements Initializable {
     public void saveExaminations(){
         
        //save examinations and get the last inserted id
+       if(!examinations.isSomeThingSet()){
+           return;
+       }
        LocalDate dbDate = LocalDate.now();
        examinations.setExaminationDate(dbDate.toString());
        DbUtilClass.insertion(examinations.insertQuery());
@@ -442,6 +442,7 @@ public class PrescrptionsController implements Initializable {
         btnAdd.setOnAction(new EventHandler() {
             @Override
             public void handle(Event event) {
+               examinations.setSomeThingSet(true);
                examinations.setGeneral_height(txtHeig.getText());
                examinations.setGeneral_weight(txtWeig.getText());
                examinations.setGeneral_Pallor(((RadioButton)group.getSelectedToggle()).getText());
@@ -480,6 +481,7 @@ public class PrescrptionsController implements Initializable {
         btnAdd.setOnAction(new EventHandler() {
             @Override
             public void handle(Event event) {
+               examinations.setSomeThingSet(true);
                examinations.setCvs_pulseBpm(txtpulse.getText());
                examinations.setCvs_regular(((RadioButton)group.getSelectedToggle()).getText());
                examinations.setCvs_irregular(((RadioButton)group1.getSelectedToggle()).getText());
@@ -510,6 +512,7 @@ public class PrescrptionsController implements Initializable {
         btnAdd.setOnAction(new EventHandler() {
             @Override
             public void handle(Event event) {
+               examinations.setSomeThingSet(true);
                examinations.setRs_equalairentry(((RadioButton)group.getSelectedToggle()).getText());
                examinations.setRs_reducedairentry(((RadioButton)group1.getSelectedToggle()).getText());
                examinations.setRs_vbs(((RadioButton)group2.getSelectedToggle()).getText());
@@ -551,6 +554,7 @@ public class PrescrptionsController implements Initializable {
         btnAdd.setOnAction(new EventHandler() {
             @Override
             public void handle(Event event) {
+               examinations.setSomeThingSet(true);
                examinations.setEar_EarNormal(((RadioButton)group.getSelectedToggle()).getText());
                examinations.setEar_Normalhearing(((RadioButton)group1.getSelectedToggle()).getText());
                examinations.setEar_Wax(((RadioButton)group2.getSelectedToggle()).getText());
@@ -591,6 +595,7 @@ public class PrescrptionsController implements Initializable {
         btnAdd.setOnAction(new EventHandler() {
             @Override
             public void handle(Event event) {
+               examinations.setSomeThingSet(true);
                examinations.setNose_Patent(((RadioButton)group.getSelectedToggle()).getText());
                examinations.setNose_blocked(((RadioButton)group1.getSelectedToggle()).getText());
                examinations.setNose_Senseofsmell(((RadioButton)group2.getSelectedToggle()).getText());
@@ -619,6 +624,7 @@ public class PrescrptionsController implements Initializable {
         btnAdd.setOnAction(new EventHandler() {
             @Override
             public void handle(Event event) {
+               examinations.setSomeThingSet(true);
                examinations.setThoat_Normal(((RadioButton)group.getSelectedToggle()).getText());
                examinations.setThoat_Pharyngitis(((RadioButton)group1.getSelectedToggle()).getText());
                examinations.setThoat_Tonsillitis(((RadioButton)group2.getSelectedToggle()).getText());
@@ -673,6 +679,7 @@ public class PrescrptionsController implements Initializable {
         btnAdd.setOnAction(new EventHandler() {
             @Override
             public void handle(Event event) {
+               examinations.setSomeThingSet(true);
                examinations.setAmodoment_Distension(((RadioButton)group.getSelectedToggle()).getText());
                examinations.setAmodoment_Tenderness(((RadioButton)group1.getSelectedToggle()).getText());
                examinations.setAmodoment_Liver(!cb1.getSelectionModel().isEmpty()?cb1.getSelectionModel().getSelectedItem().toString():"N/A");
@@ -714,6 +721,7 @@ public class PrescrptionsController implements Initializable {
         btnAdd.setOnAction(new EventHandler() {
             @Override
             public void handle(Event event) {
+               examinations.setSomeThingSet(true);
                examinations.setMale_Swelling(((RadioButton)group.getSelectedToggle()).getText());
                examinations.setMale_MaleTenderness(((RadioButton)group1.getSelectedToggle()).getText());
                examinations.setMale_Hydrocele(((RadioButton)group2.getSelectedToggle()).getText());
@@ -752,6 +760,7 @@ public class PrescrptionsController implements Initializable {
         btnAdd.setOnAction(new EventHandler() {
             @Override
             public void handle(Event event) {
+                examinations.setSomeThingSet(true);
                 examinations.setFemale_LMP1(tx5.getText());
                 examinations.setFemale_LMP2(tx6.getText());
                 examinations.setFemale_LMP3(tx7.getText());
@@ -790,6 +799,7 @@ public class PrescrptionsController implements Initializable {
         btnAdd.setOnAction(new EventHandler() {
             @Override
             public void handle(Event event) {
+               examinations.setSomeThingSet(true);
                examinations.setCns_Normalcranialnerves(((RadioButton)group.getSelectedToggle()).getText());
                examinations.setCns_Normalcranialnerves(t1.getText());
                examinations.setCns_Gaitnormal(((RadioButton)group1.getSelectedToggle()).getText());
@@ -833,6 +843,7 @@ public class PrescrptionsController implements Initializable {
         btnAdd.setOnAction(new EventHandler() {
             @Override
             public void handle(Event event) {
+               examinations.setSomeThingSet(true);
                examinations.setMuskoskel_cervicalspinetenderness(((RadioButton)group.getSelectedToggle()).getText());
                examinations.setMuskoskel_thoracicspinetenderness(((RadioButton)group1.getSelectedToggle()).getText());
                examinations.setMuskoskel_lumbosacralspinetenderness(((RadioButton)group2.getSelectedToggle()).getText());
@@ -869,6 +880,9 @@ public class PrescrptionsController implements Initializable {
         removeExaminationData(examitemp.getExamName().getValue());
         listOfExaminationItems.remove(examitemp);
         examninationTable.getItems().remove(examitemp);
+        if(listOfExaminationItems.size()==0){
+            examinations.setSomeThingSet(false);
+        }
     }
     
     

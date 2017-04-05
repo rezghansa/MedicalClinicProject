@@ -127,7 +127,15 @@ public class Examinations {
     private	String muskoskel_Chestwallribtenderness;          
     private	String muskoskel_Upperlimbtenderness;            
     private	String muskoskel_Lowerlimbtenderness;
+    private     boolean someThingSet = false;
 
+    public boolean isSomeThingSet() {
+        return someThingSet;
+    }
+
+    public void setSomeThingSet(boolean someThingSet) {
+        this.someThingSet = someThingSet;
+    }    
     public int getExaminationID() {
         return examinationID;
     }
