@@ -2,12 +2,13 @@
 
 <?import java.net.URL?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="medicalclinicproject.LogInController">
+<AnchorPane id="AnchorPane" prefHeight="616.0" prefWidth="877.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="medicalclinicproject.LogInController">
     <stylesheets>
         <URL value="@login.css" />
     </stylesheets>
@@ -16,7 +17,8 @@
       <Text layoutX="105.0" layoutY="196.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" />
       <TextField fx:id="txtusrNm" layoutX="236.0" layoutY="135.0" />
       <PasswordField fx:id="txtPsWrd" layoutX="236.0" layoutY="188.0" />
-      <Button layoutX="375.0" layoutY="246.0" mnemonicParsing="false" onAction="#LogInAction" prefHeight="72.0" prefWidth="142.0" text="LogIn" />
+      <Button layoutX="439.0" layoutY="135.0" mnemonicParsing="false" onAction="#LogInAction" prefHeight="72.0" prefWidth="142.0" text="LogIn" />
       <Text fx:id="lblMessage" layoutX="130.0" layoutY="259.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+      <Label layoutX="20.0" layoutY="575.0" text="© Intense 7 . All Rights Reserved | Design: intense7" />
    </children>
 </AnchorPane>
