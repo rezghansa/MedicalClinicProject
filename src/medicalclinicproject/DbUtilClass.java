@@ -55,6 +55,7 @@ public class DbUtilClass {
    
    public static ResultSet readData(String sql){
        try {
+           System.out.println("Sql for Featch:-"+sql);
            ResultSet rs = stmt.executeQuery(sql);
            return rs;
        } catch (Exception ex) {
@@ -134,8 +135,9 @@ public class DbUtilClass {
               Double pricePaid       = rs.getDouble("pricePaid");
               Double discountedPrice = rs.getDouble("discountedPrice"); 
               Double discountedTotal = rs.getDouble("discountedTotal");
+              String medicineName    = rs.getString("medicineName");
               Invoice invoiceTemp = new Invoice(invoiceDate,medicineId, Qty, 
-                      eachPrice, pricePaid, discountedPrice,discountedTotal);
+                      eachPrice, pricePaid, discountedPrice,discountedTotal,medicineName);
             listOfPatients.add(invoiceTemp);     
         }
        }catch(Exception e){

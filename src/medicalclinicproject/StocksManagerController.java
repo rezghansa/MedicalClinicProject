@@ -171,7 +171,7 @@ public class StocksManagerController implements Initializable {
     public void saveInvoice(){
         for(Invoice invoice:listOfItems){
             LocalDate datebo = invoice.getInvoiceDate().getValue();
-            String sql ="INSERT INTO `medicalclinc`.`invoices`\n" +
+            String sql ="INSERT INTO `invoices`\n" +
                         "(`invoiceDate`,\n" +
                         "`medicineId`,\n" +
                         "`Qty`,\n" +
@@ -249,14 +249,14 @@ public class StocksManagerController implements Initializable {
     
     private void loadMedicensToTable(String nameOfSearch){
         try{
-            String nameSql = "SELECT * FROM medicalclinc.invoices\n" +
+            String nameSql = "SELECT * FROM invoices left join medicines on id = medicineId\n" +
                              "where medicineId = (select id from medicines where " +
                              "medicineName like ('%"+nameOfSearch+"%'))";
             ObservableList<Invoice> listOfinvoices = 
                 DbUtilClass.convertoInvoiceList(DbUtilClass.readData(nameSql));
             tblInvoiceDates.setCellValueFactory(celldata->celldata.getValue().getInvoiceDate());
             tblNameMedicine.setCellValueFactory(celldata->celldata.getValue().getMediceName());
-            tblQtyofInvoice.setCellValueFactory(celldata->celldata.getValue().getStkQty().asObject());
+            tblQtyofInvoice.setCellValueFactory(celldata->celldata.getValue().getGetQuty().asObject());
             tblViewMedicnesLoad.setItems(listOfinvoices);
         }catch(Exception e){e.printStackTrace();}
     }

@@ -51,10 +51,10 @@ public class Invoice {
         this.eachType = new SimpleStringProperty(eachType);
         this.discountedPrice = new SimpleDoubleProperty((pricePaid / getQuty));
         this.disountedTotal = new SimpleDoubleProperty(((getQuty*eachPrice)-pricePaid));
+        this.medicineId = new SimpleIntegerProperty(getMediceineIdByName());
+        this.eachTypeId = new SimpleIntegerProperty(0);
         this.stkQty = new SimpleDoubleProperty(getStockQty());
         this.inStkQty = new SimpleDoubleProperty((getStockQty()+getQuty));
-        this.medicineId = new SimpleIntegerProperty(getMediceineIdByName());
-        this.eachTypeId = new SimpleIntegerProperty(getEachTypeIdByName());
     }
     
     public Invoice(String invoiceDate, Integer medicineId, Double Qty, Double eachPrice, 
@@ -62,23 +62,45 @@ public class Invoice {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate dbDate = LocalDate.parse(invoiceDate, formatter);
         this.invoiceDate = new SimpleObjectProperty<LocalDate>(dbDate);
-        this.mediceName = new SimpleStringProperty(getMediceinName());
         this.getQuty = new SimpleDoubleProperty(Qty);
         this.eachPrice = new SimpleDoubleProperty(eachPrice);
         this.pricePaid = new SimpleDoubleProperty(pricePaid);
-        this.eachType = new SimpleStringProperty("");
         this.discountedPrice = new SimpleDoubleProperty(discountedPrice);
         this.disountedTotal = new SimpleDoubleProperty(discountedTotal);
-        this.stkQty = new SimpleDoubleProperty(getStockQty());
-        this.inStkQty = new SimpleDoubleProperty(getStockQty());
         this.medicineId = new SimpleIntegerProperty(medicineId);
         this.eachTypeId = new SimpleIntegerProperty(0);
+        this.mediceName = new SimpleStringProperty("");
+        this.eachType = new SimpleStringProperty("");
+        this.stkQty = new SimpleDoubleProperty(0.0);
+        this.inStkQty = new SimpleDoubleProperty(0.0);
     }
     
     
+    public Invoice(String invoiceDate, Integer medicineId, Double Qty, Double eachPrice, 
+            Double pricePaid, Double discountedPrice, Double discountedTotal,String medicineName) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate dbDate = LocalDate.parse(invoiceDate, formatter);
+        this.invoiceDate = new SimpleObjectProperty<LocalDate>(dbDate);
+        this.getQuty = new SimpleDoubleProperty(Qty);
+        this.eachPrice = new SimpleDoubleProperty(eachPrice);
+        this.pricePaid = new SimpleDoubleProperty(pricePaid);
+        this.discountedPrice = new SimpleDoubleProperty(discountedPrice);
+        this.disountedTotal = new SimpleDoubleProperty(discountedTotal);
+        this.medicineId = new SimpleIntegerProperty(medicineId);
+        this.eachTypeId = new SimpleIntegerProperty(0);
+        this.mediceName = new SimpleStringProperty(medicineName);
+        this.eachType = new SimpleStringProperty("");
+        this.stkQty = new SimpleDoubleProperty(0.0);
+        this.inStkQty = new SimpleDoubleProperty(0.0);
+    }
+    
+    public void setMedicineName(){
+        this.mediceName.set(getMediceinName());
+    }
+    
     private String getMediceinName(){
         String medicineName = null;
-        ResultSet rs = DbUtilClass.readData("select medicineName from medicines where id ="+this.medicineId.asObject());
+        ResultSet rs = DbUtilClass.readData("select medicineName from medicines where id ="+this.medicineId.getValue().intValue());
         try {
              while(rs.next()){
                  medicineName = rs.getString("medicineName");
@@ -97,7 +119,7 @@ public class Invoice {
     
     private String getEachTypefromId(){
         String eachName = null;
-        ResultSet rs = DbUtilClass.readData("select typeName from typeofmedines where typeId ="+this.eachTypeId);
+        ResultSet rs = DbUtilClass.readData("select typeName from typeofmedines where typeId ="+this.eachTypeId.getValue().intValue());
         try {
              while(rs.next()){
                  eachName = rs.getString("typeName");
@@ -153,9 +175,10 @@ public class Invoice {
     }
     
     private Double getStockQty(){
-       Double eachTypeId = null;
-        ResultSet rs = DbUtilClass.readData("select inStockCount from medicines where id ="+this.medicineId.asObject());
+        Double eachTypeId = null;
+        ResultSet rs = null;
         try {
+             rs = DbUtilClass.readData("select inStockCount from medicines where id ="+this.medicineId.getValue().intValue());;
              while(rs.next()){
                  eachTypeId = rs.getDouble("inStockCount");
              }
