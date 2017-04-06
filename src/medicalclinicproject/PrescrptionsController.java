@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -81,6 +82,8 @@ public class PrescrptionsController implements Initializable {
     
     private HashMap<String,Medicines> medicineList;
     
+    private HashMap<Integer,Double> medicineListToUpdate;
+    
     @FXML
     private Label lblAlrt;
     @FXML
@@ -105,6 +108,18 @@ public class PrescrptionsController implements Initializable {
     private TableColumn<ExaminationTable, String> examinationValue;
 
     ObservableList<ExaminationTable> listOfExaminationItems = FXCollections.observableArrayList();
+
+    public HashMap<Integer, Double> getMedicineListToUpdate() {
+        return medicineListToUpdate;
+    }
+
+    public void setMedicineListToUpdate(HashMap<Integer, Double> medicineListToUpdate) {
+        this.medicineListToUpdate = medicineListToUpdate;
+    }
+    
+    public void addMedicineListTOUpdate(Integer intMedicine,Double amountTo){
+        this.medicineListToUpdate.put(intMedicine, amountTo);
+    }
     
     public TextArea getTxtSymp() {
         return txtSymp;
@@ -157,6 +172,7 @@ public class PrescrptionsController implements Initializable {
             loadExaminations();
             // Fill the labels with info from the person object.
             medicineNameinitializer();
+            medicineListToUpdate = new HashMap<Integer,Double>();
             TextFields.bindAutoCompletion(medicineNameTxt, possibleSuggestions);
             lblPatientName.setText("Name:-"+person.getFirstName().getValue() +" Age :- "+person.getAge().getValue() +" Gender:-"+person.getGender().getValue());
             medicineNameTxt.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
@@ -281,6 +297,7 @@ public class PrescrptionsController implements Initializable {
         prescription.setAmount(txtAmount.getText());
         saveExaminations();
         savetoDataBase();
+        updateStocks();
         printPrescription();
     }
     
@@ -342,6 +359,18 @@ public class PrescrptionsController implements Initializable {
     }
     
     
+    private void updateStocks(){
+        java.util.Iterator iter = medicineListToUpdate.keySet().iterator();
+        for (Map.Entry<Integer, Double> entry : medicineListToUpdate.entrySet()) {
+            Integer key = entry.getKey();
+            Double value = entry.getValue();
+            if(key!=0){
+                String sqlUpdate = "CALL  sp_updateStock("+key+","+value+")";
+                DbUtilClass.insertion(sqlUpdate);
+            }
+        }
+    }
+    
     String prescriptionValues ="Medicine Name\t| Dosage \t| NumberofDays \t| Total Duration \t| \n"
                              + "___________________________________________________________________________\n";
     @FXML
@@ -356,6 +385,12 @@ public class PrescrptionsController implements Initializable {
         totalTxt.getText()+" \n";
         txfPreciption.setText(prescriptionValues);
         prescription.addPrescrptionTableData(temp);
+        try{
+            Integer medicineId = medicineList.get(medicineNameTxt.getText()).getMedicineId().getValue();
+            addMedicineListTOUpdate(medicineId, Double.parseDouble(totalTxt.getText()));
+        }catch(Exception e){
+            addMedicineListTOUpdate(0, Double.parseDouble(totalTxt.getText()));
+        }
         clearFields();
     }
     
