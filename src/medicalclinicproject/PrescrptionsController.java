@@ -24,6 +24,7 @@ import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
@@ -406,14 +407,26 @@ public class PrescrptionsController implements Initializable {
         if(!tfLabTest.getText().isEmpty()){
             //print labtest
             System.out.println("Labs Print:="+prescription.getLabsTxt());
+            PrintUtil printL = new PrintUtil();
+            final TextArea textArea = new TextArea();
+            textArea.setText("Dr.Viraj Weerackody\t\t Date :-"+LocalDate.now()+"\n\n\n Laboratory Test : = \n"+prescription.getLabsTxt());
+            printL.printPage(textArea);
         }
         if(!txtParmacy.getText().isEmpty()){
             //print pharmacy
             System.out.println("Pharmacy Print:="+prescription.getPhamacyTxt());
+            PrintUtil printL = new PrintUtil();
+            final TextArea textArea = new TextArea();
+            textArea.setText("Dr.Viraj Weerackody\t\t Date :-"+LocalDate.now()+"\n\n\n OutSide Purchase : = \n "+prescription.getPhamacyTxt());
+            printL.printPage(textArea);
         }
         if(!txfPreciption.getText().isEmpty()){
             //print prescription
             System.out.println("Prescrption Print:="+prescription.getPrescriptionTxt());
+            PrintUtil printL = new PrintUtil();
+            final TextArea textArea = new TextArea();
+            textArea.setText("Dr.Viraj Weerackody\t\t Date :-"+LocalDate.now()+"\n\n\n Prescription : = \n "+prescription.getPrescriptionTxt());
+            printL.printPage(textArea);
         }
     }
     
