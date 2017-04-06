@@ -5,8 +5,12 @@
  */
 package medicalclinicproject;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ObjectProperty;
@@ -47,31 +51,126 @@ public class Invoice {
         this.eachType = new SimpleStringProperty(eachType);
         this.discountedPrice = new SimpleDoubleProperty((pricePaid / getQuty));
         this.disountedTotal = new SimpleDoubleProperty(((getQuty*eachPrice)-pricePaid));
-        this.stkQty = new SimpleDoubleProperty(100);
-        this.inStkQty = new SimpleDoubleProperty((100+getQuty));
-        this.medicineId = new SimpleIntegerProperty(0);
-        this.eachTypeId = new SimpleIntegerProperty(0);
+        this.stkQty = new SimpleDoubleProperty(getStockQty());
+        this.inStkQty = new SimpleDoubleProperty((getStockQty()+getQuty));
+        this.medicineId = new SimpleIntegerProperty(getMediceineIdByName());
+        this.eachTypeId = new SimpleIntegerProperty(getEachTypeIdByName());
     }
     
-    public Invoice(String invoiceDate, Integer medicineId, Double Qty, Double eachPrice, Double pricePaid, Double discountedPrice, Double discountedTotal) {
+    public Invoice(String invoiceDate, Integer medicineId, Double Qty, Double eachPrice, 
+            Double pricePaid, Double discountedPrice, Double discountedTotal) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate dbDate = LocalDate.parse(invoiceDate, formatter);
         this.invoiceDate = new SimpleObjectProperty<LocalDate>(dbDate);
-        this.mediceName = new SimpleStringProperty("");
+        this.mediceName = new SimpleStringProperty(getMediceinName());
         this.getQuty = new SimpleDoubleProperty(Qty);
         this.eachPrice = new SimpleDoubleProperty(eachPrice);
         this.pricePaid = new SimpleDoubleProperty(pricePaid);
         this.eachType = new SimpleStringProperty("");
         this.discountedPrice = new SimpleDoubleProperty(discountedPrice);
         this.disountedTotal = new SimpleDoubleProperty(discountedTotal);
-        this.stkQty = new SimpleDoubleProperty(0);
-        this.inStkQty = new SimpleDoubleProperty(0);
-        this.medicineId = new SimpleIntegerProperty(0);
+        this.stkQty = new SimpleDoubleProperty(getStockQty());
+        this.inStkQty = new SimpleDoubleProperty(getStockQty());
+        this.medicineId = new SimpleIntegerProperty(medicineId);
         this.eachTypeId = new SimpleIntegerProperty(0);
     }
     
     
-
+    private String getMediceinName(){
+        String medicineName = null;
+        ResultSet rs = DbUtilClass.readData("select medicineName from medicines where id ="+this.medicineId.asObject());
+        try {
+             while(rs.next()){
+                 medicineName = rs.getString("medicineName");
+             }
+        } catch (SQLException ex) {
+             Logger.getLogger(Invoice.class.getName()).log(Level.SEVERE, null, ex);
+        } finally{
+            try {
+                rs.close();
+            } catch (SQLException ex) {
+                java.util.logging.Logger.getLogger(LogInController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return medicineName;
+    }
+    
+    private String getEachTypefromId(){
+        String eachName = null;
+        ResultSet rs = DbUtilClass.readData("select typeName from typeofmedines where typeId ="+this.eachTypeId);
+        try {
+             while(rs.next()){
+                 eachName = rs.getString("typeName");
+             }
+        } catch (SQLException ex) {
+             Logger.getLogger(Invoice.class.getName()).log(Level.SEVERE, null, ex);
+        } finally{
+            try {
+                rs.close();
+            } catch (SQLException ex) {
+                java.util.logging.Logger.getLogger(LogInController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return eachName;
+    }
+    
+    private Integer getMediceineIdByName(){
+        Integer medicineId = null;
+        ResultSet rs = DbUtilClass.readData("select id from medicines where medicineName = '"+this.mediceName.getValue() +"'");
+        try {
+             while(rs.next()){
+                 medicineId = rs.getInt("id");
+             }
+        } catch (SQLException ex) {
+             Logger.getLogger(Invoice.class.getName()).log(Level.SEVERE, null, ex);
+        } finally{
+            try {
+                rs.close();
+            } catch (SQLException ex) {
+                java.util.logging.Logger.getLogger(LogInController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return medicineId;
+    }
+    
+    private Integer getEachTypeIdByName(){
+        Integer eachTypeId = null;
+        ResultSet rs = DbUtilClass.readData("select typeId from medicines where typeName = '"+this.eachType.getValue() +"'");
+        try {
+             while(rs.next()){
+                 eachTypeId = rs.getInt("typeId");
+             }
+        } catch (SQLException ex) {
+             Logger.getLogger(Invoice.class.getName()).log(Level.SEVERE, null, ex);
+        } finally{
+            try {
+                rs.close();
+            } catch (SQLException ex) {
+                java.util.logging.Logger.getLogger(LogInController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return eachTypeId;
+    }
+    
+    private Double getStockQty(){
+       Double eachTypeId = null;
+        ResultSet rs = DbUtilClass.readData("select inStockCount from medicines where id ="+this.medicineId.asObject());
+        try {
+             while(rs.next()){
+                 eachTypeId = rs.getDouble("inStockCount");
+             }
+        } catch (SQLException ex) {
+             Logger.getLogger(Invoice.class.getName()).log(Level.SEVERE, null, ex);
+        } finally{
+            try {
+                rs.close();
+            } catch (SQLException ex) {
+                java.util.logging.Logger.getLogger(LogInController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return eachTypeId; 
+    }
+    
     public IntegerProperty getMedicineId() {
         return medicineId;
     }
