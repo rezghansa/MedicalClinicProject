@@ -107,11 +107,11 @@ public class StocksManagerController implements Initializable {
     @FXML
     private PieChart pieChat;
     @FXML
-    private TableView<Invoice> sumaryTable;
+    private TableView<Medicines> sumaryTable;
     @FXML
-    private TableColumn<Invoice, String> name;
+    private TableColumn<Medicines, String> name;
     @FXML
-    private TableColumn<Invoice, Double> availbleQty;
+    private TableColumn<Medicines, Double> availbleQty;
     @FXML
     private ComboBox<String> threhodLevel;
     @FXML
@@ -139,8 +139,8 @@ public class StocksManagerController implements Initializable {
  
     
     public void initSummaryTable(){
-        name.setCellValueFactory(new PropertyValueFactory<Invoice, String>("medicineName"));
-        availbleQty.setCellValueFactory(new PropertyValueFactory<Invoice, Double>("stockQty"));
+        name.setCellValueFactory(new PropertyValueFactory<Medicines, String>("medicineName"));
+        availbleQty.setCellValueFactory(new PropertyValueFactory<Medicines, Double>("inStockCount"));
         sumaryTable.setItems(filteredData);
         threhodLevel.valueProperty().addListener(new ChangeListener<String>() {
         @Override 
@@ -261,18 +261,21 @@ public class StocksManagerController implements Initializable {
         }catch(Exception e){e.printStackTrace();}
     }
     
-    private ObservableList<Invoice> masterData = FXCollections.observableArrayList();
-    private ObservableList<Invoice> filteredData = FXCollections.observableArrayList();
+    private ObservableList<Medicines> masterData = FXCollections.observableArrayList();
+    private ObservableList<Medicines> filteredData = FXCollections.observableArrayList();
     
     private void loadDataForSummary(){
         try{
             // Initially add all data to filtered data
+            String searchQuery = "SELECT * FROM medicines where (inStockCount < UgentCount)"
+                    + " or (inStockCount < LeasulyCount) or (inStockCount < EarlyCount)";
+            masterData = DbUtilClass.loadMedicinesList(DbUtilClass.readData(searchQuery));
             filteredData.addAll(masterData);
             // Listen for changes in master data.
             // Whenever the master data changes we must also update the filtered data.
-            masterData.addListener(new ListChangeListener<Invoice>() {
+            masterData.addListener(new ListChangeListener<Medicines>() {
             @Override
-            public void onChanged(ListChangeListener.Change<? extends Invoice> change) {
+            public void onChanged(ListChangeListener.Change<? extends Medicines> change) {
                 updateFilteredData();
             }
         });
@@ -286,7 +289,7 @@ public class StocksManagerController implements Initializable {
     private void updateFilteredData() {
         filteredData.clear();
 
-        for (Invoice p : masterData) {
+        for (Medicines p : masterData) {
             if (matchesFilter(p)) {
                 filteredData.add(p);
             }
@@ -296,7 +299,7 @@ public class StocksManagerController implements Initializable {
         reapplyTableSortOrder();
     }
     
-     private boolean matchesFilter(Invoice invoice) {
+     private boolean matchesFilter(Medicines invoice) {
         String filterString = threhodLevel.getSelectionModel().getSelectedItem();
         if (filterString == null || filterString.isEmpty()) {
             // No filter --> Add all.
@@ -305,14 +308,14 @@ public class StocksManagerController implements Initializable {
 
         String lowerCaseFilterString = filterString.toLowerCase();
         
-        if (invoice.getMediceName().toString().toLowerCase().indexOf(lowerCaseFilterString) != -1) {
+        if (invoice.getMedicineName().toString().toLowerCase().indexOf(lowerCaseFilterString) != -1) {
            return true;
         }
         return false; // Does not match
     }
 
     private void reapplyTableSortOrder() {
-        ArrayList<TableColumn<Invoice, ?>> sortOrder = new ArrayList<>(sumaryTable.getSortOrder());
+        ArrayList<TableColumn<Medicines, ?>> sortOrder = new ArrayList<>(sumaryTable.getSortOrder());
         sumaryTable.getSortOrder().clear();
         sumaryTable.getSortOrder().addAll(sortOrder);
     }
