@@ -111,7 +111,7 @@ public class StocksManagerController implements Initializable {
     @FXML
     private TableColumn<Medicines, String> name;
     @FXML
-    private TableColumn<Medicines, Double> availbleQty;
+    private TableColumn<Medicines, Integer> availbleQty;
     @FXML
     private ComboBox<String> threhodLevel;
     @FXML
@@ -139,8 +139,8 @@ public class StocksManagerController implements Initializable {
  
     
     public void initSummaryTable(){
-        name.setCellValueFactory(new PropertyValueFactory<Medicines, String>("medicineName"));
-        availbleQty.setCellValueFactory(new PropertyValueFactory<Medicines, Double>("inStockCount"));
+        name.setCellValueFactory(celldata->celldata.getValue().getMedicineName());
+        availbleQty.setCellValueFactory(celldata->celldata.getValue().getInStockCount().asObject());
         sumaryTable.setItems(filteredData);
         threhodLevel.valueProperty().addListener(new ChangeListener<String>() {
         @Override 
@@ -288,29 +288,35 @@ public class StocksManagerController implements Initializable {
      */
     private void updateFilteredData() {
         filteredData.clear();
-
-        for (Medicines p : masterData) {
-            if (matchesFilter(p)) {
-                filteredData.add(p);
-            }
-        }
-
+        matchesFilter();
         // Must re-sort table after items changed
         reapplyTableSortOrder();
     }
     
-     private boolean matchesFilter(Medicines invoice) {
+     private boolean matchesFilter() {
         String filterString = threhodLevel.getSelectionModel().getSelectedItem();
         if (filterString == null || filterString.isEmpty()) {
             // No filter --> Add all.
             return true;
+        } //"All","Urgent", "Early", "Leasuly"
+        if(filterString.equalsIgnoreCase("All")){
+             String searchQuery = "SELECT * FROM medicines where (inStockCount < UgentCount)"
+                    + " or (inStockCount < LeasulyCount) or (inStockCount < EarlyCount)";
+            filteredData = DbUtilClass.loadMedicinesList(DbUtilClass.readData(searchQuery));
         }
-
-        String lowerCaseFilterString = filterString.toLowerCase();
-        
-        if (invoice.getMedicineName().toString().toLowerCase().indexOf(lowerCaseFilterString) != -1) {
-           return true;
+        if(filterString.equalsIgnoreCase("Urgent")){
+             String searchQuery = "SELECT * FROM medicines where (inStockCount < UgentCount) and (inStockCount < LeasulyCount) and (inStockCount < EarlyCount)";
+            filteredData = DbUtilClass.loadMedicinesList(DbUtilClass.readData(searchQuery));
         }
+        if(filterString.equalsIgnoreCase("Early")){
+             String searchQuery = "SELECT * FROM medicines where ((inStockCount > LeasulyCount) and (inStockCount > UgentCount))and (inStockCount < EarlyCount)";
+            filteredData = DbUtilClass.loadMedicinesList(DbUtilClass.readData(searchQuery));
+        }
+        if(filterString.equalsIgnoreCase("Leasuly")){
+            String searchQuery = "SELECT * FROM medicines where (inStockCount > UgentCount) and (inStockCount < LeasulyCount)";
+            filteredData = DbUtilClass.loadMedicinesList(DbUtilClass.readData(searchQuery));
+        }
+        initSummaryTable();
         return false; // Does not match
     }
 
