@@ -191,6 +191,8 @@ public class StocksManagerController implements Initializable {
                         ");";
             System.out.println("Sql Insert Qeury:-"+sql);
             DbUtilClass.insertion(sql);
+            String sqlUpdate = "CALL  sp_updateStockAtStock("+invoice.getMedicineId().getValue()+","+invoice.getGetQuty().getValue()+")";
+            DbUtilClass.insertion(sqlUpdate);
         }
     }
     
