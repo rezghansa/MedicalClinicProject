@@ -126,6 +126,11 @@ public class MainPageController implements Initializable {
         loadLetters();
     }
     
+    @FXML
+    private void loadFinanceData(ActionEvent event) {
+        loadFinance();
+    }
+    
     public void startPresceiption(PatientDBO selectedPatien){
         loadPrescrtion();
     }
@@ -152,6 +157,11 @@ public class MainPageController implements Initializable {
         p.setMainPageController(this);
     }
     
+       
+    private void loadFinance(){
+       loadCenterFXML("financeData.fxml");           
+    }    
+    
     private void loadPrescrtion(){
         loadCenterFXML("Prescrptions.fxml");
     }
@@ -170,6 +180,7 @@ public class MainPageController implements Initializable {
             middleAnch = (AnchorPane) loader.load();  
             rootLayout.setCenter(middleAnch);
         }catch(IOException e){
+            e.printStackTrace();
         }  
     } 
     
@@ -229,15 +240,5 @@ public class MainPageController implements Initializable {
         }catch(IOException e){
         }         
         return false;
-    }   
-
-    @FXML
-    private void loadFinanceData(ActionEvent event) {
-        loadFinance();
-    }
-    
-    private void loadFinance(){
-       loadCenterFXML("financeData.fxml");           
-    }    
-    
+    }       
 }
