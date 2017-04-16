@@ -17,7 +17,7 @@
         <URL value="@reports.css" />
     </stylesheets>
    <children>
-      <TabPane prefHeight="518.0" prefWidth="781.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane prefHeight="518.0" prefWidth="781.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <tabs>
           <Tab text="Review Examinations">
             <content>
