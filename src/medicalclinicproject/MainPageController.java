@@ -157,7 +157,9 @@ public class MainPageController implements Initializable {
     }
     
     private void loadReports(){
-        loadCenterFXML("Reports.fxml");
+        loadCenterFXML("PatianSearchExam.fxml");
+        PatianSearchExamController p = loader.getController();
+        p.setMainPageController(this);
     }
     
     private FXMLLoader loader;
@@ -205,6 +207,20 @@ public class MainPageController implements Initializable {
         try{ 
             loader = new FXMLLoader();
             loader.setLocation(MainPageController.class.getResource("Prescrptions.fxml"));
+            middleAnch = (AnchorPane) loader.load();  
+            rootLayout.setCenter(middleAnch);
+            PrescrptionsController controller = loader.getController();
+            controller.setSelcedtPatien(selectedPatient);
+            controller.showPersonDetails(selectedPatient);
+        }catch(IOException e){
+        }         
+        return false;
+    }   
+    
+    public boolean showPersonExamDialog() {
+        try{ 
+            loader = new FXMLLoader();
+            loader.setLocation(MainPageController.class.getResource("Reports.fxml"));
             middleAnch = (AnchorPane) loader.load();  
             rootLayout.setCenter(middleAnch);
             PrescrptionsController controller = loader.getController();
