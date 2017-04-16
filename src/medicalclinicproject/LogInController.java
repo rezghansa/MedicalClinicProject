@@ -68,6 +68,8 @@ public class LogInController implements Initializable {
                 loadStockMenu();
             }else if(userType.equalsIgnoreCase("physician")){
                 loadPhysicianMenu();
+            }else if(userType.equalsIgnoreCase("finance")){
+                loadFinanceMenu();
             }            
          }else{
             lblMessage.setText("Incorrect User Name Password");
@@ -133,6 +135,29 @@ public class LogInController implements Initializable {
         try{ 
                 FXMLLoader loader = new FXMLLoader();
                 loader.setLocation(MainApp.class.getResource("PhysicanMain.fxml"));
+                BorderPane rootLayout = (BorderPane) loader.load();
+                // Create the dialog Stage.
+                Stage dialogStage = new Stage();
+                dialogStage.setTitle("Main Menu");
+                dialogStage.getIcons().add(new Image(getClass().getResourceAsStream("dr_icon.png")));
+                dialogStage.initModality(Modality.WINDOW_MODAL);
+                dialogStage.initOwner(mainApp.getPrimaryStage());
+                Scene scene = new Scene(rootLayout);
+                dialogStage.setMaximized(true);
+                dialogStage.setScene(scene);
+                MainPageController contro = loader.getController();
+                contro.setMainApp(mainApp);
+                contro.setRootLayout(rootLayout);
+                dialogStage.showAndWait();
+            }catch(Exception e){
+            
+            }
+    }
+    
+    public void loadFinanceMenu(){
+        try{ 
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(MainApp.class.getResource("FinanceMainMenu.fxml"));
                 BorderPane rootLayout = (BorderPane) loader.load();
                 // Create the dialog Stage.
                 Stage dialogStage = new Stage();
