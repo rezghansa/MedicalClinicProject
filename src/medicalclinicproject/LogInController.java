@@ -59,9 +59,16 @@ public class LogInController implements Initializable {
          //Retrieve by column name
          String first = rs.getString("uName");
          String last = rs.getString("pasWrd");
+         String userType = rs.getString("type");
          if(txtUsrNm.equals(first) && txtPass.equals(last)){
             closeLogin();
-            loadMainMenu();
+            if(userType.equalsIgnoreCase("admin")){
+                loadMainMenu();
+            }else if(userType.equalsIgnoreCase("stock")){
+                loadStockMenu();
+            }else if(userType.equalsIgnoreCase("physician")){
+                loadPhysicianMenu();
+            }            
          }else{
             lblMessage.setText("Incorrect User Name Password");
          }
@@ -80,6 +87,52 @@ public class LogInController implements Initializable {
         try{ 
                 FXMLLoader loader = new FXMLLoader();
                 loader.setLocation(MainApp.class.getResource("MainPage.fxml"));
+                BorderPane rootLayout = (BorderPane) loader.load();
+                // Create the dialog Stage.
+                Stage dialogStage = new Stage();
+                dialogStage.setTitle("Main Menu");
+                dialogStage.getIcons().add(new Image(getClass().getResourceAsStream("dr_icon.png")));
+                dialogStage.initModality(Modality.WINDOW_MODAL);
+                dialogStage.initOwner(mainApp.getPrimaryStage());
+                Scene scene = new Scene(rootLayout);
+                dialogStage.setMaximized(true);
+                dialogStage.setScene(scene);
+                MainPageController contro = loader.getController();
+                contro.setMainApp(mainApp);
+                contro.setRootLayout(rootLayout);
+                dialogStage.showAndWait();
+            }catch(Exception e){
+            
+            }
+    }
+    
+    public void loadStockMenu(){
+        try{ 
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(MainApp.class.getResource("StockMainPage.fxml"));
+                BorderPane rootLayout = (BorderPane) loader.load();
+                // Create the dialog Stage.
+                Stage dialogStage = new Stage();
+                dialogStage.setTitle("Main Menu");
+                dialogStage.getIcons().add(new Image(getClass().getResourceAsStream("dr_icon.png")));
+                dialogStage.initModality(Modality.WINDOW_MODAL);
+                dialogStage.initOwner(mainApp.getPrimaryStage());
+                Scene scene = new Scene(rootLayout);
+                dialogStage.setMaximized(true);
+                dialogStage.setScene(scene);
+                MainPageController contro = loader.getController();
+                contro.setMainApp(mainApp);
+                contro.setRootLayout(rootLayout);
+                dialogStage.showAndWait();
+            }catch(Exception e){
+            
+            }
+    }
+    
+    public void loadPhysicianMenu(){
+        try{ 
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(MainApp.class.getResource("PhysicanMain.fxml"));
                 BorderPane rootLayout = (BorderPane) loader.load();
                 // Create the dialog Stage.
                 Stage dialogStage = new Stage();
