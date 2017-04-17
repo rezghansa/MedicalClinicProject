@@ -13,6 +13,13 @@ import javafx.collections.ObservableList;
  */
 public class StaticMemoryCard {
     
-    private static ObservableList<Medicines> listOfMedicines;
+    private static ObservableList<String> listOfMedicines;
+    
+    public static ObservableList<String> getMedicinesNames(String queryName){
+        
+        String query = "select medicineName from medicines where medicineName like('%"+queryName+"%')";
+        listOfMedicines = DbUtilClass.loadMedicineName(DbUtilClass.readData(query));
+        return listOfMedicines;
+    }
     
 }

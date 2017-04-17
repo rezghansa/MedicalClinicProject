@@ -116,13 +116,24 @@ public class StocksManagerController implements Initializable {
     private ComboBox<String> threhodLevel;
     @FXML
     private Button btnRemove;
+    
+    private ObservableList<String> predictionsList = null;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         initializeMedicines();
-        TextFields.bindAutoCompletion(txtmedinceName, possibleSuggestions);
+        txtmedinceName.textProperty().addListener((observable, oldValue, newValue) -> {
+            System.out.println("textfield changed from " + oldValue + " to " + newValue);
+            predictionsList = StaticMemoryCard.getMedicinesNames(newValue);
+            TextFields.bindAutoCompletion(txtmedinceName, predictionsList);
+        });
+        txtItemName.textProperty().addListener((observable, oldValue, newValue) -> {
+            System.out.println("textfield changed from " + oldValue + " to " + newValue);
+            predictionsList = StaticMemoryCard.getMedicinesNames(newValue);
+            TextFields.bindAutoCompletion(txtItemName, predictionsList);
+        });
         TextFields.bindAutoCompletion(txtItemName, possibleSuggestions);
         ObservableList<String> data = DbUtilClass.loadTypesofMedicines();
         cmbQtryType.setItems(data);

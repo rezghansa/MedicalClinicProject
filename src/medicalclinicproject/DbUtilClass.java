@@ -201,4 +201,18 @@ public class DbUtilClass {
        }
        return listOfPatients;
    }
+   
+   public static ObservableList<String> loadMedicineName(ResultSet rs){
+       ObservableList<String> listOfName = null;
+       try{
+          listOfName = FXCollections.observableArrayList();          
+       while(rs.next()){
+              String typeName     = rs.getString("medicineName");
+              listOfName.add(typeName);     
+       }
+       }catch(Exception e){
+           e.printStackTrace();
+       }
+       return listOfName;
+   }
 }
