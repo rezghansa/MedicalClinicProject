@@ -109,6 +109,8 @@ public class PrescrptionsController implements Initializable {
     private TableColumn<ExaminationTable, String> examinationValue;
 
     ObservableList<ExaminationTable> listOfExaminationItems = FXCollections.observableArrayList();
+    
+    private ObservableList<String> predictionsList = null;
 
     public HashMap<Integer, Double> getMedicineListToUpdate() {
         return medicineListToUpdate;
@@ -172,13 +174,19 @@ public class PrescrptionsController implements Initializable {
     public void showPersonDetails(PatientDBO person) {
             loadExaminations();
             // Fill the labels with info from the person object.
-            medicineNameinitializer();
+            //medicineNameinitializer();
             medicineListToUpdate = new HashMap<Integer,Double>();
-            TextFields.bindAutoCompletion(medicineNameTxt, possibleSuggestions);
-            lblPatientName.setText("Name:-"+person.getFirstName().getValue() +" Age :- "+person.getAge().getValue() +" Gender:-"+person.getGender().getValue());
+            //TextFields.bindAutoCompletion(medicineNameTxt, possibleSuggestions);
+            medicineNameTxt.textProperty().addListener((observable, oldValue, newValue) -> {
+                predictionsList = null;
+                System.out.println("textfield changed from " + oldValue + " to " + newValue);
+                predictionsList = StaticMemoryCard.getMedicinesNames(newValue);
+                TextFields.bindAutoCompletion(medicineNameTxt, predictionsList);
+            });
             medicineNameTxt.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
                 focusState(newValue);
             });
+            lblPatientName.setText("Name:-"+person.getFirstName().getValue() +" Age :- "+person.getAge().getValue() +" Gender:-"+person.getGender().getValue());
             prescription = new PrecriptionDBO();
             examinations = new Examinations();
             prescription.setPaientId(person.getUserId().getValue());
@@ -260,7 +268,7 @@ public class PrescrptionsController implements Initializable {
     }
     
     public void medicineChanges(String medicineID){
-        Medicines medi = medicineList.get(medicineID);
+        Medicines medi = StaticMemoryCard.getMedicines(medicineID);
         int stockCount = medi.getInStockCount().getValue();
         int urgentCount= medi.getUgentCount().getValue();
         int leasureCount = medi.getLeasulyCount().getValue();

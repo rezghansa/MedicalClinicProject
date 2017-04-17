@@ -142,13 +142,7 @@ public class DbUtilClass {
         }
        }catch(Exception e){
            e.printStackTrace();
-       }finally{
-             try {
-                rs.close();
-            } catch (SQLException ex) {
-                java.util.logging.Logger.getLogger(LogInController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
+       }
        
        return listOfPatients;
    }
@@ -176,14 +170,7 @@ public class DbUtilClass {
         }
        }catch(Exception e){
            e.printStackTrace();
-       }finally{
-             try {
-                rs.close();
-            } catch (SQLException ex) {
-                java.util.logging.Logger.getLogger(LogInController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-       
+       }       
        return listOfPatients;
    }
    
@@ -214,5 +201,29 @@ public class DbUtilClass {
            e.printStackTrace();
        }
        return listOfName;
+   }
+   
+   public static Medicines loadMedicine(ResultSet rs){
+       try{
+        while(rs.next()){
+              Integer id                      = rs.getInt("id");
+              String medicineName             = rs.getString("medicineName");
+              String medicinesGenericName     = rs.getString("medicinesGenericName");
+              String medicinesCategory        = rs.getString("medicinesCategory");
+              String medicinesStrengthperUnit = rs.getString("medicinesStrengthperUnit");
+              Integer UgentCount              = rs.getInt("UgentCount");
+              Integer LeasulyCount            = rs.getInt("LeasulyCount"); 
+              Integer EarlyCount              = rs.getInt("EarlyCount");
+              Integer inStockCount            = rs.getInt("inStockCount");
+              Integer eachTypeId              = rs.getInt("eachTypeId");
+              Medicines tempMedicine = new Medicines(id, medicineName, medicinesGenericName,
+                      medicinesCategory, medicinesStrengthperUnit, UgentCount, LeasulyCount, 
+                      EarlyCount, inStockCount, eachTypeId);
+             return tempMedicine;
+        }
+       }catch(Exception e){
+           e.printStackTrace();
+       }
+       return null;
    }
 }

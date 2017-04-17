@@ -12,14 +12,18 @@ import javafx.collections.ObservableList;
  * @author hansa
  */
 public class StaticMemoryCard {
-    
-    private static ObservableList<String> listOfMedicines;
-    
+       
     public static ObservableList<String> getMedicinesNames(String queryName){
-        
+        ObservableList<String> listOfMedicines;
         String query = "select medicineName from medicines where medicineName like('%"+queryName+"%')";
         listOfMedicines = DbUtilClass.loadMedicineName(DbUtilClass.readData(query));
         return listOfMedicines;
     }
     
+    public static Medicines getMedicines(String queryName){
+        Medicines medicine;
+        String query = "select * from medicines where medicineName ='"+queryName+"'";
+        medicine = DbUtilClass.loadMedicine(DbUtilClass.readData(query));
+        return medicine;
+    }
 }

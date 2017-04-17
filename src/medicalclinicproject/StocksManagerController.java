@@ -125,11 +125,13 @@ public class StocksManagerController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         initializeMedicines();
         txtmedinceName.textProperty().addListener((observable, oldValue, newValue) -> {
+            predictionsList = null;
             System.out.println("textfield changed from " + oldValue + " to " + newValue);
             predictionsList = StaticMemoryCard.getMedicinesNames(newValue);
             TextFields.bindAutoCompletion(txtmedinceName, predictionsList);
         });
         txtItemName.textProperty().addListener((observable, oldValue, newValue) -> {
+            predictionsList = null;
             System.out.println("textfield changed from " + oldValue + " to " + newValue);
             predictionsList = StaticMemoryCard.getMedicinesNames(newValue);
             TextFields.bindAutoCompletion(txtItemName, predictionsList);
